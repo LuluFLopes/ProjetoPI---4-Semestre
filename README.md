@@ -9,3 +9,11 @@ npm install -g @vue/cli
 ```
 vue add vuetify
 ```
+
+```
+npm install axios
+```
+
+```
+npm install bowser
+```
