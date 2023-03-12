@@ -1,0 +1,9 @@
+POST http://localhost:8080/cadastrar
+Content-Type: application/json
+
+{
+  "nome": "Vitor Luctas",
+  "cpf": "222.222.222-22",
+  "usuario": "garçon-d'or",
+  "senha": "frenchboy"
+}

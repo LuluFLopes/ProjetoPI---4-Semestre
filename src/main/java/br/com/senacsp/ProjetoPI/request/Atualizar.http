@@ -1,0 +1,10 @@
+PUT http://localhost:8080/alterar
+Content-Type: application/json
+
+{
+  "id": "2",
+  "nome": "Vitor Lucats",
+  "cpf": "222.222.222-22",
+  "usuario": "garçon-d'or",
+  "senha": "frenchboy"
+}
