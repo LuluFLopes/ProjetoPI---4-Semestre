@@ -1,7 +1,7 @@
 package br.com.senacsp.ProjetoPI.model;
 
-import br.com.senacsp.ProjetoPI.grupos.Status;
 import br.com.senacsp.ProjetoPI.grupos.Autorizacao;
+import br.com.senacsp.ProjetoPI.grupos.Status;
 import jakarta.persistence.*;
 
 @Entity
