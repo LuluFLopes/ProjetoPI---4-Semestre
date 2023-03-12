@@ -11,8 +11,8 @@
       },
       methods: {
         mandarInformacoes(userLogin, userPassword) {
-          axios
-          .post ({
+          axios ({
+            method: 'post',
             url: 'http://localhost:8081/',
             data: {
               usuario: userLogin,
