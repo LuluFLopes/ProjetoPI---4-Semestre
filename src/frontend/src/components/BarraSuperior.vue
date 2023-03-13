@@ -11,9 +11,9 @@
       <v-toolbar-title>Bazinga Games</v-toolbar-title>
 
       <v-spacer></v-spacer>
-      <v-btn icon class="login" @click="TelaCadastro" >
+      <v-btn icon class="login" @click="TelaLoginFuncionario" >
 
-        <router-link to="TelaCadastro"><v-icon>mdi-login</v-icon></router-link>
+        <router-link to="TelaLoginFuncionario"><v-icon>mdi-login</v-icon></router-link>
 
 
       </v-btn>

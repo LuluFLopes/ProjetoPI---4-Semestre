@@ -48,8 +48,8 @@
               <input id="userPassword" type="password" aria-label="Senha" placeholder="Senha" v-model="userPassword">
             </div>
             
-            <input type="submit" value="Entrar" @click="mandarInformacoes({ userLogin }, { userPassword })">
-    
+            <input type="submit" class="btnEntrar" value="Entrar" @click="mandarInformacoes({ userLogin }, { userPassword })">
+
           </fieldset>
         </form>
     </div>
@@ -58,7 +58,7 @@
 
 <style scoped>
   main {
-    background-color: rgb(6, 45, 78);
+    background: url("@/Images/RE4-2.jpg");
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -79,12 +79,20 @@
     align-items: left;
     justify-content: left;
     text-align: left;
+    font-weight: bold;
 
   }
   fieldset{
     background-color: aliceblue;
+    opacity: 0.90;
     border-radius: 40px;
     border-color: rgb(35, 75, 110);
     align-items: center;
+  }
+
+  .btnEntrar{
+    border: solid;
+    border-radius: 30px;
+    border-color: rgb(35, 75, 110);
   }
 </style>
