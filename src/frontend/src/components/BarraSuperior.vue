@@ -1,5 +1,3 @@
-import TelaCadastro from '@/components/TelaCadastro';
-import Router from 'vue-router';
 
 <template>
   <v-card
