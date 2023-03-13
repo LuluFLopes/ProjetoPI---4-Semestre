@@ -1,3 +1,5 @@
+import TelaCadastro from '@/components/TelaCadastro';
+import Router from 'vue-router';
 
 <template>
   <v-card
@@ -11,12 +13,14 @@
       <v-toolbar-title>Bazinga Games</v-toolbar-title>
 
       <v-spacer></v-spacer>
-      <v-btn icon class="login"> 
-        <v-icon>mdi-login</v-icon>
+      <v-btn icon class="login" @click="TelaCadastro" >
+
+        <router-link to="TelaCadastro"><v-icon>mdi-login</v-icon></router-link>
+
+
       </v-btn>
-      
     </v-toolbar>
-   
+
   </v-card>
 </template>
 
@@ -35,11 +39,14 @@
 </style>
 
 
+
 <script>
   export default {
+    components: {},
+
     data: () => ({
       tab: null,
-    }),
+    })
   }
 </script>
 
