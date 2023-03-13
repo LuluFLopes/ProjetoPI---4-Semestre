@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import TelaInicial from '@/components/TelaInicial.vue';
-import TelaLoginFuncionario from "@/components/TelaLoginFuncionario";
 
 
 
@@ -14,11 +13,6 @@ const routes = [
     path: '/',
     name: 'home',
     component: TelaInicial
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: TelaLoginFuncionario
   }
 ]
 

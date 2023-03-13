@@ -11,12 +11,14 @@
       <v-toolbar-title>Bazinga Games</v-toolbar-title>
 
       <v-spacer></v-spacer>
-      <v-btn icon class="login"> 
-        <v-icon>mdi-login</v-icon>
+      <v-btn icon class="login" @click="TelaLoginFuncionario" >
+
+        <router-link to="TelaLoginFuncionario"><v-icon>mdi-login</v-icon></router-link>
+
+
       </v-btn>
-      
     </v-toolbar>
-   
+
   </v-card>
 </template>
 
@@ -35,11 +37,14 @@
 </style>
 
 
+
 <script>
   export default {
+    components: {},
+
     data: () => ({
       tab: null,
-    }),
+    })
   }
 </script>
 

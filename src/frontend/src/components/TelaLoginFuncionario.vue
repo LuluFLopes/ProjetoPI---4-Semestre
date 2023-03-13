@@ -5,20 +5,21 @@
   export default defineComponent({
       data() {
         return {
-          usuario: "",
-          senha: ""
+          userLogin: "",
+          userPassword: ""
         }
       },
       methods: {
-        mandarInformacoes(usuario, senha) {
+        mandarInformacoes(userLogin, userPassword) {
           axios ({
             method: 'post',
             url: 'http://localhost:8081/login',
             data: {
-              usuario: usuario,
-              senha: senha
+              usuario: userLogin,
+              senha: userPassword
             }
-          }).then(function (response) {
+          })
+            .then(function (response) {
                 console.log(response);
             })
             .catch(function (error) {
@@ -27,7 +28,7 @@
         }
       },
     });
-
+  
 </script>
 
 <template>
@@ -36,19 +37,19 @@
       <h1>Iniciar Sessão</h1>
         <form role="form">
           <fieldset>
-
+    
             <div>
               <label for="userLogin">Usuário:</label>
-              <input id="userLogin" type="text" aria-label="Usuário" placeholder="Usuário" v-model="usuario">
+              <input id="userLogin" type="text" aria-label="Usuário" placeholder="Usuário" v-model="userLogin">
             </div>
-
+    
             <div>
               <label for="userPassword">Senha:</label>
-              <input id="userPassword" type="password" aria-label="Senha" placeholder="Senha" v-model="senha">
+              <input id="userPassword" type="password" aria-label="Senha" placeholder="Senha" v-model="userPassword">
             </div>
-
-            <input type="submit" value="Entrar" @click="mandarInformacoes(usuario,senha)">
-
+            
+            <input type="submit" value="Entrar" @click="mandarInformacoes({ userLogin }, { userPassword })">
+    
           </fieldset>
         </form>
     </div>

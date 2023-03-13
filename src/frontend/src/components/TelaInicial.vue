@@ -2,16 +2,17 @@ import import Vue from 'vue'
 
 
 <template>
+
   <div class="hello">
       <BarraSuperior></BarraSuperior>
+
       <div>
+
         <img class="imagem-principal" src="@/Images/RE4-2.jpg">
+
       </div>
+
   </div>
-
- 
-
-  
 </template>
 
 
@@ -30,7 +31,7 @@ export default defineComponent ({
 
 
 <style scoped>
-  .imagte-principal{
+  .imagem-principal{
     width: auto;
     margin-top: 0px;
   }
