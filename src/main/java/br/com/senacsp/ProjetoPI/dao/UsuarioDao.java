@@ -15,7 +15,10 @@ public class UsuarioDao {
     private UsuarioRepository usuarioRepository;
 
     public boolean salvar(Usuario usuario) {
-        Usuario retorno = usuarioRepository.save(usuario);
+        Usuario retorno = null;
+        if (usuarioRepository.validaExistenciaCadastro(usuario.getUsuario()) == null) {
+            retorno = usuarioRepository.save(usuario);
+        }
         return retorno != null;
     }
 

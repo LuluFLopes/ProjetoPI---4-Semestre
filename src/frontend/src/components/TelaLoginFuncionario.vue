@@ -11,22 +11,20 @@
       },
       methods: {
         mandarInformacoes(userLogin, userPassword) {
-          axios
-          .post ({
-            url: 'http://localhost:8081/',
+          axios ({
+            method: 'post',
+            url: 'http://localhost:8081/login',
             data: {
               usuario: userLogin,
               senha: userPassword
             }
           })
-          .then((response) => {
-            
-            console.log(response);
-          })
-          .catch((error) => {
-            
-            console.log(error);
-          });
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         }
       },
     });
