@@ -21,8 +21,8 @@ public class UsuarioService {
     }
 
     @Transactional
-    public List<Usuario> login(LoginDTO dto) {
-        return usuarioDao.login(dto);
+    public List<Usuario> login() {
+        return usuarioDao.login();
     }
 
     @Transactional

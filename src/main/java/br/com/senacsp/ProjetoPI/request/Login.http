@@ -2,6 +2,6 @@ POST http://localhost:8081/login
 Content-Type: application/json
 
 {
-  "usuario": "stevart-o-velho",
+  "usuario": "stevart@hotmail.com",
   "senha": "irmãdosevart123"
 }

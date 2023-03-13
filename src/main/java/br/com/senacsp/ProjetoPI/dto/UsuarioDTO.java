@@ -1,9 +1,11 @@
 package br.com.senacsp.ProjetoPI.dto;
 
-import br.com.senacsp.ProjetoPI.grupos.Status;
 import br.com.senacsp.ProjetoPI.grupos.Autorizacao;
+import br.com.senacsp.ProjetoPI.grupos.Status;
 import br.com.senacsp.ProjetoPI.model.Usuario;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public class UsuarioDTO {
     private String nome;
     private String cpf;
@@ -11,15 +13,6 @@ public class UsuarioDTO {
     private String senha;
     private Status status;
     private Autorizacao autorizacao;
-
-    public UsuarioDTO(String nome, String cpf, String usuario, String senha, Status status, Autorizacao autorizacao) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.usuario = usuario;
-        this.senha = senha;
-        this.status = status;
-        this.autorizacao = autorizacao;
-    }
 
     public Usuario conversor(UsuarioDTO dto) {
         Usuario usuario = new Usuario(

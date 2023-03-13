@@ -27,8 +27,8 @@ public class UsuarioDao {
         return retorno != null;
     }
 
-    public List<Usuario> login(LoginDTO dto) {
-        return usuarioRepository.login(dto.getUsuario(), dto.getSenha());
+    public List<Usuario> login() {
+        return usuarioRepository.findAll();
     }
 
     public List<Usuario> listarTodos() {

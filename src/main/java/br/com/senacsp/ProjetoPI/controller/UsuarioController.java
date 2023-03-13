@@ -67,12 +67,25 @@ public class UsuarioController {
 
     @PostMapping("/login")
     public ResponseEntity<Usuario> login(@RequestBody LoginDTO dto) {
-        List<Usuario> list = usuarioService.login(dto);
-        if (list.size() > 0) {
+        List<Usuario> list = usuarioService.login();
+
+        boolean retorno = verificaListaEncriptada(list, dto);
+
+        if (retorno) {
             return ResponseEntity.ok(list.get(0));
         } else {
             return ResponseEntity.internalServerError().build();
         }
+    }
+
+    private boolean verificaListaEncriptada(List<Usuario> list, LoginDTO dto) {
+        for (Usuario u : list) {
+            u.setSenha(encriptador.decrypt(u.getSenha()));
+            if (u.getSenha().equals(dto.getSenha()) && u.getUsuario().equals(dto.getUsuario())) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
