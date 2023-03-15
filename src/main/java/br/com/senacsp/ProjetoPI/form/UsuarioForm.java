@@ -1,7 +1,7 @@
 package br.com.senacsp.ProjetoPI.form;
 
 import br.com.senacsp.ProjetoPI.grupos.Status;
-import br.com.senacsp.ProjetoPI.grupos.Autorizacao;
+import br.com.senacsp.ProjetoPI.grupos.Grupo;
 import br.com.senacsp.ProjetoPI.model.Usuario;
 
 public class UsuarioForm {
@@ -12,16 +12,16 @@ public class UsuarioForm {
     private String usuario;
     private String senha;
     private Status status;
-    private Autorizacao autorizacao;
+    private Grupo grupo;
 
-    public UsuarioForm(Long id, String nome, String cpf, String usuario, String senha, Status status, Autorizacao autorizacao) {
+    public UsuarioForm(Long id, String nome, String cpf, String usuario, String senha, Status status, Grupo grupo) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.usuario = usuario;
         this.senha = senha;
         this.status = status;
-        this.autorizacao = autorizacao;
+        this.grupo = grupo;
     }
 
     public Usuario conversor(UsuarioForm dto) {
@@ -85,12 +85,12 @@ public class UsuarioForm {
         this.status = status;
     }
 
-    public Autorizacao getAutorizacao() {
-        return autorizacao;
+    public Grupo getAutorizacao() {
+        return grupo;
     }
 
-    public void setAutorizacao(Autorizacao autorizacao) {
-        this.autorizacao = autorizacao;
+    public void setAutorizacao(Grupo grupo) {
+        this.grupo = grupo;
     }
 }
 

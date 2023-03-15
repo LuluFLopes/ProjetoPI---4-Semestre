@@ -5,33 +5,41 @@ import axios from 'axios';
 export default defineComponent({
   data() {
     return {
-      userLogin: "",
-      userCPF: "",
-      userEmail:"",
-      userPassword:"",
-      userPasswordConf: "",
-      userGrupo:""
+      nome: "",
+      cpf: "",
+      usuario: "",
+      senha: "",
+      confirmaSenha: "",
+      grupo: ""
     }
   },
   methods: {
-    mandarInformacoes(userLogin, userCPF, userEmail, userPassword, userGrupo) {
-      axios ({
-        method: 'post',
-        url: 'http://localhost:8081/Cadastrar',
-        data: {
-          usuario: userLogin,
-          cpf: userCPF,
-          email: userEmail,
-          senha: userPassword,
-          grupo: userGrupo
-        }
-      })
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+    mandarInformacoes(nome, cpf, usuario, senha, grupo, confirmaSenha) {
+
+      grupo = grupo.toUpperCase();
+
+      if (senha === confirmaSenha) {
+        axios({
+          method: 'post',
+          url: 'http://localhost:8081/cadastrar',
+          data: {
+            nome: nome,
+            cpf: cpf,
+            usuario: usuario,
+            senha: senha,
+            grupo: grupo
+          }
+        })
+            .then(function (response) {
+              console.log(response);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+
+      } else {
+        alert("As duas senhas precisam ser iguais!")
+      }
     }
   },
 });
@@ -47,37 +55,37 @@ export default defineComponent({
 
           <div>
             <label for="userLogin">Usuário:</label>
-            <input id="userLogin" type="text" aria-label="Usuário" placeholder="Usuário" v-model="userLogin">
+            <input id="userLogin" type="text" aria-label="Usuário" placeholder="Usuário" v-model="nome">
           </div>
 
           <div>
             <label for="CPF">CPF:</label>
-            <input id="CPF" type="text" aria-label="CPF" placeholder="CPF" v-model="userCPF">
+            <input id="CPF" type="text" aria-label="CPF" placeholder="CPF" v-model="cpf">
           </div>
 
           <div>
             <label for="E-Mail">E-Mail:</label>
-            <input id="userPassword" type="email" aria-label="Email" placeholder="Email" v-model="userEmail">
+            <input id="userPassword" type="email" aria-label="Email" placeholder="Email" v-model="usuario">
           </div>
 
           <div>
             <label for="userPassword">Senha:</label>
-            <input id="userPassword" type="password" aria-label="Senha" placeholder="Senha" v-model="userPassword">
+            <input id="userPassword" type="password" aria-label="Senha" placeholder="Senha" v-model="senha">
           </div>
 
           <div>
             <label for="userPasswordConf">Confirmar Senha:</label>
-            <input id="userPasswordConf" type="password" aria-label="Confirmar Senha" placeholder="Confirmar Senha" v-model="userPasswordConf">
+            <input id="userPasswordConf" type="password" aria-label="Confirmar Senha" placeholder="Confirmar Senha"
+                   v-model="confirmaSenha">
           </div>
 
           <div>
             <label for="userGrupo">Grupo:</label>
-            <input id="userGrupo" type="text" aria-label="Grupo" placeholder="Grupo" v-model="userGrupo">
+            <input id="userGrupo" type="text" aria-label="Grupo" placeholder="Grupo" v-model="grupo">
           </div>
 
-
-
-          <input type="submit" class="btnCadastrar" value="Cadastrar" @click="mandarInformacoes({ userLogin }, {userCPF },{userEmail},{userPassword}, {userGrupo}  )">
+          <input type="submit" class="btnCadastrar" value="Cadastrar"
+                 @click="mandarInformacoes(nome, cpf ,usuario, senha, grupo, confirmaSenha)">
 
         </fieldset>
       </form>

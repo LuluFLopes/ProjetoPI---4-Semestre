@@ -1,6 +1,6 @@
 package br.com.senacsp.ProjetoPI.model;
 
-import br.com.senacsp.ProjetoPI.grupos.Autorizacao;
+import br.com.senacsp.ProjetoPI.grupos.Grupo;
 import br.com.senacsp.ProjetoPI.grupos.Status;
 import jakarta.persistence.*;
 
@@ -17,28 +17,28 @@ public class Usuario {
     @Enumerated
     private Status status;
     @Enumerated
-    private Autorizacao autorizacao;
+    private Grupo grupo;
 
     public Usuario() {
     }
 
-    public Usuario(Long id, String nome, String cpf, String usuario, String senha, Status status, Autorizacao autorizacao) {
+    public Usuario(Long id, String nome, String cpf, String usuario, String senha, Status status, Grupo grupo) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.usuario = usuario;
         this.senha = senha;
         this.status = status;
-        this.autorizacao = autorizacao;
+        this.grupo = grupo;
     }
 
-    public Usuario(String nome, String cpf, String usuario, String senha, Status status, Autorizacao autorizacao) {
+    public Usuario(String nome, String cpf, String usuario, String senha, Status status, Grupo grupo) {
         this.nome = nome;
         this.cpf = cpf;
         this.usuario = usuario;
         this.senha = senha;
         this.status = status;
-        this.autorizacao = autorizacao;
+        this.grupo = grupo;
     }
 
     @Override
@@ -49,8 +49,8 @@ public class Usuario {
                 ", cpf='" + cpf + '\'' +
                 ", usuario='" + usuario + '\'' +
                 ", senha='" + senha + '\'' +
-                ", ativo=" + status +
-                ", autorizacao=" + autorizacao +
+                ", status=" + status +
+                ", grupo=" + grupo +
                 '}';
     }
 
@@ -94,19 +94,19 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public Status getAtivo() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setAtivo(Status status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
-    public Autorizacao getAutorizacao() {
-        return autorizacao;
+    public Grupo getGrupo() {
+        return grupo;
     }
 
-    public void setAutorizacao(Autorizacao autorizacao) {
-        this.autorizacao = autorizacao;
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
     }
 }

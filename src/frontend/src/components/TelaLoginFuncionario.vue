@@ -5,18 +5,18 @@
   export default defineComponent({
       data() {
         return {
-          userLogin: "",
-          userPassword: ""
+          usuario: "",
+          senha: ""
         }
       },
       methods: {
-        mandarInformacoes(userLogin, userPassword) {
+        mandarInformacoes(usuario, senha) {
           axios ({
             method: 'post',
             url: 'http://localhost:8081/login',
             data: {
-              usuario: userLogin,
-              senha: userPassword
+              usuario: usuario,
+              senha: senha
             }
           })
             .then(function (response) {
@@ -40,15 +40,15 @@
     
             <div>
               <label for="userLogin">Usuário:</label>
-              <input id="userLogin" type="text" aria-label="Usuário" placeholder="Usuário" v-model="userLogin">
+              <input id="userLogin" type="text" aria-label="Usuário" placeholder="Usuário" v-model="usuario">
             </div>
     
             <div>
               <label for="userPassword">Senha:</label>
-              <input id="userPassword" type="password" aria-label="Senha" placeholder="Senha" v-model="userPassword">
+              <input id="userPassword" type="password" aria-label="Senha" placeholder="Senha" v-model="senha">
             </div>
             
-            <input type="submit" value="Entrar" @click="mandarInformacoes({ userLogin }, { userPassword })">
+            <input type="submit" value="Entrar" @click="mandarInformacoes( usuario , senha )">
     
           </fieldset>
         </form>

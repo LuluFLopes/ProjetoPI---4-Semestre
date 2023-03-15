@@ -6,5 +6,5 @@ Content-Type: application/json
   "cpf": "111.111.111-11",
   "usuario": "stevart@hotmail.com",
   "senha": "irmãdosevart123",
-  "autorizacao": "ADMINISTRADOR"
+  "grupo": "ADMINISTRADOR"
 }

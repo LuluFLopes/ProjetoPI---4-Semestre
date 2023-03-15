@@ -8,5 +8,5 @@ Content-Type: application/json
   "usuario": "garçon-d'or@hotmail.com",
   "senha": "frenchboy",
   "status": "ATIVO",
-  "autorizacao": "ESTOQUISTA"
+  "grupo": "ESTOQUISTA"
 }

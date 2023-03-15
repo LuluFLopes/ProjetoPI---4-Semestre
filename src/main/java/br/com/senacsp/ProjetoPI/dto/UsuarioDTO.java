@@ -1,6 +1,6 @@
 package br.com.senacsp.ProjetoPI.dto;
 
-import br.com.senacsp.ProjetoPI.grupos.Autorizacao;
+import br.com.senacsp.ProjetoPI.grupos.Grupo;
 import br.com.senacsp.ProjetoPI.grupos.Status;
 import br.com.senacsp.ProjetoPI.model.Usuario;
 import lombok.NoArgsConstructor;
@@ -12,7 +12,7 @@ public class UsuarioDTO {
     private String usuario;
     private String senha;
     private Status status;
-    private Autorizacao autorizacao;
+    private Grupo grupo;
 
     public Usuario conversor(UsuarioDTO dto) {
         Usuario usuario = new Usuario(
@@ -21,7 +21,7 @@ public class UsuarioDTO {
                 dto.getUsuario(),
                 dto.getSenha(),
                 Status.ATIVO,
-                dto.getAutorizacao()
+                dto.getGrupo()
         );
         return usuario;
     }
@@ -66,12 +66,12 @@ public class UsuarioDTO {
         this.status = status;
     }
 
-    public Autorizacao getAutorizacao() {
-        return autorizacao;
+    public Grupo getGrupo() {
+        return grupo;
     }
 
-    public void setAutorizacao(Autorizacao autorizacao) {
-        this.autorizacao = autorizacao;
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
     }
 }
 

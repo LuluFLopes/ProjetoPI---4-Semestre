@@ -1,6 +1,6 @@
 package br.com.senacsp.ProjetoPI.grupos;
 
-public enum Autorizacao {
+public enum Grupo {
     ADMINISTRADOR,
     ESTOQUISTA;
 }
