@@ -1,10 +1,8 @@
 package br.com.senacsp.ProjetoPI.service;
 
-import br.com.senacsp.ProjetoPI.dao.UsuarioDao;
-import br.com.senacsp.ProjetoPI.dto.LoginDTO;
+import br.com.senacsp.ProjetoPI.model.Produto;
 import br.com.senacsp.ProjetoPI.model.Usuario;
-import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+import br.com.senacsp.ProjetoPI.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,25 +10,31 @@ import java.util.List;
 @Service
 public class UsuarioService {
 
-    @Autowired
-    public UsuarioDao usuarioDao;
+    private UsuarioRepository usuarioRepository;
 
-    @Transactional
-    public boolean cadastrar(Usuario usuario) {
-        return usuarioDao.salvar(usuario);
+    public UsuarioService(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
     }
 
-    @Transactional
-    public List<Usuario> login() {
-        return usuarioDao.login();
+    public boolean salvar(Usuario usuario) {
+        Usuario retorno = null;
+        if (usuarioRepository.validaExistenciaCadastro(usuario.getUsuario()) == null) {
+            retorno = usuarioRepository.save(usuario);
+        }
+        return retorno != null;
     }
 
-    @Transactional
     public boolean alterar(Usuario usuario) {
-        return usuarioDao.alterar(usuario);
+        return usuarioRepository.save(usuario) != usuario;
+    }
+
+    public List<Usuario> login(String usuario, String senha) {
+        return usuarioRepository.login(usuario, senha);
     }
 
     public List<Usuario> listarTodos() {
-        return usuarioDao.listarTodos();
+        return usuarioRepository.findAll();
     }
+
+
 }

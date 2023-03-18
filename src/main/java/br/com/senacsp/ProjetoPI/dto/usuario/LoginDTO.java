@@ -1,4 +1,4 @@
-package br.com.senacsp.ProjetoPI.dto;
+package br.com.senacsp.ProjetoPI.dto.usuario;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

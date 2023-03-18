@@ -1,12 +1,14 @@
-package br.com.senacsp.ProjetoPI.dto;
+package br.com.senacsp.ProjetoPI.form.usuario;
 
-import br.com.senacsp.ProjetoPI.grupos.Grupo;
-import br.com.senacsp.ProjetoPI.grupos.Status;
+import br.com.senacsp.ProjetoPI.enumeracoes.usuario.Status;
+import br.com.senacsp.ProjetoPI.enumeracoes.usuario.Grupo;
 import br.com.senacsp.ProjetoPI.model.Usuario;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-public class UsuarioDTO {
+public class UsuarioForm {
+
+    private Long id;
     private String nome;
     private String cpf;
     private String usuario;
@@ -14,16 +16,38 @@ public class UsuarioDTO {
     private Status status;
     private Grupo grupo;
 
-    public Usuario conversor(UsuarioDTO dto) {
+
+
+
+    public UsuarioForm(Long id, String nome, String cpf, String usuario, String senha, Status status, Grupo grupo) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.usuario = usuario;
+        this.senha = senha;
+        this.status = status;
+        this.grupo = grupo;
+    }
+
+    public Usuario conversor(UsuarioForm dto) {
         Usuario usuario = new Usuario(
+                dto.getId(),
                 dto.getNome(),
                 dto.getCpf(),
                 dto.getUsuario(),
                 dto.getSenha(),
-                Status.ATIVO,
-                dto.getGrupo()
+                dto.getAtivo(),
+                dto.getAutorizacao()
         );
         return usuario;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -66,11 +90,11 @@ public class UsuarioDTO {
         this.status = status;
     }
 
-    public Grupo getGrupo() {
+    public Grupo getAutorizacao() {
         return grupo;
     }
 
-    public void setGrupo(Grupo grupo) {
+    public void setAutorizacao(Grupo grupo) {
         this.grupo = grupo;
     }
 }
