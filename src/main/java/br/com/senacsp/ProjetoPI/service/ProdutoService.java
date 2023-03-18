@@ -17,13 +17,13 @@ public class ProdutoService {
     }
 
     @Transactional
-    public boolean cadastrar(Produto produto) {
-       return produtoRepository.save(produto) != produto;
+    public void cadastrar(Produto produto) {
+       produtoRepository.save(produto);
     }
 
     @Transactional
-    public boolean alterar(Produto produto) {
-        return produtoRepository.save(produto) != produto;
+    public void alterar(Produto produto) {
+        produtoRepository.save(produto);
     }
 
     public List<Produto> listar() {

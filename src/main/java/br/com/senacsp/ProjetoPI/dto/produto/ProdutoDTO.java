@@ -8,12 +8,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProdutoDTO {
 
+    private Long id;
     private String nome;
     private String detalhes;
     private Double preco;
     private Integer quantidade;
     private Avaliacao avaliacao;
     private Status status;
+
+    public ProdutoDTO(Long id, String nome, String detalhes, Double preco, Integer quantidade, Avaliacao avaliacao, Status status) {
+        this.id = id;
+        this.nome = nome;
+        this.detalhes = detalhes;
+        this.preco = preco;
+        this.quantidade = quantidade;
+        this.avaliacao = avaliacao;
+        this.status = status;
+    }
 
     public ProdutoDTO(String nome, String detalhes, Double preco, Integer quantidade, Avaliacao avaliacao, Status status) {
         this.nome = nome;
@@ -26,6 +37,7 @@ public class ProdutoDTO {
 
     public Produto conversor(ProdutoDTO dto) {
         return new Produto(
+                dto.getId(),
                 dto.getNome(),
                 dto.getDetalhes(),
                 dto.getPreco(),
@@ -33,6 +45,10 @@ public class ProdutoDTO {
                 dto.getAvaliacao(),
                 dto.getStatus()
         );
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getNome() {

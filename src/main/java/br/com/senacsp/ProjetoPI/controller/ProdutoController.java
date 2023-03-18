@@ -20,31 +20,21 @@ public class ProdutoController {
 
     @PostMapping("/cadastrar")
     public ResponseEntity<Produto> cadastrar(@RequestBody ProdutoDTO dto) {
-        boolean retorno = produtoService.cadastrar(dto.conversor(dto));
-
-        if (retorno) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        produtoService.cadastrar(dto.conversor(dto));
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/alterar")
     public ResponseEntity<Produto> alterar(@RequestBody ProdutoDTO dto) {
-        boolean retorno = produtoService.alterar(dto.conversor(dto));
-
-        if (retorno) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        produtoService.alterar(dto.conversor(dto));
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/listar")
     public ResponseEntity<List<Produto>> listar() {
         List<Produto> list = produtoService.listar();
 
-        if (list.isEmpty()) {
+        if (!list.isEmpty()) {
             return ResponseEntity.ok(list);
         } else {
             return ResponseEntity.notFound().build();

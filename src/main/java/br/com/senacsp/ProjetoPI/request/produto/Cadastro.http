@@ -1,0 +1,10 @@
+POST http://localhost:8081/produtos/cadastrar
+Content-Type: application/json
+
+{
+  "nome" : "Resident Evil 4 - Remake",
+  "detalhes" : "Jogo do gênero survival horror single player",
+  "preco" : 250.00,
+  "quantidade" : 50,
+  "avaliacao" : "EXCELENTE"
+}

@@ -1,0 +1,11 @@
+PUT http://localhost:8081/produtos/alterar
+Content-Type: application/json
+
+{
+  "id": 1,
+  "nome" : "Resident Evil 4 - Remake",
+  "detalhes" : "Jogo do gênero survival horror single player",
+  "preco" : 300.00,
+  "quantidade" : 50,
+  "avaliacao" : "EXCELENTE"
+}
