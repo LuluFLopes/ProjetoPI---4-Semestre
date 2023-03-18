@@ -3,7 +3,9 @@ package br.com.senacsp.ProjetoPI.form;
 import br.com.senacsp.ProjetoPI.grupos.Status;
 import br.com.senacsp.ProjetoPI.grupos.Grupo;
 import br.com.senacsp.ProjetoPI.model.Usuario;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public class UsuarioForm {
 
     private Long id;
@@ -13,6 +15,9 @@ public class UsuarioForm {
     private String senha;
     private Status status;
     private Grupo grupo;
+
+
+
 
     public UsuarioForm(Long id, String nome, String cpf, String usuario, String senha, Status status, Grupo grupo) {
         this.id = id;

@@ -2,7 +2,7 @@ PUT http://localhost:8081/alterar
 Content-Type: application/json
 
 {
-  "id": "2",
+  "id": "1",
   "nome": "Vitor Lucats",
   "cpf": "222.222.222-22",
   "usuario": "garçon-d'or@hotmail.com",

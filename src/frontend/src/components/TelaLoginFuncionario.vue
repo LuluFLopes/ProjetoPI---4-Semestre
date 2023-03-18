@@ -19,16 +19,18 @@
               senha: senha
             }
           })
-            .then(function (response) {
+              .then(function (response) {
+                alert("Login realizado com sucesso!");
                 console.log(response);
-            })
-            .catch(function (error) {
+              })
+              .catch(function (error) {
+                alert("Não foi possível realizar o login.");
                 console.log(error);
-            });
+              });
         }
       },
     });
-  
+
 </script>
 
 <template>
@@ -37,19 +39,19 @@
       <h1>Iniciar Sessão</h1>
         <form role="form">
           <fieldset>
-    
+
             <div>
               <label for="userLogin">Usuário:</label>
               <input id="userLogin" type="text" aria-label="Usuário" placeholder="Usuário" v-model="usuario">
             </div>
-    
+
             <div>
               <label for="userPassword">Senha:</label>
               <input id="userPassword" type="password" aria-label="Senha" placeholder="Senha" v-model="senha">
             </div>
-            
+
             <input type="submit" value="Entrar" @click="mandarInformacoes( usuario , senha )">
-    
+
           </fieldset>
         </form>
     </div>

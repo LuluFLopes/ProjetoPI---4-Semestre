@@ -79,6 +79,7 @@ public class UsuarioController {
     }
 
     private boolean verificaListaEncriptada(List<Usuario> list, LoginDTO dto) {
+
         for (Usuario u : list) {
             u.setSenha(encriptador.decrypt(u.getSenha()));
             if (u.getSenha().equals(dto.getSenha()) && u.getUsuario().equals(dto.getUsuario())) {

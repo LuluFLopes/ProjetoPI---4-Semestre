@@ -5,13 +5,9 @@ import import Vue from 'vue'
 
   <div class="hello">
       <BarraSuperior></BarraSuperior>
-
       <div>
-
         <img class="imagem-principal" src="@/Images/RE4-2.jpg">
-
       </div>
-
   </div>
 </template>
 
