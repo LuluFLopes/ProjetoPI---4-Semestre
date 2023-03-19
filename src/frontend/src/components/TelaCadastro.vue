@@ -20,6 +20,9 @@ export default defineComponent({
       grupo = grupo.toUpperCase();
 
       if (senha === confirmaSenha) {
+
+        senha = this.encrypt(senha);
+
         axios({
           method: 'post',
           url: 'http://localhost:8081/cadastrar',

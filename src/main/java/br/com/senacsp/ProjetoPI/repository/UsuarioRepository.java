@@ -1,7 +1,9 @@
 package br.com.senacsp.ProjetoPI.repository;
 
+import br.com.senacsp.ProjetoPI.enumeracoes.usuario.Status;
 import br.com.senacsp.ProjetoPI.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -14,5 +16,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     @Query("SELECT u FROM Usuario u WHERE u.usuario = :usuario")
     Usuario validaExistenciaCadastro(@Param("usuario") String usuario);
+
+    @Modifying
+    @Query("UPDATE Usuario u SET u.status = :status WHERE u.id = :id")
+    void habilitarOuDesabilitar(@Param("status") Status status, @Param("id") Long id);
 
 }

@@ -1,8 +1,8 @@
 package br.com.senacsp.ProjetoPI.service;
 
-import br.com.senacsp.ProjetoPI.model.Produto;
 import br.com.senacsp.ProjetoPI.model.Usuario;
 import br.com.senacsp.ProjetoPI.repository.UsuarioRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +16,7 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
+    @Transactional
     public boolean salvar(Usuario usuario) {
         Usuario retorno = null;
         if (usuarioRepository.validaExistenciaCadastro(usuario.getUsuario()) == null) {
@@ -24,8 +25,14 @@ public class UsuarioService {
         return retorno != null;
     }
 
+    @Transactional
     public boolean alterar(Usuario usuario) {
         return usuarioRepository.save(usuario) != usuario;
+    }
+
+    @Transactional
+    public void habilitarOuDesabilitar(Usuario usuario){
+        usuarioRepository.habilitarOuDesabilitar(usuario.getStatus(), usuario.getId());
     }
 
     public List<Usuario> login(String usuario, String senha) {
@@ -35,6 +42,5 @@ public class UsuarioService {
     public List<Usuario> listarTodos() {
         return usuarioRepository.findAll();
     }
-
 
 }

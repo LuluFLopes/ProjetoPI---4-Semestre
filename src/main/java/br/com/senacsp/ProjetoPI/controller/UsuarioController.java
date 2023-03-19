@@ -49,6 +49,12 @@ public class UsuarioController {
         }
     }
 
+    @PutMapping("/habilitarOuDesabilitar")
+    public ResponseEntity<Usuario> habilitarOuDesabilitar(@RequestBody UsuarioDTO dto) {
+        usuarioService.habilitarOuDesabilitar(dto.conversorStatus(dto));
+        return ResponseEntity.ok().build();
+    }
+
     @PostMapping("/login")
     public ResponseEntity<Usuario> login(@RequestBody LoginDTO dto) {
         List<Usuario> list = usuarioService.login(dto.getUsuario(), dto.getSenha());

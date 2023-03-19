@@ -41,6 +41,11 @@ public class Usuario {
         this.grupo = grupo;
     }
 
+    public Usuario(Long id, Status status) {
+        this.id = id;
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Usuario{" +

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 public class UsuarioDTO {
+    private Long id;
     private String nome;
     private String cpf;
     private String usuario;
@@ -26,6 +27,17 @@ public class UsuarioDTO {
         return usuario;
     }
 
+    public Usuario conversorStatus(UsuarioDTO dto) {
+        Usuario usuario = new Usuario(
+                dto.getId(),
+                dto.getStatus()
+        );
+        return usuario;
+    }
+
+    public Long getId() {
+        return id;
+    }
     public String getNome() {
         return nome;
     }
@@ -58,11 +70,11 @@ public class UsuarioDTO {
         this.senha = senha;
     }
 
-    public Status getAtivo() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setAtivo(Status status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
