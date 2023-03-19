@@ -43,4 +43,7 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
+    public List<Usuario> listarTodosComFiltro(Usuario usuario) {
+        return usuarioRepository.listarComFiltro(usuario.getUsuario());
+    }
 }

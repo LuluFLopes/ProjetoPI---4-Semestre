@@ -21,4 +21,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     @Query("UPDATE Usuario u SET u.status = :status WHERE u.id = :id")
     void habilitarOuDesabilitar(@Param("status") Status status, @Param("id") Long id);
 
+    @Query("SELECT u FROM Usuario u WHERE u.usuario = :usuario")
+    List<Usuario> listarComFiltro(@Param("usuario") String usuario);
+
 }

@@ -29,6 +29,16 @@ public class UsuarioController {
         }
     }
 
+    @PostMapping ("/listarFiltrando")
+    public ResponseEntity<List<Usuario>> listarTodosComFiltro(@RequestBody UsuarioDTO dto) {
+        List<Usuario> list = usuarioService.listarTodosComFiltro(dto.conversor(dto));
+        if (list.size() > 0) {
+            return ResponseEntity.ok(list);
+        } else {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
     @PostMapping("/cadastrar")
     public ResponseEntity<Usuario> cadastrar(@RequestBody UsuarioDTO dto) {
         boolean resposta = usuarioService.salvar(dto.conversor(dto));

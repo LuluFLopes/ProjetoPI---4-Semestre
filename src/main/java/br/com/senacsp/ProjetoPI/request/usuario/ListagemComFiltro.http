@@ -1,0 +1,6 @@
+POST http://localhost:8081/listarFiltrando
+Content-Type: application/json
+
+{
+  "usuario": "stevart@hotmail.com"
+}
