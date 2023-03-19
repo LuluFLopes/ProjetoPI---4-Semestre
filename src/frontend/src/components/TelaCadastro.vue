@@ -1,6 +1,7 @@
 <script>
 import { defineComponent } from 'vue';
 import axios from 'axios';
+const CryptoJS = require("crypto-js");
 
 export default defineComponent({
   data() {
@@ -40,6 +41,16 @@ export default defineComponent({
       } else {
         alert("As duas senhas precisam ser iguais!")
       }
+    },
+
+    encrypt (senha) {
+      return CryptoJS.AES.encrypt(senha, 'algumacoisa').toString()
+    },
+
+    decrypt (senha) {
+      const bytes = CryptoJS.AES.decrypt(senha, 'algumacoisa')
+      const originalText = bytes.toString(CryptoJS.enc.Utf8)
+      return originalText
     }
   },
 });
