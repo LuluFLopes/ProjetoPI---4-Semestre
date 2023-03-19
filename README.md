@@ -13,3 +13,7 @@ vue add vuetify
 ```
 npm install axios
 ```
+
+```
+npm install crypto-js
+```
