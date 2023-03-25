@@ -31,6 +31,24 @@
       },
     });
 
+  const app = new Vue({
+    el: '#app',
+    data: {
+      usuario: ''
+    },
+    mounted() {
+      if (localStorage.usuario) {
+        this.usuario = localStorage.usuario;
+      }
+    },
+    watch: {
+      usuario(newUsuario) {
+        localStorage.usuario = newUsuario;
+      }
+    }
+
+  })
+
 </script>
 
 <template>
@@ -50,7 +68,7 @@
               <input id="userPassword" type="password" aria-label="Senha" placeholder="Senha" v-model="senha">
             </div>
 
-            <input type="submit" value="Entrar" @click="mandarInformacoes( usuario , senha )">
+            <input type="submit" value="Entrar" @click="mandarInformacoes( usuario , senha ), app">
 
           </fieldset>
         </form>
