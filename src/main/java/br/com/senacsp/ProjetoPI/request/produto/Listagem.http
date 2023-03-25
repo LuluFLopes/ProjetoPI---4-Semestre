@@ -1,2 +1,2 @@
-GET http://localhost:8081/produtos/listar
+GET http://localhost:8081/produtos/listar?size=5&page=0
 Content-Type: application/json
