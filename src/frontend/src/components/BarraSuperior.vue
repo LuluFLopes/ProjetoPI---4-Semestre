@@ -1,12 +1,7 @@
 
 <template>
-  <v-card
-    color="grey-lighten-4"
-    flat
-    height="70px"
-    rounded="0"
-  >
-    <v-toolbar density="compact">
+
+    <v-toolbar color="rgba(217, 217, 217, 1)" density="confortable">
 
       <v-toolbar-title>Bazinga Games</v-toolbar-title>
 
@@ -16,7 +11,7 @@
       </v-btn>
     </v-toolbar>
 
-  </v-card>
+
 </template>
 
 
