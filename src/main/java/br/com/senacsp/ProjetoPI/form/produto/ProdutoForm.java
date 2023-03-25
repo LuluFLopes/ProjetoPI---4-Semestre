@@ -15,14 +15,18 @@ public class ProdutoForm {
     private Integer quantidade;
     private Avaliacao avaliacao;
     private Status status;
+    private String urlImg;
 
-    public ProdutoForm(String nome, String detalhes, Double preco, Integer quantidade, Avaliacao avaliacao, Status status) {
+    public ProdutoForm(String nome, String detalhes, Double preco,
+                       Integer quantidade, Avaliacao avaliacao, Status status,
+                       String urlImg) {
         this.nome = nome;
         this.detalhes = detalhes;
         this.preco = preco;
         this.quantidade = quantidade;
         this.avaliacao = avaliacao;
         this.status = status;
+        this.urlImg = urlImg;
     }
 
     public Produto conversor(ProdutoDTO dto) {
@@ -32,7 +36,8 @@ public class ProdutoForm {
                 dto.getPreco(),
                 dto.getQuantidade(),
                 dto.getAvaliacao(),
-                dto.getStatus()
+                dto.getStatus(),
+                dto.getUrlImg()
         );
     }
 
@@ -82,5 +87,13 @@ public class ProdutoForm {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public String getUrlImg() {
+        return urlImg;
+    }
+
+    public void setUrlImg(String urlImg) {
+        this.urlImg = urlImg;
     }
 }

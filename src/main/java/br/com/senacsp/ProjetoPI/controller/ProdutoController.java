@@ -3,6 +3,8 @@ package br.com.senacsp.ProjetoPI.controller;
 import br.com.senacsp.ProjetoPI.dto.produto.ProdutoDTO;
 import br.com.senacsp.ProjetoPI.model.Produto;
 import br.com.senacsp.ProjetoPI.service.ProdutoService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,8 +33,8 @@ public class ProdutoController {
     }
 
     @GetMapping("/listar")
-    public ResponseEntity<List<Produto>> listar() {
-        List<Produto> list = produtoService.listar();
+    public ResponseEntity<Page<Produto>> listar(Pageable pageable) {
+        Page<Produto> list = produtoService.listar(pageable);
 
         if (!list.isEmpty()) {
             return ResponseEntity.ok(list);

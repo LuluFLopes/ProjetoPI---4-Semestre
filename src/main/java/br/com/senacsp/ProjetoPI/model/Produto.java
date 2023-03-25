@@ -21,8 +21,11 @@ public class Produto {
     private Avaliacao avaliacao;
     @Enumerated
     private Status status;
+    private String urlImg;
 
-    public Produto(Long id, String nome, String detalhes, Double preco, Integer quantidade, Avaliacao avaliacao, Status status) {
+    public Produto(Long id, String nome, String detalhes,
+                   Double preco, Integer quantidade,
+                   Avaliacao avaliacao, Status status, String urlImg) {
         this.id = id;
         this.nome = nome;
         this.detalhes = detalhes;
@@ -30,28 +33,32 @@ public class Produto {
         this.quantidade = quantidade;
         this.avaliacao = avaliacao;
         this.status = Status.ATIVO;
+        this.urlImg = urlImg;
     }
 
-    public Produto(String nome, String detalhes, Double preco, Integer quantidade, Avaliacao avaliacao, Status status) {
+    public Produto(String nome, String detalhes, Double preco,
+                   Integer quantidade, Avaliacao avaliacao, Status status, String urlImg) {
         this.nome = nome;
         this.detalhes = detalhes;
         this.preco = preco;
         this.quantidade = quantidade;
         this.avaliacao = avaliacao;
         this.status = Status.ATIVO;
+        this.urlImg = urlImg;
     }
 
     @Override
     public String toString() {
-        return "Produto [ " +
-                "id = " + id +
-                ", nome = " + nome +
-                ", detalhes = " + detalhes +
-                ", preco = " + preco +
-                ", quantidade = " + quantidade +
-                ", avaliacao = " + avaliacao +
-                ", status = " + status +
-                " ]";
+        return "Produto{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", detalhes='" + detalhes + '\'' +
+                ", preco=" + preco +
+                ", quantidade=" + quantidade +
+                ", avaliacao=" + avaliacao +
+                ", status=" + status +
+                ", urlImg='" + urlImg + '\'' +
+                '}';
     }
 
     public Long getId() {
@@ -94,5 +101,21 @@ public class Produto {
 
     public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public String getUrlImg() {
+        return urlImg;
+    }
+
+    public void setUrlImg(String urlImg) {
+        this.urlImg = urlImg;
     }
 }

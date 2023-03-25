@@ -15,8 +15,11 @@ public class ProdutoDTO {
     private Integer quantidade;
     private Avaliacao avaliacao;
     private Status status;
+    private String urlImg;
 
-    public ProdutoDTO(Long id, String nome, String detalhes, Double preco, Integer quantidade, Avaliacao avaliacao, Status status) {
+    public ProdutoDTO(Long id, String nome, String detalhes,
+                      Double preco, Integer quantidade, Avaliacao avaliacao,
+                      Status status, String urlImg) {
         this.id = id;
         this.nome = nome;
         this.detalhes = detalhes;
@@ -24,15 +27,19 @@ public class ProdutoDTO {
         this.quantidade = quantidade;
         this.avaliacao = avaliacao;
         this.status = status;
+        this.urlImg = urlImg;
     }
 
-    public ProdutoDTO(String nome, String detalhes, Double preco, Integer quantidade, Avaliacao avaliacao, Status status) {
+    public ProdutoDTO(String nome, String detalhes, Double preco,
+                      Integer quantidade, Avaliacao avaliacao, Status status,
+                      String urlImg) {
         this.nome = nome;
         this.detalhes = detalhes;
         this.preco = preco;
         this.quantidade = quantidade;
         this.avaliacao = avaliacao;
         this.status = status;
+        this.urlImg = urlImg;
     }
 
     public Produto conversor(ProdutoDTO dto) {
@@ -43,7 +50,8 @@ public class ProdutoDTO {
                 dto.getPreco(),
                 dto.getQuantidade(),
                 dto.getAvaliacao(),
-                dto.getStatus()
+                dto.getStatus(),
+                dto.getUrlImg()
         );
     }
 
@@ -99,4 +107,7 @@ public class ProdutoDTO {
         this.status = status;
     }
 
+    public String getUrlImg() {
+        return urlImg;
+    }
 }

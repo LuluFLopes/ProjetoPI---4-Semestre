@@ -3,6 +3,8 @@ package br.com.senacsp.ProjetoPI.service;
 import br.com.senacsp.ProjetoPI.model.Produto;
 import br.com.senacsp.ProjetoPI.repository.ProdutoRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,8 +28,8 @@ public class ProdutoService {
         produtoRepository.save(produto);
     }
 
-    public List<Produto> listar() {
-        return produtoRepository.findAll();
+    public Page<Produto> listar(Pageable pageable) {
+        return produtoRepository.findAll(pageable);
     }
 
 }
