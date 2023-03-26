@@ -1,8 +1,8 @@
 <template>
 
   <div class="menuLateral">
-      <button class="botao text-no-wrap" @click="$emit('usuarioAtivo')">Cadastro de Usuários</button>
-      <button class="botao text-no-wrap" @click="$emit('produtoAtivo')">Cadastro de Produtos</button>
+      <button class="botao text-no-wrap" >Cadastro de Usuários</button>
+      <button class="botao text-no-wrap" >Cadastro de Produtos</button>
   </div>
 
 </template>
@@ -12,7 +12,8 @@ import {defineComponent} from "vue";
 
 export default defineComponent({
   name: "MenuLateral",
-  emits:['usuarioAtivo', 'produtoAtivo']
+  emits:['usuarioAtivo', 'produtoAtivo', 'cadastrarUsuario']
+
 })
 </script>
 

@@ -4,7 +4,9 @@ import TelaInicial from '@/view/TelaInicial.vue';
 import TelaLoginFuncionario from "@/view/TelaLoginFuncionario.vue";
 import TelaCadastro from "@/view/TelaCadastro.vue";
 import TelaLogado from "@/view/TelaLogado.vue";
-import TelaListaUsuario from "@/view/TelaListaUsuario.vue";
+import ListagemProduto from "@/components/ListagemProduto.vue";
+import ListagemUsuario from "@/components/ListagemUsuario.vue";
+
 
 Vue.use(VueRouter)
 
@@ -33,7 +35,12 @@ const routes = [
   {
     path: '/listaUsuario',
     name: 'listaUsuario',
-    component: TelaListaUsuario
+    component: ListagemUsuario
+  },
+  {
+    path: '/listaProduto',
+    name: 'listaProduto',
+    component: ListagemProduto
   }
 ]
 

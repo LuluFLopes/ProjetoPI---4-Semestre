@@ -3,16 +3,23 @@
     <div class="menuLateral1">
       <MenuLateral @usuario-ativo="verificarUsuarioAtivo" @produto-ativo="verificarProdutoAtivo"/>
     </div>
-  </div>
+      <ListagemUsuario />
+      <ListagemProduto />
+    </div>
+
 </template>
 
 <script>
 import {defineComponent} from "vue";
 import MenuLateral from "@/components/MenuLateral.vue";
+import ListagemUsuario from "@/components/ListagemUsuario.vue";
+import ListagemProduto from "@/components/ListagemProduto.vue";
 export default defineComponent ({
   name: "TelaLogado",
   components: {
-    MenuLateral
+    MenuLateral,
+    ListagemUsuario,
+    ListagemProduto
   },
 
   data(){
@@ -47,7 +54,8 @@ export default defineComponent ({
       console.log(this.usuarioAtivo)
       console.log(this.produtoAtivo)
       console.log('Clicou')
-    }
+    },
+
 
   }
 
@@ -59,6 +67,7 @@ export default defineComponent ({
 .fundo{
   height: 100%;
   background: rgba(45, 46, 50);
+  position: relative;
 }
 
 .menuLateral1{
