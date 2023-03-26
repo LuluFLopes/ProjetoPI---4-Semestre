@@ -67,35 +67,40 @@ export default defineComponent({
       <form role="form" class="formulario">
         <fieldset>
 
-          <div>
+          <div class="itens-formulario">
             <label for="userLogin">Usuário:</label>
-            <input id="userLogin" type="text" aria-label="Usuário" placeholder="Usuário" v-model="nome">
+            <input class="itens-entrada" id="userLogin" type="text" aria-label="Usuário" placeholder="Usuário" v-model="nome">
           </div>
 
-          <div>
+          <div class="itens-formulario">
             <label for="CPF">CPF:</label>
-            <input id="CPF" type="text" aria-label="CPF" placeholder="CPF" v-model="cpf">
+            <input class="itens-entrada" id="CPF" type="text" aria-label="CPF" placeholder="CPF" v-model="cpf">
           </div>
 
-          <div>
+          <div class="itens-formulario">
             <label for="E-Mail">E-Mail:</label>
-            <input id="userPassword" type="email" aria-label="Email" placeholder="Email" v-model="usuario">
+            <input class="itens-entrada" id="userPassword" type="email" aria-label="Email" placeholder="Email" v-model="usuario">
           </div>
 
-          <div>
+          <div class="itens-formulario">
             <label for="userPassword">Senha:</label>
-            <input id="userPassword" type="password" aria-label="Senha" placeholder="Senha" v-model="senha">
+            <input class="itens-entrada" id="userPassword" type="password" aria-label="Senha" placeholder="Senha" v-model="senha">
           </div>
 
-          <div>
+          <div class="itens-formulario">
             <label for="userPasswordConf">Confirmar Senha:</label>
-            <input id="userPasswordConf" type="password" aria-label="Confirmar Senha" placeholder="Confirmar Senha"
+            <input class="itens-entrada" id="userPasswordConf" type="password" aria-label="Confirmar Senha" placeholder="Confirmar Senha"
                    v-model="confirmaSenha">
           </div>
 
-          <div>
+          <div class="itens-formulario">
             <label for="userGrupo">Grupo:</label>
-            <input id="userGrupo" type="text" aria-label="Grupo" placeholder="Grupo" v-model="grupo">
+            <select class="itens-entrada" name="userGrupo"  v-model="grupo">
+              <option value="">Selecione...</option>
+              <option value="ADMINISTRADOR">Administrador</option>
+              <option value="ESTOQUISTA">Estoquista</option>
+            </select>
+
           </div>
 
           <input type="submit" class="btnCadastrar" value="Cadastrar"
@@ -109,8 +114,8 @@ export default defineComponent({
 
 <style scoped>
 main {
-  background: url("@/Images/RE4-2.jpg");
-  height: 100vh;
+  background: rgba(45, 46, 50);
+  height: 100%;
   width: 100vw;
   display: flex;
   align-items: center;
@@ -125,9 +130,8 @@ h1 {
   color: aliceblue;
   font-size: 3dvw;
 }
-label, input {
+label, input, select {
   padding: 0.5dvw;
-  margin: 2dvh;
   align-items: left;
   justify-content: left;
   text-align: left;
@@ -139,13 +143,26 @@ fieldset{
   opacity: 0.90;
   border-radius: 40px;
   border-color: rgb(35, 75, 110);
-  align-items: center;
+
 }
 
 .btnCadastrar{
   border: solid;
-  border-radius: 40px;
+  border-radius: 10px;
   border-color: rgb(35, 75, 110);
+  margin-bottom: 10px;
 }
+
+.itens-formulario{
+  text-align: left;
+  margin: 30px 10px;
+}
+
+.itens-entrada {
+  border: 1px solid #222222;
+  border-radius: 5px;
+  float:right;
+}
+
 
 </style>

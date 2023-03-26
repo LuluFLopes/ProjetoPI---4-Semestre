@@ -30,7 +30,7 @@
         }
       },
     });
-
+/*
   const app = new Vue({
     el: '#app',
     data: {
@@ -48,7 +48,7 @@
     }
 
   })
-
+*/
 </script>
 
 <template>
@@ -78,8 +78,8 @@
 
 <style scoped>
   main {
-    background-color: rgb(6, 45, 78);
-    height: 100vh;
+    background-color: rgba(45, 46, 50);
+    height: 100%;
     width: 100vw;
     display: flex;
     align-items: center;
@@ -103,7 +103,7 @@
   }
   fieldset{
     background-color: aliceblue;
-    border-radius: 40px;
+    border-radius: 10px;
     border-color: rgb(35, 75, 110);
     align-items: center;
   }

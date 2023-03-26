@@ -1,41 +1,45 @@
 <template>
 
   <div class="menuLateral">
-
-      <p class="botao"><router-link style="text-decoration: none; color: inherit;" to="login">Cadastro de Usuários</router-link></p>
-
-      <p class="botao"><router-link style="text-decoration: none; color: inherit;" to="login">Cadastro de Produtos</router-link></p>
-
+      <button class="botao text-no-wrap" @click="$emit('usuarioAtivo')">Cadastro de Usuários</button>
+      <button class="botao text-no-wrap" @click="$emit('produtoAtivo')">Cadastro de Produtos</button>
   </div>
 
 </template>
 
 <script>
-export default {
-  name: "MenuLateral"
-}
+import {defineComponent} from "vue";
+
+export default defineComponent({
+  name: "MenuLateral",
+  emits:['usuarioAtivo', 'produtoAtivo']
+})
 </script>
 
-<style scoped>
+<style>
 
 .menuLateral{
   width: 16%;
   height: 100%;
   background: rgba(217, 217, 217, 1);
-  margin: 0px;
-
   justify-content: center;
+  border-right: 2px solid #111;
+  padding: 10px;
 
-}
-
-.menuLateral p{
-  padding-top: 20px;
-  padding-left: 10px;
 }
 
 .botao{
   width: 80%;
   text-align: center;
+  padding: 5px;
+  margin: auto;
+}
+
+.botao:hover{
+  color: gold;
+  font-weight: bold;
+  background-color: red;
+  border-radius: 5px;
 
 }
 

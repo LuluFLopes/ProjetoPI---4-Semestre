@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import TelaInicial from '@/components/TelaInicial.vue';
-import TelaLoginFuncionario from "@/components/TelaLoginFuncionario";
-import TelaCadastro from "@/components/TelaCadastro";
-import TelaLogado from "@/components/TelaLogado";
+import TelaInicial from '@/view/TelaInicial.vue';
+import TelaLoginFuncionario from "@/view/TelaLoginFuncionario.vue";
+import TelaCadastro from "@/view/TelaCadastro.vue";
+import TelaLogado from "@/view/TelaLogado.vue";
+import TelaListaUsuario from "@/view/TelaListaUsuario.vue";
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,12 @@ const routes = [
     path: '/logado',
     name: 'logado',
     component: TelaLogado
+  },
+
+  {
+    path: '/listaUsuario',
+    name: 'listaUsuario',
+    component: TelaListaUsuario
   }
 ]
 

@@ -1,43 +1,43 @@
 
 <template>
-
+  <header class="cabecalho">
     <v-toolbar color="rgba(217, 217, 217, 1)" density="confortable">
-
-      <v-toolbar-title>Bazinga Games</v-toolbar-title>
-
+      <v-toolbar-title><h1>Bazinga Games</h1></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon class="login">
         <router-link to="login"><v-icon>mdi-login</v-icon></router-link>
       </v-btn>
     </v-toolbar>
-
-
+  </header>
 </template>
 
 
-<style scoped>
-  .barra{
-    color-scheme:darkblue;
-  };
-
-  .login{
-    margin: auto;
-    position: absolute;
-    display: block;
-  }
-
-</style>
-
-
-
 <script>
-  export default {
+
+import {defineComponent} from "vue";
+  export default defineComponent(  {
     components: {},
 
     data: () => ({
       tab: null,
     })
-  }
+  });
+
 </script>
+
+
+<style>
+
+.login{
+  margin: auto;
+  position: absolute;
+  display: block;
+}
+
+.cabecalho{
+  border-bottom: 2px solid #111;
+}
+
+</style>
 
 
