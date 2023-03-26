@@ -11,6 +11,7 @@
       },
       methods: {
         mandarInformacoes(usuario, senha) {
+          
           axios ({
             method: 'post',
             url: 'http://localhost:8081/login',
@@ -22,6 +23,7 @@
               .then(function (response) {
                 alert("Login realizado com sucesso!");
                 console.log(response);
+                sessionStorage.setItem("usuario", usuario);
               })
               .catch(function (error) {
                 alert("Não foi possível realizar o login.");
@@ -30,25 +32,8 @@
         }
       },
     });
-/*
-  const app = new Vue({
-    el: '#app',
-    data: {
-      usuario: ''
-    },
-    mounted() {
-      if (localStorage.usuario) {
-        this.usuario = localStorage.usuario;
-      }
-    },
-    watch: {
-      usuario(newUsuario) {
-        localStorage.usuario = newUsuario;
-      }
-    }
 
-  })
-*/
+  
 </script>
 
 <template>
@@ -68,7 +53,7 @@
               <input id="userPassword" type="password" aria-label="Senha" placeholder="Senha" v-model="senha">
             </div>
 
-            <input type="submit" value="Entrar" @click="mandarInformacoes( usuario , senha ), app">
+            <input type="submit" value="Entrar" @click="mandarInformacoes( usuario , senha )">
 
           </fieldset>
         </form>
