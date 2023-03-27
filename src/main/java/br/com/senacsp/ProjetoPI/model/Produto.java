@@ -5,6 +5,8 @@ import br.com.senacsp.ProjetoPI.enumeracoes.produto.Status;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @NoArgsConstructor
 @Table(name = "produto")
@@ -14,6 +16,7 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+    @Column(length = 200)
     private String detalhes;
     private Double preco;
     private Integer quantidade;
@@ -21,11 +24,12 @@ public class Produto {
     private Avaliacao avaliacao;
     @Enumerated
     private Status status;
-    private String urlImg;
+    @ElementCollection
+    private List<String> urlImg;
 
     public Produto(Long id, String nome, String detalhes,
                    Double preco, Integer quantidade,
-                   Avaliacao avaliacao, Status status, String urlImg) {
+                   Avaliacao avaliacao, Status status, List<String> urlImg) {
         this.id = id;
         this.nome = nome;
         this.detalhes = detalhes;
@@ -37,7 +41,7 @@ public class Produto {
     }
 
     public Produto(String nome, String detalhes, Double preco,
-                   Integer quantidade, Avaliacao avaliacao, Status status, String urlImg) {
+                   Integer quantidade, Avaliacao avaliacao, Status status, List<String> urlImg) {
         this.nome = nome;
         this.detalhes = detalhes;
         this.preco = preco;
@@ -73,7 +77,9 @@ public class Produto {
         this.nome = nome;
     }
 
-    public Avaliacao getAvaliacao() {return avaliacao;}
+    public Avaliacao getAvaliacao() {
+        return avaliacao;
+    }
 
     public void setAvaliacao(Avaliacao avaliacao) {
         this.avaliacao = avaliacao;
@@ -111,11 +117,11 @@ public class Produto {
         this.status = status;
     }
 
-    public String getUrlImg() {
+    public List<String> getUrlImg() {
         return urlImg;
     }
 
-    public void setUrlImg(String urlImg) {
+    public void setUrlImg(List<String> urlImg) {
         this.urlImg = urlImg;
     }
 }

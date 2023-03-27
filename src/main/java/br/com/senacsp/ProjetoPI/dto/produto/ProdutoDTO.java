@@ -5,6 +5,8 @@ import br.com.senacsp.ProjetoPI.enumeracoes.produto.Status;
 import br.com.senacsp.ProjetoPI.model.Produto;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @NoArgsConstructor
 public class ProdutoDTO {
 
@@ -15,11 +17,11 @@ public class ProdutoDTO {
     private Integer quantidade;
     private Avaliacao avaliacao;
     private Status status;
-    private String urlImg;
+    private List<String> urlImg;
 
     public ProdutoDTO(Long id, String nome, String detalhes,
                       Double preco, Integer quantidade, Avaliacao avaliacao,
-                      Status status, String urlImg) {
+                      Status status, List<String> urlImg) {
         this.id = id;
         this.nome = nome;
         this.detalhes = detalhes;
@@ -32,7 +34,7 @@ public class ProdutoDTO {
 
     public ProdutoDTO(String nome, String detalhes, Double preco,
                       Integer quantidade, Avaliacao avaliacao, Status status,
-                      String urlImg) {
+                      List<String> urlImg) {
         this.nome = nome;
         this.detalhes = detalhes;
         this.preco = preco;
@@ -107,7 +109,11 @@ public class ProdutoDTO {
         this.status = status;
     }
 
-    public String getUrlImg() {
+    public List<String> getUrlImg() {
         return urlImg;
+    }
+
+    public void setUrlImg(List<String> urlImg) {
+        this.urlImg = urlImg;
     }
 }

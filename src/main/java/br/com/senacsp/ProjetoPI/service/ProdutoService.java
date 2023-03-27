@@ -7,8 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class ProdutoService {
 
@@ -29,7 +27,11 @@ public class ProdutoService {
     }
 
     public Page<Produto> listar(Pageable pageable) {
-        return produtoRepository.findAll(pageable);
+        return produtoRepository.findAllByOrderByIdDesc(pageable);
+    }
+
+    public Page<Produto> listarPorNome(Pageable pageable, String nome) {
+        return produtoRepository.listagemRapidaPorNome(pageable,nome);
     }
 
 }

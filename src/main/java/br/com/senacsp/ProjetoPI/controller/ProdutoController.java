@@ -8,8 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
@@ -43,6 +41,10 @@ public class ProdutoController {
         }
     }
 
-
+    @PostMapping("/listarPorNome")
+    public ResponseEntity<Page<Produto>> listagemRapida(Pageable pageable, @RequestBody ProdutoDTO dto){
+        Page<Produto> list = produtoService.listarPorNome(pageable, dto.getNome());
+        return ResponseEntity.ok(list);
+    }
 
 }

@@ -6,6 +6,8 @@ import br.com.senacsp.ProjetoPI.enumeracoes.produto.Status;
 import br.com.senacsp.ProjetoPI.model.Produto;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @NoArgsConstructor
 public class ProdutoForm {
 
@@ -15,11 +17,11 @@ public class ProdutoForm {
     private Integer quantidade;
     private Avaliacao avaliacao;
     private Status status;
-    private String urlImg;
+    private List<String> urlImg;
 
     public ProdutoForm(String nome, String detalhes, Double preco,
                        Integer quantidade, Avaliacao avaliacao, Status status,
-                       String urlImg) {
+                       List<String> urlImg) {
         this.nome = nome;
         this.detalhes = detalhes;
         this.preco = preco;
@@ -89,11 +91,11 @@ public class ProdutoForm {
         this.status = status;
     }
 
-    public String getUrlImg() {
+    public List<String> getUrlImg() {
         return urlImg;
     }
 
-    public void setUrlImg(String urlImg) {
+    public void setUrlImg(List<String> urlImg) {
         this.urlImg = urlImg;
     }
 }
