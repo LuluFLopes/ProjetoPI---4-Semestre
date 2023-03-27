@@ -1,8 +1,14 @@
 <template>
 
   <div class="menuLateral">
-      <button class="botao text-no-wrap" >Cadastro de Usuários</button>
-      <button class="botao text-no-wrap" >Cadastro de Produtos</button>
+    <!--
+          <button class="botao text-no-wrap" >Cadastro de Usuários</button>
+          <button class="botao text-no-wrap" >Cadastro de Produtos</button>
+    !-->
+        <router-link to="/WlistaUsuario" custom v-slot="{ navigate }"><button class="botao text-no-wrap" @click="navigate" role="link">Cadastro de Usuários</button></router-link>
+        <router-link to="/WlistaProduto" custom v-slot="{ navigate }"><button class="botao text-no-wrap" @click="navigate" role="link">Cadastro de Produtos</button></router-link>
+        <!--<button class="botao text-no-wrap" @click="$emit('usuarioAtivo')">Cadastro de Usuários</button>
+        <button class="botao text-no-wrap" @click="$emit('produtoAtivo')">Cadastro de Produtos</button>!-->
   </div>
 
 </template>
@@ -41,7 +47,6 @@ export default defineComponent({
   font-weight: bold;
   background-color: red;
   border-radius: 5px;
-
 }
 
 </style>

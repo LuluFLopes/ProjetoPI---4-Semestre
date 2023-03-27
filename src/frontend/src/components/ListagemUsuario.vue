@@ -6,7 +6,7 @@
     <div>
 
 
-    <table class="listaUsuarios">
+    <table class="listaProdutos">
       <thead>
       <tr>
         <th>Nome</th>
@@ -74,7 +74,7 @@ export default defineComponent ({
 </script>
 
 <style>
-.listaUsuarios{
+.listaProdutos{
   background-color: rgba(217, 217, 217, 1);
   text-align: center;
   justify-content: center;
