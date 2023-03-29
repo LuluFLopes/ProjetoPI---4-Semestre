@@ -2,7 +2,7 @@
 <template>
   <header class="cabecalho">
     <v-toolbar color="rgba(217, 217, 217, 1)" density="confortable">
-      <v-toolbar-title><h1>Bazinga Games</h1></v-toolbar-title>
+      <v-toolbar-title><router-link to="/" style="text-decoration: none; color: inherit;"><h1>Bazinga Games</h1></router-link></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon class="login">
         <router-link to="login"><v-icon>mdi-login</v-icon></router-link>
@@ -36,7 +36,9 @@ import {defineComponent} from "vue";
 
 .cabecalho{
   border-bottom: 2px solid #111;
+
 }
+
 
 </style>
 

@@ -5,7 +5,7 @@ import import Vue from 'vue'
 
   <div class="hello">
       <div>
-        <img class="imagem-principal" src="@/Images/RE4-2.jpg">
+        <img class="imagem-principal" src="../assets/bazinga.png">
       </div>
   </div>
 </template>
@@ -26,7 +26,14 @@ export default defineComponent ({
 
 .imagem-principal{
   width: auto;
-  margin-top: 0px;
+  margin-left: 370px;
+  translate: 60px;
+  margin-top: 30px;
+  opacity: 0.3;
+}
+.hello{
+  background: rgba(45, 46, 50);
+  height: 100%;
 }
 
 </style>

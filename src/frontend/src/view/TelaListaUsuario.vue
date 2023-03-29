@@ -26,6 +26,7 @@
             </tr>
             </tbody>
           </table>
+        <v-pagination :length="5"></v-pagination>
       </div>
     </div>
   </div>

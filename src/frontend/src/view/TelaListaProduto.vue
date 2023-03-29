@@ -28,6 +28,9 @@
             </tr>
             </tbody>
           </table>
+
+        <v-pagination :length="5"></v-pagination>
+
       </div>
     </div>
   </div>
@@ -44,9 +47,12 @@ export default defineComponent( {
   },
   data (){
     return{
-      produtos: []
+      produtos: [],
+      pagina: 0,
+      totalPaginas: 0
     }
   },
+
   beforeMount() {
     this.listarProdutos(this.produtos)
   },
@@ -55,11 +61,10 @@ export default defineComponent( {
     listarProdutos(produtos) {
       axios({
         method: 'get',
-        url: 'http://localhost:8081/produtos/listar'
+        url: 'http://localhost:8081/produtos/listar?size=10&page=' + this.pagina
 
       })
           .then(function (response) {
-
             for (let i = 0; i< response.data.content.length;i++){
               console.log(response.data.content[i])
               produtos.push(response.data.content[i])
@@ -89,7 +94,7 @@ export default defineComponent( {
   left: 25%;
   width: 65%;
   height: 75%;
-  background: blue;
+  background: rgba(217, 217, 217, 1);
   color: #111111;
 }
 
@@ -110,7 +115,7 @@ export default defineComponent( {
 }
 
 .listaProdutos{
-  background-color: rgba(217, 217, 217, 1);
+  background-color: rgba(217, 217, 217);
   text-align: center;
   justify-content: center;
   margin-top: 2%;

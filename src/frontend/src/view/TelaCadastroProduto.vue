@@ -12,14 +12,14 @@
 
           <div class="itens-formulario">
             <label >Descrição:</label>
-            <input class="itens-entrada" id="userLogin" type="text" aria-label="Nome" placeholder="Nome" v-model="nome">
+            <input class="itens-entrada" id="userLogin" type="text" aria-label="Detalhes" placeholder="Detalhes" v-model="detalhes">
           </div>
 
           <div class="avaliacao">
             <label >Avaliação:</label>
             <div class="left">
               <v-rating
-                  v-model="rating"
+                  v-model="avaliacao"
                   hover
                   half-increments
               ></v-rating>
@@ -28,16 +28,16 @@
 
           <div class="itens-formulario">
             <label>Imagens:</label>
-            <input class="itens-entrada" id="Imagens" type="Imagens" aria-label="Imagens" placeholder="Imagens" >
+            <input class="itens-entrada" id="Imagens" type="Imagens" aria-label="Imagens" placeholder="Imagens"  >
           </div>
 
           <div class="ItensVlrEstq">
             <label for="userLogin">Valor:</label>
-            <input class="itens-entrada" id="VleEstq" type="text" aria-label="Valor" placeholder="Valor" >
+            <input class="itens-entrada" id="VleEstq" type="text" aria-label="Valor" placeholder="Valor" v-model="preco" >
 
             <div class="ItensVlrEstq">
               <label for="userLogin" class="text-no-wrap">Quatidade em Estoque:</label>
-              <input class="itens-entrada " id="VleEstq" type="text" aria-label="Quatidade em Estoque" placeholder="Quatidade em Estoque" >
+              <input class="itens-entrada " id="VleEstq" type="text" aria-label="Quatidade em Estoque" placeholder="Quatidade em Estoque" v-model="quantidade">
             </div>
 
           </div>
@@ -45,9 +45,10 @@
 
 
           <input type="submit" class="btnAcao green" value="Cadastrar"
-                 @click="mandarInformacoes(nome, cpf ,usuario, senha, grupo, confirmaSenha)">
+                 @click="mandarInformacoes(nome, detalhes ,urlImg, preco, quantidade, avaliacao)">
 
-          <button class="btnAcao red">Cancelar</button>
+          <router-link to="/WlistaProduto" custom v-slot="{ navigate }">
+            <button class="btnAcao red" @click="navigate" role="link">Fechar</button></router-link>
 
         </fieldset>
       </form>
@@ -59,39 +60,31 @@
 <script>
 import { defineComponent } from 'vue';
 import axios from 'axios';
-const CryptoJS = require("crypto-js");
 
 export default defineComponent({
   data() {
     return {
       nome: "",
-      cpf: "",
-      usuario: "",
-      senha: "",
-      confirmaSenha: "",
-      grupo: "",
-      rating: 2.5
+      detalhes: "",
+      urlImg: [],
+      preco: "",
+      quantidade: "",
+      avaliacao: 0
     }
   },
   methods: {
-    mandarInformacoes(nome, cpf, usuario, senha, grupo, confirmaSenha) {
-
-      grupo = grupo.toUpperCase();
-
-      if (senha === confirmaSenha) {
-
-        senha = this.encrypt(senha);
+    mandarInformacoes(nome, detalhes ,urlImg, preco, quantidade, avaliacao) {
 
         axios({
           method: 'post',
-          url: 'http://localhost:8081/cadastrar',
+          url: 'http://localhost:8081/produtos/cadastrar',
           data: {
             nome: nome,
-            cpf: cpf,
-            usuario: usuario,
-            senha: senha,
-            grupo: grupo
-          }
+            detalhes: detalhes,
+            preco: preco,
+            quantidade: quantidade,
+            avaliacao: avaliacao
+    }
         })
             .then(function (response) {
               console.log(response);
@@ -99,22 +92,8 @@ export default defineComponent({
             .catch(function (error) {
               console.log(error);
             });
-
-      } else {
-        alert("As duas senhas precisam ser iguais!")
       }
-    },
-
-    encrypt (senha) {
-      return CryptoJS.AES.encrypt(senha, 'algumacoisa').toString()
-    },
-
-    decrypt (senha) {
-      const bytes = CryptoJS.AES.decrypt(senha, 'algumacoisa')
-      const originalText = bytes.toString(CryptoJS.enc.Utf8)
-      return originalText
     }
-  },
 });
 
 </script>
@@ -148,7 +127,7 @@ label, input, select {
 
 }
 fieldset{
-  margin-top: 1%;
+  margin-top: -5%;
   background-color: aliceblue;
   opacity: 0.90;
   border-radius: 40px;
@@ -162,7 +141,7 @@ fieldset{
   border-radius: 10px;
   border-color: rgb(35, 75, 110);
   padding: 5px;
-  margin: 2% 10%;
+  margin: -1% 10%;
 }
 
 .itens-formulario{

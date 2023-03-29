@@ -19,7 +19,7 @@ export default defineComponent({
 
       grupo = grupo.toUpperCase();
 
-      if (senha === confirmaSenha) {
+      if (senha === confirmaSenha && senha.length > 0) {
 
         senha = this.encrypt(senha);
 
@@ -103,8 +103,12 @@ export default defineComponent({
 
           </div>
 
-          <input type="submit" class="btnCadastrar" value="Cadastrar"
+          <input type="submit" class="btnAcao green" value="Cadastrar"
                  @click="mandarInformacoes(nome, cpf ,usuario, senha, grupo, confirmaSenha)">
+
+          <router-link to="/WlistaUsuario" custom v-slot="{ navigate }">
+            <button class="btnAcao red" @click="navigate" role="link">Fechar</button></router-link>
+
 
         </fieldset>
       </form>
@@ -129,6 +133,7 @@ label, p, a {
 h1 {
   color: aliceblue;
   font-size: 3dvw;
+  margin-top: 2%;
 }
 label, input, select {
   padding: 0.5dvw;
@@ -143,15 +148,10 @@ fieldset{
   opacity: 0.90;
   border-radius: 40px;
   border-color: rgb(35, 75, 110);
+  height: 55dvh;
 
 }
 
-.btnCadastrar{
-  border: solid;
-  border-radius: 10px;
-  border-color: rgb(35, 75, 110);
-  margin-bottom: 10px;
-}
 
 .itens-formulario{
   text-align: left;
@@ -162,6 +162,14 @@ fieldset{
   border: 1px solid #222222;
   border-radius: 5px;
   float:right;
+}
+
+.btnAcao{
+  border: solid;
+  border-radius: 10px;
+  border-color: rgb(35, 75, 110);
+  padding: 5px;
+  margin: -1% 10%;
 }
 
 
