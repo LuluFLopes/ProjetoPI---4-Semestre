@@ -57,6 +57,13 @@ public class ProdutoDTO {
         );
     }
 
+    public Produto conversorAlteracaoStatus(ProdutoDTO dto) {
+        return new Produto(
+                dto.getId(),
+                dto.getStatus()
+        );
+    }
+
     public Long getId() {
         return id;
     }

@@ -1,11 +1,14 @@
 package br.com.senacsp.ProjetoPI.service;
 
+import br.com.senacsp.ProjetoPI.dto.produto.ProdutoDTO;
 import br.com.senacsp.ProjetoPI.model.Produto;
 import br.com.senacsp.ProjetoPI.repository.ProdutoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class ProdutoService {
@@ -18,7 +21,7 @@ public class ProdutoService {
 
     @Transactional
     public void cadastrar(Produto produto) {
-       produtoRepository.save(produto);
+        produtoRepository.save(produto);
     }
 
     @Transactional
@@ -31,7 +34,12 @@ public class ProdutoService {
     }
 
     public Page<Produto> listarPorNome(Pageable pageable, String nome) {
-        return produtoRepository.listagemRapidaPorNome(pageable,nome);
+        return produtoRepository.listagemRapidaPorNome(pageable, nome);
+    }
+
+    @Transactional
+    public void alterarStatus(Produto produto) {
+        produtoRepository.alterarStatus(produto.getId(), produto.getStatus());
     }
 
 }

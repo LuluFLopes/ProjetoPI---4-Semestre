@@ -15,8 +15,9 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
     @Column(length = 200)
+    private String nome;
+    @Column(length = 2000)
     private String detalhes;
     private Double preco;
     private Integer quantidade;
@@ -38,6 +39,11 @@ public class Produto {
         this.avaliacao = avaliacao;
         this.status = Status.ATIVO;
         this.urlImg = urlImg;
+    }
+
+    public Produto(Long id, Status status) {
+        this.id = id;
+        this.status = status;
     }
 
     public Produto(String nome, String detalhes, Double preco,

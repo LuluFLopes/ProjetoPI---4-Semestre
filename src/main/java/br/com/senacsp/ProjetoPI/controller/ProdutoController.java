@@ -47,4 +47,10 @@ public class ProdutoController {
         return ResponseEntity.ok(list);
     }
 
+    @PostMapping("/alterarStatus")
+    public ResponseEntity<Page<Produto>> alterarStatus(@RequestBody ProdutoDTO dto){
+        produtoService.alterarStatus(dto.conversorAlteracaoStatus(dto));
+        return ResponseEntity.ok().build();
+    }
+
 }
