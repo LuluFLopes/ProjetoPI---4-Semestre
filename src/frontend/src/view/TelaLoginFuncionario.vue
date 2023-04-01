@@ -2,6 +2,7 @@
   import { defineComponent } from 'vue';
   import axios from 'axios';
   import CryptoJS from "crypto-js";
+  import router from "@/router";
 
   export default defineComponent({
       data() {
@@ -25,6 +26,7 @@
                 alert("Login realizado com sucesso!");
                 console.log(response);
                 sessionStorage.setItem("usuario",usuario);
+                router.push('/logado')
               })
               .catch(function (error) {
                 alert("Não foi possível realizar o login.");
