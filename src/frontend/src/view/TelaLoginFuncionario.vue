@@ -23,7 +23,7 @@
               .then(function (response) {
                 alert("Login realizado com sucesso!");
                 console.log(response);
-                sessionStorage.setItem("usuario", usuario);
+                sessionStorage.setItem(usuario);
               })
               .catch(function (error) {
                 alert("Não foi possível realizar o login.");
