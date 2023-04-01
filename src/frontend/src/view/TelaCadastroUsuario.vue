@@ -1,70 +1,8 @@
-<script>
-import { defineComponent } from 'vue';
-import axios from 'axios';
-const CryptoJS = require("crypto-js");
-
-export default defineComponent({
-  data() {
-    return {
-      nome: "",
-      cpf: "",
-      usuario: "",
-      senha: "",
-      confirmaSenha: "",
-      grupo: ""
-    }
-  },
-  methods: {
-    mandarInformacoes(nome, cpf, usuario, senha, grupo, confirmaSenha) {
-
-      grupo = grupo.toUpperCase();
-
-      if (senha === confirmaSenha && senha.length > 0) {
-
-        senha = this.encrypt(senha);
-
-        axios({
-          method: 'post',
-          url: 'http://localhost:8081/cadastrar',
-          data: {
-            nome: nome,
-            cpf: cpf,
-            usuario: usuario,
-            senha: senha,
-            grupo: grupo
-          }
-        })
-            .then(function (response) {
-              console.log(response);
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-
-      } else {
-        alert("As duas senhas precisam ser iguais!")
-      }
-    },
-
-    encrypt (senha) {
-      return CryptoJS.AES.encrypt(senha, 'algumacoisa').toString()
-    },
-
-    decrypt (senha) {
-      const bytes = CryptoJS.AES.decrypt(senha, 'algumacoisa')
-      const originalText = bytes.toString(CryptoJS.enc.Utf8)
-      return originalText
-    }
-  },
-});
-
-</script>
-
 <template>
   <main>
-    <div>
+    <div id="app">
       <h1>Cadastro de Usuário</h1>
-      <form role="form" class="formulario">
+      <form action="" v-on:submit.prevent="checkForm" role="form" class="formulario">
         <fieldset>
 
           <div class="itens-formulario">
@@ -109,12 +47,138 @@ export default defineComponent({
           <router-link to="/WlistaUsuario" custom v-slot="{ navigate }">
             <button class="btnAcao red" @click="navigate" role="link">Fechar</button></router-link>
 
-
+          <ul>
+            <li v-for="error in errors" :key="error.message">{{error}}</li>
+          </ul>
         </fieldset>
       </form>
     </div>
   </main>
 </template>
+
+
+
+
+
+<script>
+import { defineComponent } from 'vue';
+import axios from 'axios';
+const CryptoJS = require("crypto-js");
+
+
+
+export default defineComponent({
+  data() {
+    return {
+      nome: "",
+      cpf: "",
+      usuario: "",
+      senha: "",
+      confirmaSenha: "",
+      grupo: "",
+      erros:[]
+    }
+  },
+  methods: {
+    mandarInformacoes(nome, cpf, usuario, senha, grupo, confirmaSenha) {
+
+      grupo = grupo.toUpperCase();
+
+      if (senha === confirmaSenha && senha.length > 0) {
+
+        var cpfValido = this.TestaCPF(cpf)
+        if(cpfValido  == true){
+          senha = this.encrypt(senha);
+
+          axios({
+            method: 'post',
+            url: 'http://localhost:8081/cadastrar',
+            data: {
+              nome: nome,
+              cpf: cpf,
+              usuario: usuario,
+              senha: senha,
+              grupo: grupo,
+            }
+          })
+              .then(function (response) {
+                console.log(response);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+        }
+        else{
+          alert("CPF inválido !!!")
+        }
+
+
+      } else {
+        alert("As duas senhas precisam ser iguais!")
+      }
+    },
+
+    encrypt (senha) {
+      return CryptoJS.AES.encrypt(senha, 'algumacoisa').toString()
+    },
+
+    decrypt (senha) {
+      const bytes = CryptoJS.AES.decrypt(senha, 'algumacoisa')
+      const originalText = bytes.toString(CryptoJS.enc.Utf8)
+      return originalText
+    },
+
+    TestaCPF(cpf) {
+      var Soma
+      var Resto
+      Soma = 0
+      var i
+  if (cpf == "00000000000") return false
+
+  for (i=1; i<=9; i++) Soma = Soma + parseInt(cpf.substring(i-1, i)) * (11 - i)
+  Resto = (Soma * 10) % 11
+
+  if ((Resto == 10) || (Resto == 11))  Resto = 0
+  if (Resto != parseInt(cpf.substring(9, 10)) ) return false
+
+  Soma = 0
+  for (i = 1; i <= 10; i++) Soma = Soma + parseInt(cpf.substring(i-1, i)) * (12 - i)
+  Resto = (Soma * 10) % 11
+
+  if ((Resto == 10) || (Resto == 11))  Resto = 0
+  if (Resto != parseInt(cpf.substring(10, 11) ) ) return false
+  return true
+  }
+
+  },
+
+  checkForm: function () {
+    this.errors= [];
+
+    if(!this.nome){
+      this.errors.push('O nome deve ser preenchido')
+    }
+
+    if(!this.cpf){
+      this.errors.push('O CPF deve ser preenchido')
+    }
+    else{
+      this.TestaCPF(this.cpf)
+      if(this.cpf === false){
+        this.errors.push('O CPF inválido')
+      }
+
+    }
+
+  }
+
+
+
+});
+
+</script>
+
+
 
 <style scoped>
 main {
