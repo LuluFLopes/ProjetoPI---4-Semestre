@@ -119,11 +119,11 @@ export default defineComponent({
     },
 
     encrypt (senha) {
-      return CryptoJS.AES.encrypt(senha, 'algumacoisa').toString()
+      return CryptoJS.SHA512(senha).toString()
     },
 
     decrypt (senha) {
-      const bytes = CryptoJS.AES.decrypt(senha, 'algumacoisa')
+      const bytes = CryptoJS.AES.decrypt(senha)
       const originalText = bytes.toString(CryptoJS.enc.Utf8)
       return originalText
     },

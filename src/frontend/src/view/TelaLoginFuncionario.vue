@@ -1,6 +1,7 @@
 <script>
   import { defineComponent } from 'vue';
   import axios from 'axios';
+  import CryptoJS from "crypto-js";
 
   export default defineComponent({
       data() {
@@ -11,7 +12,9 @@
       },
       methods: {
         mandarInformacoes(usuario, senha) {
-          
+          console.log(senha)
+          senha = this.encrypt(senha);
+          console.log(senha)
           axios ({
             method: 'post',
             url: 'http://localhost:8081/login',
@@ -23,12 +26,15 @@
               .then(function (response) {
                 alert("Login realizado com sucesso!");
                 console.log(response);
-                sessionStorage.setItem(usuario);
+                sessionStorage.setItem("usuario",usuario);
               })
               .catch(function (error) {
                 alert("Não foi possível realizar o login.");
                 console.log(error);
               });
+        },
+        encrypt (senha) {
+          return CryptoJS.SHA512(senha).toString()
         }
       }
     });
