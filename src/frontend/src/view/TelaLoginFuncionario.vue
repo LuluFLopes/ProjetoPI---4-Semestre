@@ -12,9 +12,7 @@
       },
       methods: {
         mandarInformacoes(usuario, senha) {
-          console.log(senha)
           senha = this.encrypt(senha);
-          console.log(senha)
           axios ({
             method: 'post',
             url: 'http://localhost:8081/login',
