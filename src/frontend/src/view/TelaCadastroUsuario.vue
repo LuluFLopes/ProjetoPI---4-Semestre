@@ -81,13 +81,47 @@ export default defineComponent({
   },
   methods: {
     mandarInformacoes(nome, cpf, usuario, senha, grupo, confirmaSenha) {
+      var cErro = 0
+      var cMsg
 
       grupo = grupo.toUpperCase();
 
+      if (nome.length == 0){
+        cErro = 1
+        cMsg = 'Campo Usuário não pode ser vazio'
+      }
+
+      if (usuario.length == 0){
+        if (cMsg.length == 0){
+          cErro = 1
+          cMsg = 'Campo e-mail não pode ser vazio'
+        }else{
+          cMsg = cMsg + '\n' + 'Campo e-mail não pode ser vazio'
+        }
+
+      }
+
+      if (grupo == ''){
+        if (cMsg.length == 0){
+          cErro = 1
+          cMsg = 'Selecione o grupo do usuário'
+        }else{
+          cMsg = cMsg + '\n' + 'Selecione o grupo do usuário'
+        }
+      }
+
       if (senha === confirmaSenha && senha.length > 0) {
+        cErro = 0
+      }else{
+        if (cMsg.length == 0) {
+          cErro = 1
+          cMsg = "As duas senhas precisam ser iguais!"
+        } else {
+          cMsg = cMsg + '\n' + "As duas senhas precisam ser iguais!"
+        }
 
         var cpfValido = this.TestaCPF(cpf)
-        if(cpfValido  == true){
+        if (cpfValido == true && cErro == 0) {
           senha = this.encrypt(senha);
 
           axios({
@@ -107,16 +141,23 @@ export default defineComponent({
               .catch(function (error) {
                 console.log(error);
               });
-        }
-        else{
-          alert("CPF inválido !!!")
+        } else {
+          cErro = 1
+          if (cMsg.length == 0) {
+            cErro = 1
+            cMsg = "O CPF é inválido"
+          } else {
+            cMsg = cMsg + '\n' + "O CPF é inválido !!!"
+          }
         }
 
+        }
+      if (cErro > 0) {
 
-      } else {
-        alert("As duas senhas precisam ser iguais!")
+        alert(cMsg)
       }
-    },
+}
+        ,
 
     encrypt (senha) {
       return CryptoJS.SHA512(senha).toString()
@@ -150,30 +191,7 @@ export default defineComponent({
   return true
   }
 
-  },
-
-  checkForm: function () {
-    this.errors= [];
-
-    if(!this.nome){
-      this.errors.push('O nome deve ser preenchido')
-    }
-
-    if(!this.cpf){
-      this.errors.push('O CPF deve ser preenchido')
-    }
-    else{
-      this.TestaCPF(this.cpf)
-      if(this.cpf === false){
-        this.errors.push('O CPF inválido')
-      }
-
-    }
-
   }
-
-
-
 });
 
 </script>

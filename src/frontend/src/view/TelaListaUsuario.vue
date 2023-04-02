@@ -13,16 +13,20 @@
             <tr>
               <th>Nome</th>
               <th>Usuário</th>
-              <th>Status</th>
               <th>Grupo</th>
+              <th>Status</th>
+              <th>Ativar/Inativar</th>
             </tr>
             </thead>
             <tbody>
             <tr v-for="(usuario,index) in usuarios" v-bind:key="index">
               <td>{{usuario.nome}}</td>
               <td>{{usuario.usuario}}</td>
-              <td>{{usuario.status}}</td>
               <td>{{usuario.grupo}}</td>
+              <td>{{usuario.status}}</td>
+              <td id="alterarStatus"><v-checkbox
+                  v-model="checkbox1"
+              ></v-checkbox></td>
             </tr>
             </tbody>
           </table>
@@ -43,9 +47,11 @@ export default defineComponent( {
   },
   data (){
     return{
-      usuarios:[]
+      usuarios:[],
+      checkbox1:true
     }
   },
+
   methods: {
     listarUsuarios(usuarios) {
       axios({
@@ -124,6 +130,11 @@ th, td{
   padding: 5px;
 }
 
+#alterarStatus{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 #btnCadastrar{
   border: 1px solid #222222;
