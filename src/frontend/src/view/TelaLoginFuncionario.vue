@@ -13,6 +13,9 @@
       },
       methods: {
         mandarInformacoes(usuario, senha) {
+          // eslint-disable-next-line
+          debugger
+
           senha = this.encrypt(senha);
           axios ({
             method: 'post',
@@ -25,8 +28,8 @@
               .then(function (response) {
                 alert("Login realizado com sucesso!");
                 console.log(response);
+                this.resgatarInformacoes(this.usuario);
                 sessionStorage.setItem("usuario",usuario);
-                resgatarInformacoes(usuario);
                 router.push('/logado')
               })
               .catch(function (error) {
@@ -40,7 +43,7 @@
         resgatarInformacoes(usuario) {
           axios({
             method: 'get',
-            url: 'http://localhost:8081/listar'
+            url: 'http://localhost:8081/listarFiltrando'
           })
           .then(function (response) {            
             sessionStorage.setItem("grupo", usuario.push(response.data[4]));

@@ -60,6 +60,7 @@
 <script>
 import { defineComponent } from 'vue';
 import axios from 'axios';
+import router from "@/router";
 
 export default defineComponent({
   data() {
@@ -88,6 +89,8 @@ export default defineComponent({
         })
             .then(function (response) {
               console.log(response);
+              alert("Cadastrado com Sucesso!");
+              router.push('/WlistaProduto')
             })
             .catch(function (error) {
               console.log(error);
