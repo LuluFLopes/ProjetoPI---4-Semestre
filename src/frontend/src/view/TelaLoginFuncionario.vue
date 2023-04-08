@@ -35,6 +35,25 @@
         },
         encrypt (senha) {
           return CryptoJS.SHA512(senha).toString()
+        },
+        resgatarInformacoes(usuario) {
+          axios ({
+            method: 'get',
+            url: 'http://localhost:8081/listar',
+            data: {
+              usuario: usuario,
+              grupo: grupo
+            }
+          })
+              .then(function (response) {
+                alert("Grupo do usuário localizado com sucesso!");
+                console.log(response);
+                sessionStorage.setItem("grupo", grupo);
+              })
+              .catch(function (error) {
+                alert("Não foi possível localizar o grupo do usuário");
+                console.log(error);
+              });
         }
       }
     });
