@@ -26,6 +26,7 @@
                 alert("Login realizado com sucesso!");
                 console.log(response);
                 sessionStorage.setItem("usuario",usuario);
+                resgatarInformacoes(usuario);
                 router.push('/logado')
               })
               .catch(function (error) {
@@ -37,23 +38,17 @@
           return CryptoJS.SHA512(senha).toString()
         },
         resgatarInformacoes(usuario) {
-          axios ({
+          axios({
             method: 'get',
-            url: 'http://localhost:8081/listar',
-            data: {
-              usuario: usuario,
-              grupo: grupo
-            }
+            url: 'http://localhost:8081/listar'
           })
-              .then(function (response) {
-                alert("Grupo do usuário localizado com sucesso!");
-                console.log(response);
-                sessionStorage.setItem("grupo", grupo);
-              })
-              .catch(function (error) {
-                alert("Não foi possível localizar o grupo do usuário");
-                console.log(error);
-              });
+          .then(function (response) {            
+            sessionStorage.setItem("grupo", usuario.push(response.data[4]));
+          })
+          .catch(function (error) {
+            alert("Não foi possível encontrar o grupo do usuário!");
+            console.log(error);
+          });
         }
       }
     });
