@@ -47,9 +47,10 @@
           <router-link to="/WlistaUsuario" custom v-slot="{ navigate }">
             <button class="btnAcao red" @click="navigate" role="link">Fechar</button></router-link>
 
+          <!--
           <ul>
             <li v-for="error in errors" :key="error.message">{{error}}</li>
-          </ul>
+          </ul> -->
         </fieldset>
       </form>
     </div>
@@ -80,6 +81,7 @@ export default defineComponent({
     }
   },
   methods: {
+    /* eslint-disable */
     mandarInformacoes(nome, cpf, usuario, senha, grupo, confirmaSenha) {
       var cErro = 0
       var cMsg
