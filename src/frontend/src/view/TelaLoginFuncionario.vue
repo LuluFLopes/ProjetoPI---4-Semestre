@@ -40,6 +40,7 @@
         encrypt (senha) {
           return CryptoJS.SHA512(senha).toString()
         },
+<<<<<<< Updated upstream
         resgatarInformacoes(usuario) {
           axios({
             method: 'get',
@@ -53,6 +54,8 @@
             console.log(error);
           });
         }
+=======
+>>>>>>> Stashed changes
       }
     });
 
