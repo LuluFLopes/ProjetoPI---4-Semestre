@@ -10,7 +10,6 @@ import TelaListaProdutos from "@/view/TelaListaProduto";
 import TelaCadastroUsuario from "@/view/TelaCadastroUsuario";
 import TelaCadastroProduto from "@/view/TelaCadastroProduto";
 
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -34,7 +33,6 @@ const routes = [
     name: 'logado',
     component: TelaLogado
   },
-
   {
     path: '/listaUsuario',
     name: 'listaUsuario',

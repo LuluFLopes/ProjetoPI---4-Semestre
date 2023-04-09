@@ -1,31 +1,43 @@
 <template>
-
   <div class="menuLateral">
-    <!--
-          <button class="botao text-no-wrap" >Cadastro de Usuários</button>
-          <button class="botao text-no-wrap" >Cadastro de Produtos</button>
-    !-->
-        <router-link to="/WlistaUsuario" custom v-slot="{ navigate }"><button class="botao text-no-wrap" @click="navigate" role="link">Cadastro de Usuários</button></router-link>
-        <router-link to="/WlistaProduto" custom v-slot="{ navigate }"><button class="botao text-no-wrap" @click="navigate" role="link">Cadastro de Produtos</button></router-link>
-        <!--<button class="botao text-no-wrap" @click="$emit('usuarioAtivo')">Cadastro de Usuários</button>
-        <button class="botao text-no-wrap" @click="$emit('produtoAtivo')">Cadastro de Produtos</button>!-->
+    <template v-for="(item, index) of getSideBarList">
+      <router-link
+          :key="index"
+          :to="item.route"
+          custom v-slot="{ navigate }">
+        <button
+            class="botao text-no-wrap"
+            @click="navigate"
+            role="link">{{ item.label }}
+        </button>
+      </router-link>
+    </template>
   </div>
-
 </template>
 
 <script>
 import {defineComponent} from "vue";
+import {sideBarList} from '@/constants'
+import {mapState} from "vuex";
 
 export default defineComponent({
   name: "MenuLateral",
-  emits:['usuarioAtivo', 'produtoAtivo', 'cadastrarUsuario']
+  computed: {
+    ...mapState([
+      'user'
+    ]),
+    getSideBarList() {
+      return sideBarList.filter((itemList) => {
+        return itemList.grupo.find((role) => role === this.user.grupo);
+      })
+    },
+  }
+});
 
-})
 </script>
 
 <style>
-
-.menuLateral{
+.menuLateral {
   width: 16%;
   height: 100%;
   background: rgba(217, 217, 217, 1);
@@ -35,18 +47,17 @@ export default defineComponent({
 
 }
 
-.botao{
+.botao {
   width: 80%;
   text-align: center;
   padding: 5px;
   margin: auto;
 }
 
-.botao:hover{
+.botao:hover {
   color: gold;
   font-weight: bold;
   background-color: red;
   border-radius: 5px;
 }
-
 </style>

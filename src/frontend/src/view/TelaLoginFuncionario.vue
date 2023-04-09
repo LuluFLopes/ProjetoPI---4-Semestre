@@ -1,121 +1,112 @@
 <script>
-  import { defineComponent } from 'vue';
-  import axios from 'axios';
-  import CryptoJS from "crypto-js";
-  import router from "@/router";
+import {defineComponent} from 'vue';
+import CryptoJS from "crypto-js";
+import axios from 'axios';
+import {mapActions} from 'vuex'
+import router from "@/router";
 
-  export default defineComponent({
-      data() {
-        return {
-          usuario: "",
-          senha: ""
-        }
-      },
-      methods: {
-        mandarInformacoes(usuario, senha) {
-          // eslint-disable-next-line
-          debugger
+const url = 'http://localhost:8081/login';
 
-          senha = this.encrypt(senha);
-          axios ({
-            method: 'post',
-            url: 'http://localhost:8081/login',
-            data: {
-              usuario: usuario,
-              senha: senha
-            }
-          })
-              .then(function (response) {
-                alert("Login realizado com sucesso!");
-                console.log(response);
-                this.resgatarInformacoes(this.usuario);
-                sessionStorage.setItem("usuario",usuario);
-                router.push('/logado')
-              })
-              .catch(function (error) {
-                alert("Não foi possível realizar o login.");
-                console.log(error);
-              });
-        },
-        encrypt (senha) {
-          return CryptoJS.SHA512(senha).toString()
-        },
-<<<<<<< Updated upstream
-        resgatarInformacoes(usuario) {
-          axios({
-            method: 'get',
-            url: 'http://localhost:8081/listarFiltrando'
-          })
-          .then(function (response) {            
+export default defineComponent({
+  data() {
+    return {
+      formData: {
+        usuario: "stevart@hotmail.com",
+        senha: "irmãdosevart123"
+      }
+    }
+  },
+  methods: {
+    async submitSignIn() {
+      try {
+        const request = await axios.post(url, this.formData)
+        console.log(request)
+        const date = new Date().getTime().toString();
+        sessionStorage.setItem("token", date);
+        this.getUserInfos(request.data);
+        await router.push('/logado');
+      } catch (ex) {
+        console.log(ex.message);
+      }
+    },
+    encrypt(senha) {
+      return CryptoJS.SHA512(senha).toString()
+    },
+    resgatarInformacoes(usuario) {
+      axios({
+        method: 'get',
+        url: 'http://localhost:8081/listarFiltrando'
+      })
+          .then(function (response) {
             sessionStorage.setItem("grupo", usuario.push(response.data[4]));
           })
           .catch(function (error) {
             alert("Não foi possível encontrar o grupo do usuário!");
             console.log(error);
           });
-        }
-=======
->>>>>>> Stashed changes
-      }
-    });
-
-  
+    },
+    ...mapActions([
+      'getUserInfos'
+    ])
+  },
+});
 </script>
 
 <template>
   <main>
     <div>
       <h1>Iniciar Sessão</h1>
-        <form role="form">
-          <fieldset>
+      <form role="form" @submit.prevent="submitSignIn()">
+        <fieldset>
+          <div>
+            <label for="userLogin">Usuário:</label>
+            <input id="userLogin" type="text" aria-label="Usuário" placeholder="Usuário" v-model="formData.usuario">
+          </div>
 
-            <div>
-              <label for="userLogin">Usuário:</label>
-              <input id="userLogin" type="text" aria-label="Usuário" placeholder="Usuário" v-model="usuario">
-            </div>
-
-            <div>
-              <label for="userPassword">Senha:</label>
-              <input id="userPassword" type="password" aria-label="Senha" placeholder="Senha" v-model="senha">
-            </div>
-
-            <input type="submit" value="Entrar" @click="mandarInformacoes( usuario , senha )">
-
-          </fieldset>
-        </form>
+          <div>
+            <label for="userPassword">Senha:</label>
+            <input id="userPassword" type="password" aria-label="Senha" placeholder="Senha" v-model="formData.senha">
+          </div>
+          <button type="submit">Entrar</button>
+        </fieldset>
+      </form>
     </div>
   </main>
 </template>
 
 <style scoped>
-  main {
-    background-color: rgba(45, 46, 50);
-    height: 100%;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-  label, p, a {
-    color: rgb(6, 45, 78);
-  }
-  h1 {
-    color: aliceblue;
-    font-size: 3dvw;
-  }
-  label, input {
-    padding: 0.5dvw;
-    margin: 2dvh;
-    align-items: left;
-    justify-content: left;
-    text-align: left;
+main {
+  background-color: rgba(45, 46, 50);
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
 
-  }
-  fieldset{
-    background-color: aliceblue;
-    border-radius: 10px;
-    border-color: rgb(35, 75, 110);
-    align-items: center;
-  }
+label, p, a {
+  color: rgb(6, 45, 78);
+}
+
+h1 {
+  color: aliceblue;
+  font-size: 3 dvw;
+}
+
+label, input {
+  padding: 0.5 dvw;
+  margin: 2 dvh;
+  align-items: left;
+  justify-content: left;
+  text-align: left;
+
+}
+
+fieldset {
+  background-color: aliceblue;
+  border-radius: 10px;
+  border-color: rgb(35, 75, 110);
+  align-items: center;
+}
 </style>
