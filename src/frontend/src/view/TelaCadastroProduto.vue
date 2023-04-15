@@ -11,8 +11,8 @@
           </div>
 
           <div class="itens-formulario">
-            <label >Descrição:</label>
-            <input class="itens-entrada" id="userLogin" type="text" aria-label="Detalhes" placeholder="Detalhes" v-model="detalhes">
+            <label>Descrição:</label>
+            <input class="itens-entrada" id="prod_desc" type="text" aria-label="Detalhes" placeholder="Detalhes" v-model="detalhes">
           </div>
 
           <div class="avaliacao">
@@ -27,16 +27,26 @@
           </div>
 
           <div class="itens-formulario">
-            <label>Imagens:</label>
-            <input class="itens-entrada" id="Imagens" type="Imagens" aria-label="Imagens" placeholder="Imagens"  >
+            <label id="label-img">Imagens:</label>
+            <!--<input class="itens-entrada" id="Imagens" type="Imagens" aria-label="Imagens" placeholder="Imagens"  >-->
+            <img src="https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp">
+          </div>
+
+          <div id="entrada-img">
+            <v-file-input
+                multiple
+                label="File input"
+                prepend-icon="mdi-camera"
+            ></v-file-input>
+          <button id="btn-img">Enviar</button>
           </div>
 
           <div class="ItensVlrEstq">
             <label for="userLogin">Valor:</label>
             <input class="itens-entrada" id="VleEstq" type="text" aria-label="Valor" placeholder="Valor" v-model="preco" >
 
-            <div class="ItensVlrEstq">
-              <label for="userLogin" class="text-no-wrap">Quatidade em Estoque:</label>
+            <div class="Qtd-Estq">
+              <label for="userLogin" class="text-no-wrap">Quantidade em Estoque:</label>
               <input class="itens-entrada " id="VleEstq" type="text" aria-label="Quatidade em Estoque" placeholder="Quatidade em Estoque" v-model="quantidade">
             </div>
 
@@ -130,12 +140,12 @@ label, input, select {
 
 }
 fieldset{
-  margin-top: -5%;
+  margin-top: -8%;
   background-color: aliceblue;
   opacity: 0.90;
   border-radius: 40px;
   border-color: rgb(35, 75, 110);
-  height: 180%;
+  height: 200%;
 
 }
 
@@ -145,6 +155,7 @@ fieldset{
   border-color: rgb(35, 75, 110);
   padding: 5px;
   margin: -1% 10%;
+  width: 90px;
 }
 
 .itens-formulario{
@@ -155,7 +166,6 @@ fieldset{
 .itens-entrada {
   border: 1px solid #222222;
   border-radius: 5px;
-  margin-left: 2%;
 }
 
 .formulario{
@@ -178,15 +188,27 @@ fieldset{
 }
 
 #userLogin{
-  margin: 0% 4%;
   width: 480px;
+  margin-left: 4%;
+
+}
+#prod_desc{
+  width: 480px;
+
 }
 
 .ItensVlrEstq{
-  margin: 2%;
+  margin: 2% 2%;
   width: 10px;
   display: flex;
 
+}
+
+.Qtd-Estq{
+  margin: 2% 15%;
+  width: 10px;
+  display: flex;
+  padding-left: 180px;
 }
 
 #VleEstq{
@@ -194,5 +216,31 @@ fieldset{
   height: 50px;
 
 }
+
+
+#label-img{
+  position: absolute;
+}
+img{
+  margin-left: 15%;
+  height: 40%;
+  width: 30%;
+}
+
+#entrada-img{
+  display: flex;
+  margin: 2%;
+  width: 70%;
+}
+
+#btn-img{
+  border: solid;
+  border-radius: 10px;
+  border-color: rgb(35, 75, 110);
+  padding: 5px;
+  height: 10%;
+  margin-top: 1%;
+}
+
 
 </style>

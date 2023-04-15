@@ -6,8 +6,17 @@
 
     <div class="frame">
       <h1>Produtos</h1>
+
       <router-link to="/cadastrarProduto" custom v-slot="{ navigate }"><button id="btnCadastrar" @click="navigate" role="link">Cadastrar</button></router-link>
+
       <div>
+        <div class="inp-pesquisar">
+          <v-text-field
+              variant="underlined"
+              label="Pesquisar"
+          ></v-text-field>
+        </div>
+
           <table class="listaProdutos">
             <thead>
             <tr>
@@ -90,10 +99,10 @@ export default defineComponent( {
 }
 .frame{
   position: absolute;
-  top: 10%;
+  top: 5%;
   left: 25%;
   width: 65%;
-  height: 75%;
+  height: 90%;
   background: rgba(217, 217, 217, 1);
   color: #111111;
 }
@@ -130,5 +139,12 @@ th, td{
   border: 1px solid #222222;
   padding: 5px;
 }
+
+.inp-pesquisar{
+  width: 600px;
+  margin: 1% 20%;
+  margin-bottom: 1px;
+}
+
 
 </style>

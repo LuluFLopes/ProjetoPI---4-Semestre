@@ -9,6 +9,7 @@ import TelaListaUsuario from "@/view/TelaListaUsuario";
 import TelaListaProdutos from "@/view/TelaListaProduto";
 import TelaCadastroUsuario from "@/view/TelaCadastroUsuario";
 import TelaCadastroProduto from "@/view/TelaCadastroProduto";
+import TelaDetalheProduto from "@/view/TelaDetalheProduto.vue";
 
 Vue.use(VueRouter)
 
@@ -57,7 +58,13 @@ const routes = [
     path: '/cadastrarProduto',
     name: 'cadastrarProduto',
     component: TelaCadastroProduto
+  },
+  {
+    path: '/TelaDetalheProduto',
+    name: 'TelaDetalheProduto',
+    component: TelaDetalheProduto
   }
+
 ]
 
 const router = new VueRouter({

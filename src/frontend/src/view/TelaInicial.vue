@@ -34,6 +34,9 @@ import import Vue from 'vue'
                                 <v-card-title>
                                   {{slider[i].title}}
                                 </v-card-title>
+                                <v-card-subtitle id="cartao">
+                                  {{slider[i].value}}
+                                </v-card-subtitle>
                                 <v-img width="100%"
                                    :src="slider[i].imageSrc"
                                   height="200"
@@ -72,38 +75,47 @@ export default defineComponent ({
          {
            title: 'Resident Evil 4',
            imageSrc: 'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp',
+           value: 'R$ 15,00'
          },
          {
            title: 'Need for speed most wanted',
            imageSrc: 'https://s2.glbimg.com/HJrwvQt3RkodEiv0d50Es5G7XSs=/0x0:620x349/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2021/8/D/lMIL3bR8mZVAxMFbRUsw/2012-05-25-e3needforspeedmostwanted.jpg',
+           value: 'R$ 15,00'
          },
          {
            title: 'Dying light 2',
            imageSrc: 'https://alternativanerd.com.br/wp-content/uploads/2020/01/AN_Dying-Light-2.jpg',
+           value: 'R$ 15,00'
          },
          {
            title: 'Resident Evil 4',
            imageSrc: 'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp',
+           value: 'R$ 15,00'
          },
          {
            title: 'Need for speed most wanted',
            imageSrc: 'https://s2.glbimg.com/HJrwvQt3RkodEiv0d50Es5G7XSs=/0x0:620x349/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2021/8/D/lMIL3bR8mZVAxMFbRUsw/2012-05-25-e3needforspeedmostwanted.jpg',
+           value: 'R$ 15,00'
          },
          {
            title: 'Dying light 2',
            imageSrc: 'https://alternativanerd.com.br/wp-content/uploads/2020/01/AN_Dying-Light-2.jpg',
+           value: 'R$ 15,00'
          },
          {
            title: 'Resident Evil 4',
            imageSrc: 'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp',
+           value: 'R$ 15,00'
          },
          {
            title: 'Need for speed most wanted',
            imageSrc: 'https://s2.glbimg.com/HJrwvQt3RkodEiv0d50Es5G7XSs=/0x0:620x349/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2021/8/D/lMIL3bR8mZVAxMFbRUsw/2012-05-25-e3needforspeedmostwanted.jpg',
+           value: 'R$ 15,00'
          },
          {
            title: 'Dying light 2',
            imageSrc: 'https://alternativanerd.com.br/wp-content/uploads/2020/01/AN_Dying-Light-2.jpg',
+           value: 'R$ 15,00'
          },
 
 
@@ -165,6 +177,12 @@ export default defineComponent ({
   justify-content: center;
   padding: 20% 0;
   height: 5dvh;
+
+}
+
+#cartao{
+  font-weight: bold;
+  color: black;
 }
 
 </style>
