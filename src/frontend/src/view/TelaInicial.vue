@@ -7,7 +7,9 @@ import import Vue from 'vue'
       <div>
         <img class="imagem-principal" src="../assets/bazinga.png">
 
-          <div id="produtos">
+          <div id="products">
+
+            <!--
             <v-carousel
                 :cicle="true"
                 :hide-delimiters="slider.length < 4"
@@ -54,7 +56,216 @@ import import Vue from 'vue'
               </template>
 
             </v-carousel>
+            -->
 
+
+            <v-card
+                class="prod"
+                variant="tonal"
+                width="400px"
+            >
+              <v-card-title>
+                Resident
+              </v-card-title>
+              <v-card-subtitle id="cartao">
+                jogo
+              </v-card-subtitle>
+              <v-img width="100%"
+                     :src="'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp'"
+                     height="200"
+              />
+              <v-card-actions>
+                <router-link to="DetalheProduto"><v-btn >Detalhes</v-btn></router-link>
+              </v-card-actions>
+            </v-card>
+
+            <v-card
+                class="prod"
+                variant="tonal"
+                width="400px"
+            >
+              <v-card-title>
+                Resident
+              </v-card-title>
+              <v-card-subtitle id="cartao">
+                jogo
+              </v-card-subtitle>
+              <v-img width="100%"
+                     :src="'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp'"
+                     height="200"
+              />
+              <v-card-actions>
+                <router-link to="DetalheProduto"><v-btn >Detalhes</v-btn></router-link>
+              </v-card-actions>
+            </v-card>
+
+
+            <v-card
+                class="prod"
+                variant="tonal"
+                width="400px"
+            >
+              <v-card-title>
+                Resident
+              </v-card-title>
+              <v-card-subtitle id="cartao">
+                jogo
+              </v-card-subtitle>
+              <v-img width="100%"
+                     :src="'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp'"
+                     height="200"
+              />
+              <v-card-actions>
+                <router-link to="DetalheProduto"><v-btn >Detalhes</v-btn></router-link>
+              </v-card-actions>
+            </v-card>
+
+
+            <v-card
+                class="prod"
+                variant="tonal"
+                width="400px"
+            >
+              <v-card-title>
+                Resident
+              </v-card-title>
+              <v-card-subtitle id="cartao">
+                jogo
+              </v-card-subtitle>
+              <v-img width="100%"
+                     :src="'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp'"
+                     height="200"
+              />
+              <v-card-actions>
+                <router-link to="DetalheProduto"><v-btn >Detalhes</v-btn></router-link>
+              </v-card-actions>
+            </v-card>
+
+
+            <v-card
+                class="prod"
+                variant="tonal"
+                width="400px"
+            >
+              <v-card-title>
+                Resident
+              </v-card-title>
+              <v-card-subtitle id="cartao">
+                jogo
+              </v-card-subtitle>
+              <v-img width="100%"
+                     :src="'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp'"
+                     height="200"
+              />
+              <v-card-actions>
+                <router-link to="DetalheProduto"><v-btn >Detalhes</v-btn></router-link>
+              </v-card-actions>
+            </v-card>
+
+
+            <v-card
+                class="prod"
+                variant="tonal"
+                width="400px"
+            >
+              <v-card-title>
+                Resident
+              </v-card-title>
+              <v-card-subtitle id="cartao">
+                jogo
+              </v-card-subtitle>
+              <v-img width="100%"
+                     :src="'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp'"
+                     height="200"
+              />
+              <v-card-actions>
+                <router-link to="DetalheProduto"><v-btn >Detalhes</v-btn></router-link>
+              </v-card-actions>
+            </v-card>
+
+
+            <v-card
+                class="prod"
+                variant="tonal"
+                width="400px"
+            >
+              <v-card-title>
+                Resident
+              </v-card-title>
+              <v-card-subtitle id="cartao">
+                jogo
+              </v-card-subtitle>
+              <v-img width="100%"
+                     :src="'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp'"
+                     height="200"
+              />
+              <v-card-actions>
+                <router-link to="DetalheProduto"><v-btn >Detalhes</v-btn></router-link>
+              </v-card-actions>
+            </v-card>
+
+
+            <v-card
+                class="prod"
+                variant="tonal"
+                width="400px"
+            >
+              <v-card-title>
+                Resident
+              </v-card-title>
+              <v-card-subtitle id="cartao">
+                jogo
+              </v-card-subtitle>
+              <v-img width="100%"
+                     :src="'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp'"
+                     height="200"
+              />
+              <v-card-actions>
+                <router-link to="DetalheProduto"><v-btn >Detalhes</v-btn></router-link>
+              </v-card-actions>
+            </v-card>
+
+
+            <v-card
+                class="prod"
+                variant="tonal"
+                width="400px"
+            >
+              <v-card-title>
+                Resident
+              </v-card-title>
+              <v-card-subtitle id="cartao">
+                jogo
+              </v-card-subtitle>
+              <v-img width="100%"
+                     :src="'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp'"
+                     height="200"
+              />
+              <v-card-actions>
+                <router-link to="DetalheProduto"><v-btn >Detalhes</v-btn></router-link>
+              </v-card-actions>
+            </v-card>
+
+
+            <v-card
+                class="prod"
+                variant="tonal"
+                width="400px"
+            >
+              <v-card-title>
+                Resident
+              </v-card-title>
+              <v-card-subtitle id="cartao">
+                jogo
+              </v-card-subtitle>
+              <v-img width="100%"
+                     :src="'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp'"
+                     height="200"
+              />
+              <v-card-actions>
+                <router-link to="DetalheProduto"><v-btn >Detalhes</v-btn></router-link>
+              </v-card-actions>
+            </v-card>
 
           </div>
       </div>
@@ -171,12 +382,10 @@ export default defineComponent ({
   margin: 10px 10px;
 }
 
-#produtos{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20% 0;
-  height: 5dvh;
+#products{
+  display: grid;
+  grid-template-columns: 3fr 3fr 2fr;
+  position: relative;
 
 }
 

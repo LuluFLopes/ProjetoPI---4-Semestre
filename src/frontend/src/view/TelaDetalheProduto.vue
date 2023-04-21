@@ -1,30 +1,60 @@
 <template>
 
   <div class="hello">
-      <div>
-        <img class="imagem-principal" src="../assets/bazinga.png">
-      </div>
-    <div id="produtos">
-    <v-card
-        class="prod"
-        variant="tonal"
-        width="400px"
-    >
-      <v-card-title>Resident Evil 4'</v-card-title>
-      <v-card-subtitle id="cartao">R$15,00</v-card-subtitle>
-      <v-img src="https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp"
-             width="100%"
-             height="200"
-      />
-      <v-card-actions>
-        <v-btn>Detalhes</v-btn>
-      </v-card-actions>
-    </v-card>
 
-      <div class="img1">
-        <img src="https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp" id="img1">
-      </div>
-    </div>
+
+
+        <!--
+        <div id="produtos">
+          <v-card
+              class="prod"
+              variant="tonal"
+              width="95%"
+
+          >
+            <v-card-title>Resident Evil 4'</v-card-title>
+            <v-card-subtitle id="cartao">R$15,00</v-card-subtitle>
+            <v-img src="https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp"
+                   width="100%"
+                   height="200"
+            />
+            <v-card-actions>
+              <v-btn>Detalhes</v-btn>
+            </v-card-actions>
+          </v-card>
+
+          <div class="img1">
+            <img src="https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp" id="img1">
+          </div>
+        </div>-->
+
+
+        <div  id="frame">
+
+          <h1>Jogo 1</h1>
+
+        <div class="infos">
+        <div class="fotos">
+          <h3>Fotos</h3>
+
+        </div>
+
+          <div id="detalhes">
+
+            <h3>Informações do jogo</h3>
+
+          </div>
+
+          <div class="botoes">
+
+            <v-btn>Comprar</v-btn>
+
+          </div>
+
+        </div>
+
+
+        </div>
 
 
 
@@ -40,6 +70,10 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
+
+  data: () => ({
+    model: null,
+  }),
 
 });
 
@@ -93,4 +127,38 @@ export default defineComponent({
   border: solid 2px black;
 }
 
+
+#frame{
+  background: rgba(55, 76, 90);
+  height: 900px;
+  width: 80%;
+  padding: 2%;
+  margin-left: 10%;
+
+}
+
+.infos{
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+
+.fotos{
+  height: 50%;
+  width: 55%;
+  background: chartreuse;
+}
+
+#detalhes{
+  background: gold;
+  margin-left: 1%;
+  height: 90%;
+  width: 45%;
+}
+
+.botoes{
+  position: absolute;
+  margin-top: 35%;
+}
 </style>

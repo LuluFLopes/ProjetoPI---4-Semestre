@@ -60,8 +60,8 @@ const routes = [
     component: TelaCadastroProduto
   },
   {
-    path: '/TelaDetalheProduto',
-    name: 'TelaDetalheProduto',
+    path: '/DetalheProduto',
+    name: 'DetalheProduto',
     component: TelaDetalheProduto
   }
 
