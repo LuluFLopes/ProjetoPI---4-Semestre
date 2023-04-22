@@ -17,26 +17,26 @@ public class UsuarioService {
     }
 
     @Transactional
-    public boolean salvar(Usuario usuario) {
-        Usuario retorno = null;
-        if (usuarioRepository.validaExistenciaCadastro(usuario.getUsuario()) == null) {
-            retorno = usuarioRepository.save(usuario);
-        }
-        return retorno != null;
+    public void salvar(Usuario usuario) {
+        usuarioRepository.save(usuario);
     }
 
     @Transactional
-    public boolean alterar(Usuario usuario) {
-        return usuarioRepository.save(usuario) != usuario;
+    public void alterar(Usuario usuario) {
+        usuarioRepository.save(usuario);
     }
 
     @Transactional
-    public void habilitarOuDesabilitar(Usuario usuario){
+    public void habilitarOuDesabilitar(Usuario usuario) {
         usuarioRepository.habilitarOuDesabilitar(usuario.getStatus(), usuario.getId());
     }
 
-    public List<Usuario> login(String usuario, String senha) {
-        return usuarioRepository.login(usuario, senha);
+    public Usuario login(String usuario, String senha) {
+        Usuario usuarioEncontrado = usuarioRepository.login(usuario, senha);
+        if (usuarioEncontrado == null) {
+            throw new NullPointerException("Não encontrado!");
+        }
+        return usuarioEncontrado;
     }
 
     public List<Usuario> listarTodos() {

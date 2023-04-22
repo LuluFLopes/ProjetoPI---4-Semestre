@@ -2,6 +2,6 @@ POST http://localhost:8081/login
 Content-Type: application/json
 
 {
-  "usuario": "stevart@hotmail.com",
-  "senha": "irmãdosevart123"
+  "usuario": "luciano@senacsp.edu.br",
+  "senha": "30226b752d6e29785387c9a5ec496e3f2a238c7f72091f19eed8e05b1bb52eab9ca0b19bec16b32eb35de593043665739c81ecf9de1787c8745cecdc57efca00"
 }

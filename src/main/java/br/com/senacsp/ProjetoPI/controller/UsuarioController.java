@@ -29,7 +29,7 @@ public class UsuarioController {
         }
     }
 
-    @PostMapping ("/listarFiltrando")
+    @PostMapping("/listarFiltrando")
     public ResponseEntity<List<Usuario>> listarTodosComFiltro(@RequestBody UsuarioDTO dto) {
         List<Usuario> list = usuarioService.listarTodosComFiltro(dto.conversor(dto));
         if (list.size() > 0) {
@@ -41,22 +41,14 @@ public class UsuarioController {
 
     @PostMapping("/cadastrar")
     public ResponseEntity<Usuario> cadastrar(@RequestBody UsuarioDTO dto) {
-        boolean resposta = usuarioService.salvar(dto.conversor(dto));
-        if (resposta) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.internalServerError().build();
-        }
+        usuarioService.salvar(dto.conversor(dto));
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/alterar")
     public ResponseEntity<Usuario> alterar(@RequestBody UsuarioDTO dto) {
-        boolean resposta = usuarioService.alterar(dto.conversor(dto));
-        if (resposta) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.internalServerError().build();
-        }
+        usuarioService.alterar(dto.conversor(dto));
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/habilitarOuDesabilitar")
@@ -67,11 +59,7 @@ public class UsuarioController {
 
     @PostMapping("/login")
     public ResponseEntity<Usuario> login(@RequestBody LoginDTO dto) {
-        List<Usuario> list = usuarioService.login(dto.getUsuario(), dto.getSenha());
-        if (list.size() > 0) {
-            return ResponseEntity.ok(list.get(0));
-        } else {
-            return ResponseEntity.internalServerError().build();
-        }
+        Usuario usuario = usuarioService.login(dto.getUsuario(), dto.getSenha());
+        return ResponseEntity.ok(usuario);
     }
 }
