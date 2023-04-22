@@ -1,6 +1,5 @@
 {
   "name": "pbazinga",
-  "name": "pbazinga",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,6 +12,7 @@
     "bowser": "^2.11.0",
     "core-js": "^3.8.3",
     "crypto-js": "^4.1.1",
+    "v-mask": "^2.3.0",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
     "vuetify": "^2.6.0",

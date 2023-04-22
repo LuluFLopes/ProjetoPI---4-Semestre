@@ -5,6 +5,11 @@
 npm install
 ```
 
+## Máscaras
+```
+npm i v-mask
+```
+
 ### Compiles and hot-reloads for development
 ```
 npm run serve

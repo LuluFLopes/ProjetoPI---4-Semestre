@@ -12,7 +12,7 @@
 
           <div class="itens-formulario">
             <label for="CPF">CPF:</label>
-            <input class="itens-entrada"  type="text" aria-label="CPF" placeholder="CPF" v-model="cpf">
+            <input class="itens-entrada" v-mask="'###.###.###-##'"  type="text" aria-label="CPF" placeholder="CPF" v-model="cpf">
           </div>
 
           <div class="itens-formulario">

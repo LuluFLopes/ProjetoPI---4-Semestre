@@ -10,6 +10,7 @@ import TelaListaProdutos from "@/view/TelaListaProduto";
 import TelaCadastroUsuario from "@/view/TelaCadastroUsuario";
 import TelaCadastroProduto from "@/view/TelaCadastroProduto";
 import TelaDetalheProduto from "@/view/TelaDetalheProduto.vue";
+import TelaCadastroCliente from "@/view/TelaCadastroCliente";
 
 Vue.use(VueRouter)
 
@@ -63,6 +64,11 @@ const routes = [
     path: '/DetalheProduto',
     name: 'DetalheProduto',
     component: TelaDetalheProduto
+  },
+  {
+    path: '/Cadastro',
+    name: 'Cadastro',
+    component: TelaCadastroCliente
   }
 
 ]
