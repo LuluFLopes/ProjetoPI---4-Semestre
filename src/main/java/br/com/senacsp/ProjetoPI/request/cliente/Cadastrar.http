@@ -1,0 +1,37 @@
+POST http://localhost:8081/clientes/cadastrar
+Content-Type: application/json
+
+{
+  "nome": "Stevart",
+  "cpf": "111.111.111-11",
+  "dataNascimento": "2012-04-23T18:25:43.511Z",
+  "genero": "Masculino",
+  "usuario": "stevart@hotmail.com",
+  "senha": "608906c8dbbed2e237ae4c2dabbf97e8c5a4602ec99adfc0d147344d0273d9dce320f20fe3b8037f37070e567081ea22ef9f8611f418b4c8fa8fac14fc1dffd8",
+  "endereco": [
+    {
+      "logradouro" : "Rua Teste1",
+      "numero" : 1,
+      "complemento" : "Bloco 1",
+      "bairro" : "Teste1",
+      "cidade" : "Teste1",
+      "uf": "TS1"
+    },
+    {
+      "logradouro" : "Rua Teste2",
+      "numero" : 2,
+      "complemento" : "Bloco 2",
+      "bairro" : "Teste2",
+      "cidade" : "Teste2",
+      "uf": "TS2"
+    },
+    {
+      "logradouro" : "Rua Teste2",
+      "numero" : 2,
+      "complemento" : "Bloco 2",
+      "bairro" : "Teste2",
+      "cidade" : "Teste2",
+      "uf": "TS2"
+    }
+  ]
+}
