@@ -208,7 +208,7 @@ import import Vue from 'vue'
 
 </div>
 
-            <h1>Jogos online</h1>
+            <h1>Jogos Online</h1>
 <div class="products">
             <v-card
                 class="prod"
@@ -362,6 +362,8 @@ export default defineComponent ({
 </script>
 
 
+
+
 <style>
 
 .hello{
@@ -406,5 +408,7 @@ export default defineComponent ({
 h1{
   padding: 10px;
 }
+
+
 
 </style>
