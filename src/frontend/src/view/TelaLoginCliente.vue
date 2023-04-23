@@ -27,7 +27,7 @@ import router from "@/router";
 import CryptoJS from "crypto-js";
 import {mapActions} from "vuex";
 
-const url = 'http://localhost:8081/login';
+const url = 'http://localhost:8081/clientes/login';
 
 export default defineComponent({
   data() {

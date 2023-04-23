@@ -21,9 +21,8 @@ public class Cliente {
     @Column (unique = true, updatable = false)
     private String usuario;
     private String senha;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Endereco> endereco;
-
 
     public Cliente(Long id, String nome, String cpf, Date dataNascimento, String genero, String usuario, String senha, List<Endereco> endereco) {
         this.id = id;
@@ -80,14 +79,27 @@ public class Cliente {
         this.genero = genero;
     }
 
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                "cpf='" + cpf + '\'' +
-                ", id=" + id +
-                ", nome='" + nome + '\'' +
-                ", dataNascimento=" + dataNascimento +
-                ", genero='" + genero + '\'' +
-                '}';
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public List<Endereco> getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(List<Endereco> endereco) {
+        this.endereco = endereco;
     }
 }
