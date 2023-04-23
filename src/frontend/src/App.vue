@@ -13,14 +13,9 @@ import BarraSuperior from "@/components/BarraSuperior.vue";
 import Footer from "@/components/Footer.vue";
 export default {
   name: 'App',
-  components:{
+  components: {
     BarraSuperior,
     Footer
-
-  },
-
-  data: () => ({
-    //
-  }),
+  }
 };
 </script>

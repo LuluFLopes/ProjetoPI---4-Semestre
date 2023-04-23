@@ -30,6 +30,9 @@ import {mapActions} from "vuex";
 const url = 'http://localhost:8081/clientes/login';
 
 export default defineComponent({
+  emits: [
+      'clicarBotaoEntrar'
+  ],
   data() {
     return {
       formData: {
