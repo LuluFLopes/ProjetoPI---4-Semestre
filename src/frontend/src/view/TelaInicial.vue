@@ -6,69 +6,18 @@ import import Vue from 'vue'
   <div class="hello">
       <div>
         <img class="imagem-principal" src="../assets/bazinga.png">
-
+        <h1>Lista Jogos</h1>
           <div id="products">
-
-            <!--
-            <v-carousel
-                :cicle="true"
-                :hide-delimiters="slider.length < 4"
-                :show-arrows="slider.length > 4"
-            >
-              <template v-for="(item, index) of slider">
-                <v-carousel-item v-if="(index + 1) % columns === 1 || columns === 1"
-                                 :key="index"
-                >
-                  <v-row class="flex-nowrap" style="height:100%">
-                    <template v-for="(n,i) in columns">
-                      <template v-if="(+index + i) < slider.length">
-                        <v-col :key="i">
-                            <v-row
-                              class="fill-height"
-                              align="center"
-                              justify="center"
-                            >
-                              <v-card
-                                class="prod"
-                                variant="tonal"
-                                width="400px"
-                              >
-                                <v-card-title>
-                                  {{slider[i].title}}
-                                </v-card-title>
-                                <v-card-subtitle id="cartao">
-                                  {{slider[i].value}}
-                                </v-card-subtitle>
-                                <v-img width="100%"
-                                   :src="slider[i].imageSrc"
-                                  height="200"
-                                />
-                               <v-card-actions>
-                                  <v-btn>Detalhes</v-btn>
-                              </v-card-actions>
-                              </v-card>
-                            </v-row>
-                        </v-col>
-                      </template>
-                    </template>
-                  </v-row>
-                </v-carousel-item>
-              </template>
-
-            </v-carousel>
-            -->
-
-
             <v-card
                 class="prod"
                 variant="tonal"
                 width="400px"
             >
               <v-card-title>
-                Resident
+                Resident Evil 4
               </v-card-title>
               <v-card-subtitle id="cartao">
-                jogo
+                R$ 200,00
               </v-card-subtitle>
               <v-img width="100%"
                      :src="'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp'"
@@ -85,13 +34,13 @@ import import Vue from 'vue'
                 width="400px"
             >
               <v-card-title>
-                Resident
+                Dead Island 2
               </v-card-title>
               <v-card-subtitle id="cartao">
-                jogo
+                R$ 250,00
               </v-card-subtitle>
               <v-img width="100%"
-                     :src="'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp'"
+                     :src="'https://cdn1.epicgames.com/offer/236c74b4cd2e4e3099cbe2ebdc9686fd/EGS_DeadIsland2_DeepSilverDambusterStudios_S1_2560x1440-fdc688ce46680914ee3c4a7949ce8a67'"
                      height="200"
               />
               <v-card-actions>
@@ -106,13 +55,35 @@ import import Vue from 'vue'
                 width="400px"
             >
               <v-card-title>
-                Resident
+                Diablo IV
               </v-card-title>
               <v-card-subtitle id="cartao">
-                jogo
+                R$ 300,00
               </v-card-subtitle>
               <v-img width="100%"
-                     :src="'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp'"
+                     :src="'https://blz-contentstack-images.akamaized.net/v3/assets/blt9c12f249ac15c7ec/blt197bfce3b1cb7880/6286c2cccf13bb4bbe6278ad/open-graph.jpg'"
+                     height="200"
+              />
+              <v-card-actions>
+                <router-link to="DetalheProduto"><v-btn >Detalhes</v-btn></router-link>
+              </v-card-actions>
+            </v-card>
+
+
+
+            <v-card
+                class="prod"
+                variant="tonal"
+                width="400px"
+            >
+              <v-card-title>
+                Dying Light 2 Stay Human
+              </v-card-title>
+              <v-card-subtitle id="cartao">
+                R$151,00
+              </v-card-subtitle>
+              <v-img width="100%"
+                     :src="'https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_DyingLight2StayHuman_Techland_S3_2560x1440-f1dcd15207f091674615ccb4bd9dc3c7'"
                      height="200"
               />
               <v-card-actions>
@@ -127,13 +98,13 @@ import import Vue from 'vue'
                 width="400px"
             >
               <v-card-title>
-                Resident
+                Red Dead Redemption 2
               </v-card-title>
               <v-card-subtitle id="cartao">
-                jogo
+                R$99,00
               </v-card-subtitle>
               <v-img width="100%"
-                     :src="'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp'"
+                     :src="'https://cdn1.epicgames.com/b30b6d1b4dfd4dcc93b5490be5e094e5/offer/RDR2476298253_Epic_Games_Wishlist_RDR2_2560x1440_V01-2560x1440-2a9ebe1f7ee202102555be202d5632ec.jpg'"
                      height="200"
               />
               <v-card-actions>
@@ -148,13 +119,13 @@ import import Vue from 'vue'
                 width="400px"
             >
               <v-card-title>
-                Resident
+                EA SPORTS™ FIFA 23
               </v-card-title>
               <v-card-subtitle id="cartao">
-                jogo
+                R$299,00
               </v-card-subtitle>
               <v-img width="100%"
-                     :src="'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp'"
+                     :src="'https://cdn1.epicgames.com/offer/f5deacee017b4b109476933f7dd2edbd/EGS_EASPORTSFIFA23StandardEdition_EACanada_S1_2560x1440-aaf9c5273c27a485f2cce8cb7e804f5c'"
                      height="200"
               />
               <v-card-actions>
@@ -169,13 +140,13 @@ import import Vue from 'vue'
                 width="400px"
             >
               <v-card-title>
-                Resident
+                Grand Theft Auto V
               </v-card-title>
               <v-card-subtitle id="cartao">
-                jogo
+                R$214,00
               </v-card-subtitle>
               <v-img width="100%"
-                     :src="'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp'"
+                     :src="'https://image.api.playstation.com/vulcan/ap/rnd/202203/0911/VIB0SeEj9vT6DTv7P4thJLZi.jpg'"
                      height="200"
               />
               <v-card-actions>
@@ -190,13 +161,13 @@ import import Vue from 'vue'
                 width="400px"
             >
               <v-card-title>
-                Resident
+                Wartales
               </v-card-title>
               <v-card-subtitle id="cartao">
-                jogo
+                R$97,49
               </v-card-subtitle>
               <v-img width="100%"
-                     :src="'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp'"
+                     :src="'https://whatifgaming.com/wp-content/uploads/2021/11/Wartales-Key-Art-1920.jpg'"
                      height="200"
               />
               <v-card-actions>
@@ -211,13 +182,13 @@ import import Vue from 'vue'
                 width="400px"
             >
               <v-card-title>
-                Resident
+                Path of Exile
               </v-card-title>
               <v-card-subtitle id="cartao">
-                jogo
+                R$24,99
               </v-card-subtitle>
               <v-img width="100%"
-                     :src="'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp'"
+                     :src="'https://cdn.akamai.steamstatic.com/steam/apps/238960/header.jpg?t=1680737814'"
                      height="200"
               />
               <v-card-actions>
@@ -232,13 +203,13 @@ import import Vue from 'vue'
                 width="400px"
             >
               <v-card-title>
-                Resident
+                Call of Duty: Modern Warfare II
               </v-card-title>
               <v-card-subtitle id="cartao">
-                jogo
+                R$88,99
               </v-card-subtitle>
               <v-img width="100%"
-                     :src="'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp'"
+                     :src="'https://image.api.playstation.com/vulcan/ap/rnd/202205/2800/iQGgKYUg9YwjPVNM0kE8jeRN.jpg'"
                      height="200"
               />
               <v-card-actions>
@@ -253,13 +224,13 @@ import import Vue from 'vue'
                 width="400px"
             >
               <v-card-title>
-                Resident
+                Counter-Strike: Global Offensive
               </v-card-title>
               <v-card-subtitle id="cartao">
-                jogo
+                R$71,99
               </v-card-subtitle>
               <v-img width="100%"
-                     :src="'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp'"
+                     :src="'https://cdn.akamai.steamstatic.com/steam/apps/730/capsule_616x353.jpg?t=1641233427'"
                      height="200"
               />
               <v-card-actions>
@@ -267,6 +238,28 @@ import import Vue from 'vue'
               </v-card-actions>
             </v-card>
 
+
+
+
+            <v-card
+                class="prod"
+                variant="tonal"
+                width="400px"
+            >
+              <v-card-title>
+                Sea of Thieves 2023 Edition
+              </v-card-title>
+              <v-card-subtitle id="cartao">
+                R$ 44,99
+              </v-card-subtitle>
+              <v-img width="100%"
+                     :src="'https://cdn.cloudflare.steamstatic.com/steam/apps/1172620/extras/4_SoT_SKU_2023Edition__Steam_Retail_s.png?t=1678991207'"
+                     height="200"
+              />
+              <v-card-actions>
+                <router-link to="DetalheProduto"><v-btn >Detalhes</v-btn></router-link>
+              </v-card-actions>
+            </v-card>
           </div>
       </div>
   </div>
@@ -392,6 +385,9 @@ export default defineComponent ({
 #cartao{
   font-weight: bold;
   color: black;
+}
+h1{
+  padding: 10px;
 }
 
 </style>

@@ -297,7 +297,7 @@ main {
 h1 {
   color: aliceblue;
   font-size: 3dvw;
-  margin-top: 2%;
+  margin-top: 1%;
 }
  input, select {
   padding: 0.5dvw;

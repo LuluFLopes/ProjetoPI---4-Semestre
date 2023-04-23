@@ -58,7 +58,7 @@
 
       <section class="home">
         <div class="home-img">
-          <img src="https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp" class="one">
+          <img :src="imagemDetalhes" class="one">
         </div>
 
         <div class="home-text">
@@ -70,19 +70,9 @@
 
 
   <div class="main">
-    <div class="row1">
-      <li><img src="../assets/bazinga.png" class="one" onclick="slider('https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp')"></li>
+    <div class="row1" v-for="(row, index)  of detalhesImg" :key="'linha-'+index">
+      <li><img :src="row.imagem" class="one"  @click="slider(row.imagem)"></li>
     </div>
-
-        <div class="row2">
-          <li><img src="../assets/bazinga.png" class="one" onclick="slider('https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp')"></li>
-        </div>
-
-
-        <div class="row3">
-          <li><img src="../assets/bazinga.png" class="one" onclick="slider('https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp')"></li>
-        </div>
-
   </div>
 
       </section>
@@ -94,10 +84,32 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  methods:({
-
-  })
-
+  data() {
+    return {
+      detalhesImg:[
+        {
+          imagem:'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp',
+        },
+        {
+         imagem:'https://s2.glbimg.com/9K5eFTG7MONGExnCW-5G7yDFpq4=/0x250:1892x1264/984x0/smart/filters:strip_icc()/s.glbimg.com/po/tt2/f/original/2018/04/10/free_fire.png'
+        },
+        {
+          imagem:'https://leiturinha.com.br/blog/wp-content/uploads/2019/08/jogo-LOL.jpg'
+        },
+      ],
+      imagemAtual:"",
+    }
+  },
+  methods:{
+    slider(imagem){
+      return this.imagemAtual = imagem
+    }
+  },
+  computed:{
+    imagemDetalhes(){
+      return this.imagemAtual ? this.imagemAtual : this.detalhesImg[0].imagem
+    }
+  }
 
 });
 

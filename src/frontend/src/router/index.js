@@ -11,6 +11,7 @@ import TelaCadastroUsuario from "@/view/TelaCadastroUsuario";
 import TelaCadastroProduto from "@/view/TelaCadastroProduto";
 import TelaDetalheProduto from "@/view/TelaDetalheProduto.vue";
 import TelaCadastroCliente from "@/view/TelaCadastroCliente";
+import TelaLoginCliente from "@/view/TelaLoginCliente.vue";
 
 Vue.use(VueRouter)
 
@@ -69,7 +70,13 @@ const routes = [
     path: '/Cadastro',
     name: 'Cadastro',
     component: TelaCadastroCliente
-  }
+  },
+  {
+    path: '/loginCliente',
+    name: 'loginCliente',
+    component: TelaLoginCliente
+  },
+
 
 ]
 
