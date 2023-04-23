@@ -6,8 +6,10 @@ import import Vue from 'vue'
   <div class="hello">
       <div>
         <img class="imagem-principal" src="../assets/bazinga.png">
+
+
         <h1>Lista Jogos</h1>
-          <div id="products">
+          <div class="products">
             <v-card
                 class="prod"
                 variant="tonal"
@@ -68,9 +70,12 @@ import import Vue from 'vue'
                 <router-link to="DetalheProduto"><v-btn >Detalhes</v-btn></router-link>
               </v-card-actions>
             </v-card>
+</div>
 
 
 
+            <h1>Jogos de Ação</h1>
+<div class="products">
             <v-card
                 class="prod"
                 variant="tonal"
@@ -133,7 +138,11 @@ import import Vue from 'vue'
               </v-card-actions>
             </v-card>
 
+</div>
 
+
+            <h1>Jogos de Aventura</h1>
+        <div class="products">
             <v-card
                 class="prod"
                 variant="tonal"
@@ -197,6 +206,10 @@ import import Vue from 'vue'
             </v-card>
 
 
+</div>
+
+            <h1>Jogos online</h1>
+<div class="products">
             <v-card
                 class="prod"
                 variant="tonal"
@@ -260,6 +273,7 @@ import import Vue from 'vue'
                 <router-link to="DetalheProduto"><v-btn >Detalhes</v-btn></router-link>
               </v-card-actions>
             </v-card>
+
           </div>
       </div>
   </div>
@@ -375,10 +389,13 @@ export default defineComponent ({
   margin: 10px 10px;
 }
 
-#products{
+.products{
   display: grid;
   grid-template-columns: 3fr 3fr 2fr;
   position: relative;
+  padding: 50px;
+  border: solid 2px #ffffff;
+  margin: 10px 10px;
 
 }
 
