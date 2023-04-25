@@ -254,8 +254,9 @@ export default defineComponent({
         }
       }
 
-
-      var cpfValido = this.TestaCPF(cpf)
+      var cpfValido = cpf.replace(/\D/g, '');
+      cpfValido = this.TestaCPF(cpf)
+      
       if (cpfValido === true && cErro === 0) {
 
         senha = this.encrypt(senha);

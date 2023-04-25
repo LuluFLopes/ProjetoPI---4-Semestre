@@ -50,26 +50,13 @@ export default defineComponent({
         const date = new Date().getTime().toString();
         sessionStorage.setItem("token", date);
         this.getUserInfos(request.data);
-        await router.push('/logado');
+        await router.push('/');
       } catch (ex) {
         console.log(ex.message);
       }
     },
     encrypt(senha) {
       return CryptoJS.SHA512(senha).toString()
-    },
-    resgatarInformacoes(usuario) {
-      axios({
-        method: 'get',
-        url: 'http://localhost:8081/listarFiltrando'
-      })
-          .then(function (response) {
-            sessionStorage.setItem("grupo", usuario.push(response.data[4]));
-          })
-          .catch(function (error) {
-            alert("Não foi possível encontrar o grupo do usuário!");
-            console.log(error);
-          });
     },
     ...mapActions([
       'getUserInfos'
@@ -82,7 +69,7 @@ export default defineComponent({
 
 main {
   background-color: rgba(45, 46, 50);
-  height: 70%;
+  height: 100%;
   width: 100vw;
   display: flex;
   align-items: center;
@@ -114,12 +101,6 @@ fieldset {
   border-radius: 10px;
   border-color: rgb(35, 75, 110);
   align-items: center;
-  width: 30%;
-  height: 220px;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  margin: 0 35%;
 }
 
 
