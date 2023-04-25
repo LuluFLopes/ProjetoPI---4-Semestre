@@ -7,13 +7,20 @@
 
           <div class="itens-formulario">
             <label class="textLabel" for="userLogin">Usuário:</label>
-            <input class="itens-entrada"  type="text" aria-label="Usuário" placeholder="Usuário" v-model="nome">
+            <input class="itens-entrada usuario"  type="text" aria-label="Usuário" placeholder="Usuário" v-model="nome">
+          </div>
+
+          <div class="itens-formulario">
+            <label class="textLabelCS" for="ncompeto">Nome Completo:</label>
+            <input class="itens-entrada inputGrande" type="text" aria-label="Nome Completo" placeholder="Nome Completo" v-model="ncompleto">
           </div>
 
           <div class="itens-formulario">
             <label class="textLabel" for="E-Mail">E-Mail:</label>
-            <input class="itens-entrada"  type="email" aria-label="Email" placeholder="Email" v-model="usuario">
+            <input class="itens-entrada e-mail"  type="email" aria-label="Email" placeholder="Email" v-model="usuario">
           </div>
+
+          <div class="grid">
 
           <div class="itens-formulario">
             <label class="textLabel" for="CPF">CPF:</label>
@@ -21,8 +28,41 @@
           </div>
 
           <div class="itens-formulario">
+            <label class="textLabelCS" for="dnasc">Data Nascimento:</label>
+            <input class="itens-entrada" v-mask="'##/##/####'"  type="text" aria-label="Data Nascimento" placeholder="Data Nascimento" v-model="dtnasc">
+          </div>
+
+          <div class="itens-formulario">
+            <label class="textLabelCS" for="genero">Gênero:</label>
+            <select class="itens-entrada inputSelect" aria-label="Genero" name="Genero"  v-model="genero">
+              <option value="">Selecione...</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Feminino">Feminino</option>
+            </select>
+
+          </div>
+
+          </div>
+
+          <div class="grid2">
+
+          <div class="itens-formulario">
             <label class="textLabel" for="cep">CEP:</label>
-            <input class="itens-entrada" v-mask="'#####-###'" value="" @blur="GetAdress(CEP)" maxlength="9" type="text" aria-label="cep" placeholder="CEP" v-model="CEP" >
+            <input class="itens-entrada" v-mask="'#####-###'" value="" @blur="GetAdress(formAdress.CEP,1)" maxlength="9" type="text" aria-label="cep" placeholder="CEP" v-model="formAdress.CEP" >
+
+          </div>
+
+            <div class="itens-formulario">
+
+              <v-checkbox v-model="formAdress.mesmoEnd"
+                          :label="'Endereço Entraga/Faturamento'"
+                          class="font-weight-bold"
+              ></v-checkbox>
+
+            </div>
+
+
+
           </div>
 
           <div class="grid">
@@ -58,6 +98,54 @@
           </div>
           </div>
 
+          <div v-show="this.formAdress.mesmoEnd === false">
+
+            <h3>Endereço de Faturamento</h3>
+
+            <div class="itens-formulario">
+              <label class="textLabel" for="cep">CEP:</label>
+              <input class="itens-entrada" v-mask="'#####-###'" value="" @blur="GetAdress(formAdress.CEPFat,2)" maxlength="9" type="text" aria-label="cep" placeholder="CEP" v-model="formAdress.CEPFat" >
+
+            </div>
+
+            <div class="grid">
+
+              <div class="itens-formulario">
+                <label class="textLabel" for="logradouro">Logradouro:</label>
+                <input class="itens-entrada" readonly="readonly" type="text" aria-label="Logradouro" placeholder="Logradouro" v-model="formAdress.logradouroFat">
+              </div>
+
+              <div class="itens-formulario">
+                <label class="textLabel" for="num">Número:</label>
+                <input class="itens-entrada"  type="text" aria-label="Número" placeholder="Número" v-model="formAdress.numFat">
+              </div>
+
+              <div class="itens-formulario">
+                <label class="textLabel" for="compl">Complemento:</label>
+                <input class="itens-entrada"  type="text" aria-label="Complemento" placeholder="Complemento" v-model="formAdress.complFat">
+              </div>
+
+              <div class="itens-formulario">
+                <label class="textLabel" for="bairro">Bairro:</label>
+                <input class="itens-entrada" readonly="readonly"  type="text" aria-label="Bairro" placeholder="Bairro" v-model="formAdress.bairroFat">
+              </div>
+
+              <div class="itens-formulario">
+                <label class="textLabel" for="cidade">Cidade:</label>
+                <input class="itens-entrada" readonly="readonly"  type="text" aria-label="Cidade" placeholder="Cidade" v-model="formAdress.localidadeFat">
+              </div>
+
+              <div class="itens-formulario">
+                <label class="textLabel" for="UF">UF:</label>
+                <input class="itens-entrada" readonly="readonly" type="text" aria-label="UF" placeholder="UF" v-model="formAdress.ufFat">
+              </div>
+            </div>
+
+
+
+
+          </div>
+
           <div class="grid">
           <div class="itens-formulario">
             <label class="textLabel" for="userPassword">Senha:</label>
@@ -72,9 +160,8 @@
           </div>
 
 
-
           <input type="submit" class="btnAcao green" value="Cadastrar"
-                 @click="mandarInformacoes(nome, cpf ,usuario, senha, 'cliente', confirmaSenha)">
+                 @click="mandarInformacoes(nome, cpf, dtnasc, genero, usuario, senha, formAdress, confirmaSenha)">
 
           <router-link to="/WlistaUsuario" custom v-slot="{ navigate }">
             <button class="btnAcao red" @click="navigate" role="link">Fechar</button></router-link>
@@ -102,35 +189,42 @@ export default defineComponent({
       nome: "",
       usuario: "",
       cpf: "",
-      CEP:"",
-
+      ncompleto: "",
+      dtnasc: "",
+      genero: "",
       senha: "",
       confirmaSenha: "",
       grupo: "",
-
-      formAdress: {
+      formAdress:[{
+        CEP:"",
+        mesmoEnd:"true",
         logradouro:"",
         num:"",
         compl:"",
         bairro:"",
         localidade:"",
         uf:""
+      },
+        {
+          CEPFat:"",
+          logradouroFat:"",
+          numFat:"",
+          complFat:"",
+          bairroFat:"",
+          localidadeFat:"",
+          ufFat:"",
+        }]
 
       }
     }
-  },
+  ,
   methods: {
 
-    mandarInformacoes(nome, cpf, usuario, senha, grupo, confirmaSenha) {
-      // eslint-disable-next-line
-      debugger
-
-
-
+    mandarInformacoes(nome, cpf, dtnasc, genero, usuario, senha, formAdress, confirmaSenha) {
       var cErro = 0
       var cMsg = ''
 
-      grupo = grupo.toUpperCase();
+
 
       if (nome.length === 0){
         cErro = 1
@@ -147,14 +241,7 @@ export default defineComponent({
 
       }
 
-      if (grupo === ''){
-        if (cMsg.length === 0){
-          cErro = 1
-          cMsg = 'Selecione o grupo do usuário'
-        }else{
-          cMsg = cMsg + '\n' + 'Selecione o grupo do usuário'
-        }
-      }
+
 
       if (senha === confirmaSenha && senha.length > 0) {
         cErro = 0
@@ -175,19 +262,21 @@ export default defineComponent({
 
         axios({
           method: 'post',
-          url: 'http://localhost:8081/cadastrar',
+          url: 'http://localhost:8081/clientes/cadastrar',
           data: {
             nome: nome,
             cpf: cpf,
+            dtnasc: dtnasc,
+            genero: genero,
             usuario: usuario,
             senha: senha,
-            grupo: grupo,
+            formAdress: formAdress,
           }
         })
             .then(function (response) {
               console.log(response);
               alert("Cadastrado com Sucesso!");
-              router.push('/WlistaUsuario')
+              router.push('/loginCliente')
             })
             .catch(function (error) {
               console.log(error);
@@ -237,7 +326,7 @@ export default defineComponent({
       return true
     },
 
-    async GetAdress(CEP){
+    async GetAdress(CEP, tipo){
       var CEPTrat = CEP.replace(/\D/g, '');
       var url2 = 'https://viacep.com.br/ws/'+CEPTrat+'/json/'
 
@@ -255,10 +344,20 @@ export default defineComponent({
             console.log(request)
 
             if (request.data.erro !==false){
+              if (tipo == 1){
               this.formAdress.logradouro = request.data.logradouro;
               this.formAdress.bairro = request.data.bairro;
               this.formAdress.localidade = request.data.localidade;
               this.formAdress.uf = request.data.uf;
+              }
+
+              if (tipo == 2){
+                this.formAdress.logradouroFat = request.data.logradouro;
+                this.formAdress.bairroFat = request.data.bairro;
+                this.formAdress.localidadeFat = request.data.localidade;
+                this.formAdress.ufFat = request.data.uf;
+              }
+
             }
             if (request.data.erro === true) {
               alert("CEP não encontrado.");
@@ -287,7 +386,7 @@ export default defineComponent({
 <style scoped>
 main {
   background: rgba(45, 46, 50);
-  height: 150dvh;
+  height: 170dvh;
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -312,9 +411,8 @@ fieldset{
   opacity: 0.90;
   border-radius: 40px;
   border-color: rgb(35, 75, 110);
-  height: 130dvh;
+  height: 150dvh;
   width: 50dvw;
-
 }
 
 
@@ -339,9 +437,17 @@ fieldset{
 }
 
 .grid{
+  margin-top: -5%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  justify-content: left;
+  text-align: left;
+}
 
+.grid2{
+  margin-top: -5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   justify-content: left;
   text-align: left;
 }
@@ -360,6 +466,33 @@ fieldset{
   font-weight: bold;
   padding: 5px;
   width: 140px;
+}
+
+.usuario{
+  float: left;
+  display: block;
+  font-weight: bold;
+  padding: 5px;
+  margin-bottom: 2%;
+  width: 500px;
+}
+
+.e-mail{
+  margin-bottom: 2%;
+  width: 500px;
+}
+
+.inputGrande{
+  float: left;
+  display: block;
+  font-weight: bold;
+  padding: 5px;
+  margin-bottom: 2%;
+  width: 440px;
+}
+
+.inputSelect{
+  width: 200px;
 }
 
 </style>

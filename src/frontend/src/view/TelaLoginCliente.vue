@@ -78,7 +78,7 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
 
 main {
   background-color: rgba(45, 46, 50);
