@@ -1,7 +1,8 @@
 package br.com.senacsp.ProjetoPI.dto.cliente;
 
 import br.com.senacsp.ProjetoPI.model.Cliente;
-import br.com.senacsp.ProjetoPI.model.Endereco;
+import br.com.senacsp.ProjetoPI.model.EnderecoEntrega;
+import br.com.senacsp.ProjetoPI.model.EnderecoFaturamento;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
@@ -18,10 +19,12 @@ public class ClienteDTO {
     private String genero;
     private String usuario;
     private String senha;
-    private List<Endereco> endereco;
+
+    private EnderecoFaturamento enderecoFaturamento;
+    private List<EnderecoEntrega> enderecoEntrega;
 
 
-    public ClienteDTO(Long id, String nome, String cpf, Date dataNascimento, String genero, String usuario, String senha, List<Endereco> endereco) {
+    public ClienteDTO(Long id, String nome, String cpf, Date dataNascimento, String genero, String usuario, String senha, EnderecoFaturamento enderecoFaturamento, List<EnderecoEntrega> enderecoEntrega) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -29,7 +32,8 @@ public class ClienteDTO {
         this.genero = genero;
         this.usuario = usuario;
         this.senha = senha;
-        this.endereco = endereco;
+        this.enderecoFaturamento = enderecoFaturamento;
+        this.enderecoEntrega = enderecoEntrega;
     }
 
     public Cliente conversor (ClienteDTO dto){
@@ -41,7 +45,8 @@ public class ClienteDTO {
                 dto.getGenero(),
                 dto.getUsuario(),
                 dto.getSenha(),
-                dto.getEndereco()
+                dto.getEnderecoFaturamento(),
+                dto.getEnderecoEntrega()
         );
     }
 
@@ -102,12 +107,20 @@ public class ClienteDTO {
         this.senha = senha;
     }
 
-    public List<Endereco> getEndereco() {
-        return endereco;
+    public EnderecoFaturamento getEnderecoFaturamento() {
+        return enderecoFaturamento;
     }
 
-    public void setEndereco(List<Endereco> endereco) {
-        this.endereco = endereco;
+    public void setEnderecoFaturamento(EnderecoFaturamento enderecoFaturamento) {
+        this.enderecoFaturamento = enderecoFaturamento;
+    }
+
+    public List<EnderecoEntrega> getEnderecoEntrega() {
+        return enderecoEntrega;
+    }
+
+    public void setEnderecoEntrega(List<EnderecoEntrega> enderecoEntrega) {
+        this.enderecoEntrega = enderecoEntrega;
     }
 
     @Override
@@ -120,7 +133,7 @@ public class ClienteDTO {
                 ", genero='" + genero + '\'' +
                 ", usuario='" + usuario + '\'' +
                 ", senha='" + senha + '\'' +
-                ", endereco=" + endereco +
+                ", enderecoEntrega=" + enderecoEntrega +
                 '}';
     }
 }

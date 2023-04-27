@@ -21,10 +21,12 @@ public class Cliente {
     @Column (unique = true, updatable = false)
     private String usuario;
     private String senha;
+    @OneToOne(cascade = CascadeType.ALL)
+    private EnderecoFaturamento enderecoFaturamento;
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Endereco> endereco;
+    private List<EnderecoEntrega> enderecoEntrega;
 
-    public Cliente(Long id, String nome, String cpf, Date dataNascimento, String genero, String usuario, String senha, List<Endereco> endereco) {
+    public Cliente(Long id, String nome, String cpf, Date dataNascimento, String genero, String usuario, String senha, EnderecoFaturamento enderecoFaturamento, List<EnderecoEntrega> enderecoEntrega) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -32,7 +34,8 @@ public class Cliente {
         this.genero = genero;
         this.usuario = usuario;
         this.senha = senha;
-        this.endereco = endereco;
+        this.enderecoFaturamento = enderecoFaturamento;
+        this.enderecoEntrega = enderecoEntrega;
     }
 
     public Cliente(Long id) {
@@ -95,11 +98,19 @@ public class Cliente {
         this.senha = senha;
     }
 
-    public List<Endereco> getEndereco() {
-        return endereco;
+    public EnderecoFaturamento getEnderecoFaturamento() {
+        return enderecoFaturamento;
     }
 
-    public void setEndereco(List<Endereco> endereco) {
-        this.endereco = endereco;
+    public void setEnderecoFaturamento(EnderecoFaturamento enderecoFaturamento) {
+        this.enderecoFaturamento = enderecoFaturamento;
+    }
+
+    public List<EnderecoEntrega> getEnderecoEntrega() {
+        return enderecoEntrega;
+    }
+
+    public void setEnderecoEntrega(List<EnderecoEntrega> enderecoEntrega) {
+        this.enderecoEntrega = enderecoEntrega;
     }
 }

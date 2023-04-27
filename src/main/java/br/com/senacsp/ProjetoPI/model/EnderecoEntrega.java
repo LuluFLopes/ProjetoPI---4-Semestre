@@ -6,8 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
-@Table (name = "endereco")
-public class Endereco {
+public class EnderecoEntrega {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -18,7 +17,7 @@ public class Endereco {
     private String cidade;
     private String uf;
 
-    public Endereco(long id, String logradouro, int numero, String complemento, String bairro, String cidade, String uf) {
+    public EnderecoEntrega(long id, String logradouro, int numero, String complemento, String bairro, String cidade, String uf) {
         this.id = id;
         this.logradouro = logradouro;
         this.numero = numero;
