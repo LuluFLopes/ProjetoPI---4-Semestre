@@ -3,14 +3,15 @@ Content-Type: application/json
 
 {
   "id": 1,
-  "nome": "Stevart",
+  "nome": "Stevart Guerra",
   "cpf": "111.111.111-11",
   "dataNascimento": "2012-04-23T18:25:43.511Z",
   "genero": "Masculino",
-  "usuario": "stevart@gmail.com",
+  "usuario": "stevart@hotmail.com",
   "senha": "123",
   "enderecoFaturamento": {
-    "logradouro": "Rua Teste1",
+    "id": 1,
+    "logradouro": "Rua Nova1",
     "numero": 1,
     "complemento": "Bloco 1",
     "bairro": "Teste1",
@@ -19,6 +20,7 @@ Content-Type: application/json
   },
   "enderecoEntrega": [
     {
+      "id": 1,
       "logradouro": "Rua Teste1",
       "numero": 1,
       "complemento": "Bloco 1",
@@ -27,6 +29,7 @@ Content-Type: application/json
       "uf": "TS1"
     },
     {
+      "id": 2,
       "logradouro": "Rua Teste2",
       "numero": 2,
       "complemento": "Bloco 2",
@@ -35,11 +38,12 @@ Content-Type: application/json
       "uf": "TS2"
     },
     {
-      "logradouro": "Rua Teste2",
-      "numero": 2,
-      "complemento": "Bloco 2",
-      "bairro": "Teste2",
-      "cidade": "Teste2",
+      "id": 3,
+      "logradouro": "Rua Teste3",
+      "numero": 3,
+      "complemento": "Bloco 3",
+      "bairro": "Teste3",
+      "cidade": "Teste3",
       "uf": "TS2"
     }
   ]

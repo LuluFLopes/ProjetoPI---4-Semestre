@@ -20,7 +20,6 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
 
-
     @PostMapping("/cadastrar")
     public ResponseEntity<Cliente> cadastrar(@RequestBody ClienteDTO dto) {
         clienteService.salvar(dto.conversor(dto));

@@ -23,7 +23,6 @@ public class ClienteDTO {
     private EnderecoFaturamento enderecoFaturamento;
     private List<EnderecoEntrega> enderecoEntrega;
 
-
     public ClienteDTO(Long id, String nome, String cpf, Date dataNascimento, String genero, String usuario, String senha, EnderecoFaturamento enderecoFaturamento, List<EnderecoEntrega> enderecoEntrega) {
         this.id = id;
         this.nome = nome;
