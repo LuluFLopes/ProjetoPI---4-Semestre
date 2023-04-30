@@ -88,17 +88,18 @@ main {
 
 label, p, a {
   color: rgb(6, 45, 78);
+  padding: 20px;
 }
 
 h1 {
   color: aliceblue;
-  font-size: 3 dvw;
+  font-size: 3dvw;
 }
 
 label, input {
-  padding: 0.5 dvw;
-  margin: 2 dvh;
-  align-items: left;
+  padding: 10px;
+  margin: 2dvh;
+  align-items: center;
   justify-content: left;
   text-align: left;
 
@@ -109,5 +110,6 @@ fieldset {
   border-radius: 10px;
   border-color: rgb(35, 75, 110);
   align-items: center;
+  height: 250px;
 }
 </style>
