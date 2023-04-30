@@ -63,7 +63,8 @@ export default defineComponent( {
   },
 
   beforeMount() {
-    this.listarProdutos(this.produtos)
+    this.listarProdutos(this.produtos),
+    this.validaCheckbox();
   },
   methods: {
 
@@ -83,6 +84,33 @@ export default defineComponent( {
             alert("Não foi possível listar.");
             console.log(error);
           });
+    },
+    mandarStatus(identificação, checkbox) {
+      axios({
+        method: 'post',
+        url: 'http://localhost:8081/alterarStatus',
+        data: {
+          id: identificação,
+          status: checkbox
+        }
+
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    },
+    validaCheckbox() {
+      for (const produto of this.produtos) {
+        if (produto.status === "ATIVO") {
+          produto.checkbox = true;
+        } else {
+          produto.checkbox = false;
+        }
+        this.mandarStatus(produto.id, produto.checkbox);        
+      }
     },
 
     }

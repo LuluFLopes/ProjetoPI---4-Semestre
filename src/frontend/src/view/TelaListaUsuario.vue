@@ -52,7 +52,9 @@ export default defineComponent({
   },
   data() {
     return {
-      usuarios: []
+      usuarios: [],
+      id: "id",
+
     }
   },
 
@@ -74,6 +76,23 @@ export default defineComponent({
             console.log(error);
           });
     },
+    mandarStatus(identificação, checkbox) {
+      axios({
+        method: 'post',
+        url: 'http://localhost:8081/habilitarOuDesabilitar',
+        data: {
+          id: identificação,
+          status: checkbox
+        }
+
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    },
     validaCheckbox() {
       for (const usuario of this.usuarios) {
         if (usuario.status === "ATIVO") {
@@ -81,8 +100,9 @@ export default defineComponent({
         } else {
           usuario.checkbox = false;
         }
+        this.mandarStatus(usuario.id, usuario.checkbox);        
       }
-    },
+    },    
   },
   beforeMount() {
     this.listarUsuarios(this.usuarios);
