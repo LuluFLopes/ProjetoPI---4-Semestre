@@ -2,5 +2,5 @@ POST http://localhost:8081/produtos/listarPorNome?size=5&page=0
 Content-Type: application/json
 
 {
-  "nome": "Resident Evil 4 - Remake"
+  "nome": "Resident Evil 1"
 }

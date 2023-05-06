@@ -1,4 +1,4 @@
-PUT http://localhost:8081/alterar
+POST http://localhost:8081/alterar
 Content-Type: application/json
 
 {
@@ -7,6 +7,5 @@ Content-Type: application/json
   "cpf": "222.222.222-22",
   "usuario": "garçon-d'or@hotmail.com",
   "senha": "frenchboy",
-  "status": "ATIVO",
   "grupo": "ESTOQUISTA"
 }

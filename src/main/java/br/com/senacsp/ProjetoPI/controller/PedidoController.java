@@ -19,6 +19,18 @@ public class PedidoController {
         this.pedidoService = pedidoService;
     }
 
+    @GetMapping("/listar")
+    public ResponseEntity<List<Pedido>> listar() {
+        List<Pedido> listarPedidos = pedidoService.listar();
+        return ResponseEntity.ok(listarPedidos);
+    }
+
+    @GetMapping("/buscar/{id}")
+    public ResponseEntity<Pedido> buscarPorId(@PathVariable long id) {
+        Pedido pedido = pedidoService.buscarPorId(id);
+        return ResponseEntity.ok(pedido);
+    }
+
     @PostMapping("/cadastrar")
     public ResponseEntity<Pedido> salvar(@RequestBody PedidoDTO dto) {
         pedidoService.salvar(dto);
@@ -35,18 +47,6 @@ public class PedidoController {
     public ResponseEntity<Pedido> ajustarStatus(@RequestBody HabilitarOuDesabilitarDTO dto) {
         pedidoService.habilitarOuDesabilitar(dto);
         return ResponseEntity.ok().build();
-    }
-
-    @GetMapping("/listar")
-    public ResponseEntity<List<Pedido>> listar() {
-        List<Pedido> listarPedidos = pedidoService.listar();
-        return ResponseEntity.ok(listarPedidos);
-    }
-
-    @GetMapping("/buscar/{id}")
-    public ResponseEntity<Pedido> buscarPorId(@PathVariable long id) {
-        Pedido pedido = pedidoService.buscarPorId(id);
-        return ResponseEntity.ok(pedido);
     }
 
 }

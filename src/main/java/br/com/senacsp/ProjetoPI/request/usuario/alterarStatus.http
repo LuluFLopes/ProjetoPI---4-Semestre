@@ -1,4 +1,4 @@
-PUT http://localhost:8081/habilitarOuDesabilitar
+PUT http://localhost:8081/alterarStatus
 Content-Type: application/json
 
 {

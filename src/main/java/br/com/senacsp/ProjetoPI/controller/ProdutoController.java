@@ -18,38 +18,33 @@ public class ProdutoController {
         this.produtoService = produtoService;
     }
 
+    @GetMapping("/listar")
+    public ResponseEntity<Page<Produto>> listar(Pageable pageable) {
+        Page<Produto> listaProdutosPaginados = produtoService.listar(pageable);
+            return ResponseEntity.ok(listaProdutosPaginados);
+    }
+
+    @PostMapping("/listarPorNome")
+    public ResponseEntity<Page<Produto>> listagemRapida(Pageable pageable, @RequestBody ProdutoDTO dto){
+        Page<Produto> listaProdutosPaginadosPorNome = produtoService.listarPorNome(pageable, dto.getNome());
+        return ResponseEntity.ok(listaProdutosPaginadosPorNome);
+    }
+
     @PostMapping("/cadastrar")
     public ResponseEntity<Produto> cadastrar(@RequestBody ProdutoDTO dto) {
-        produtoService.cadastrar(dto.conversor(dto));
+        produtoService.cadastrar(dto);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/alterar")
     public ResponseEntity<Produto> alterar(@RequestBody ProdutoDTO dto) {
-        produtoService.alterar(dto.conversor(dto));
+        produtoService.alterar(dto);
         return ResponseEntity.ok().build();
-    }
-
-    @GetMapping("/listar")
-    public ResponseEntity<Page<Produto>> listar(Pageable pageable) {
-        Page<Produto> list = produtoService.listar(pageable);
-
-        if (!list.isEmpty()) {
-            return ResponseEntity.ok(list);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @PostMapping("/listarPorNome")
-    public ResponseEntity<Page<Produto>> listagemRapida(Pageable pageable, @RequestBody ProdutoDTO dto){
-        Page<Produto> list = produtoService.listarPorNome(pageable, dto.getNome());
-        return ResponseEntity.ok(list);
     }
 
     @PostMapping("/alterarStatus")
     public ResponseEntity<Page<Produto>> alterarStatus(@RequestBody ProdutoDTO dto){
-        produtoService.alterarStatus(dto.conversorAlteracaoStatus(dto));
+        produtoService.alterarStatus(dto);
         return ResponseEntity.ok().build();
     }
 

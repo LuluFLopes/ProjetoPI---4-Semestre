@@ -13,7 +13,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
-    Page<Produto> findAllByOrderByIdDesc(Pageable pageable);
+    @Query("SELECT p FROM Produto p ORDER BY p.id DESC")
+    Page<Produto> listagemDeProdutos(Pageable pageable);
 
     @Query("SELECT p FROM Produto p WHERE p.nome LIKE CONCAT('%', :nome, '%') ORDER BY p.id DESC")
     Page<Produto> listagemRapidaPorNome(Pageable pageable, @Param("nome") String nome);

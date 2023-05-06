@@ -1,0 +1,7 @@
+POST http://localhost:8081/clientes/login
+Content-Type: application/json
+
+{
+  "usuario": "stevart@hotmail.com",
+  "senha": "123"
+}

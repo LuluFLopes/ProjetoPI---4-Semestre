@@ -21,39 +21,25 @@ public class UsuarioController {
 
     @GetMapping("/listar")
     public ResponseEntity<List<Usuario>> listarTodos() {
-        List<Usuario> list = usuarioService.listarTodos();
-        if (list.size() > 0) {
-            return ResponseEntity.ok(list);
-        } else {
-            return ResponseEntity.internalServerError().build();
-        }
+        List<Usuario> listagemCompleta = usuarioService.listarTodos();
+        return ResponseEntity.ok(listagemCompleta);
     }
 
     @PostMapping("/listarFiltrando")
     public ResponseEntity<List<Usuario>> listarTodosComFiltro(@RequestBody UsuarioDTO dto) {
-        List<Usuario> list = usuarioService.listarTodosComFiltro(dto.conversor(dto));
-        if (list.size() > 0) {
-            return ResponseEntity.ok(list);
-        } else {
-            return ResponseEntity.internalServerError().build();
-        }
+        List<Usuario> list = usuarioService.listarTodosComFiltro(dto);
+        return ResponseEntity.ok(list);
     }
 
     @PostMapping("/cadastrar")
     public ResponseEntity<Usuario> cadastrar(@RequestBody UsuarioDTO dto) {
-        usuarioService.salvar(dto.conversor(dto));
+        usuarioService.salvar(dto);
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/alterar")
+    @PostMapping("/alterar")
     public ResponseEntity<Usuario> alterar(@RequestBody UsuarioDTO dto) {
-        usuarioService.alterar(dto.conversor(dto));
-        return ResponseEntity.ok().build();
-    }
-
-    @PutMapping("/habilitarOuDesabilitar")
-    public ResponseEntity<Usuario> habilitarOuDesabilitar(@RequestBody UsuarioDTO dto) {
-        usuarioService.habilitarOuDesabilitar(dto.conversorStatus(dto));
+        usuarioService.alterar(dto);
         return ResponseEntity.ok().build();
     }
 
@@ -62,4 +48,11 @@ public class UsuarioController {
         Usuario usuario = usuarioService.login(dto.getUsuario(), dto.getSenha());
         return ResponseEntity.ok(usuario);
     }
+
+    @PutMapping("/alterarStatus")
+    public ResponseEntity<Usuario> alterarStatus(@RequestBody UsuarioDTO dto) {
+        usuarioService.alterarStatus(dto);
+        return ResponseEntity.ok().build();
+    }
+
 }

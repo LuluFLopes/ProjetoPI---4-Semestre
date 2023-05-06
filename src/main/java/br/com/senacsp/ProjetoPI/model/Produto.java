@@ -9,7 +9,6 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@Table(name = "produto")
 public class Produto {
 
     @Id
@@ -55,20 +54,6 @@ public class Produto {
         this.avaliacao = avaliacao;
         this.status = Status.ATIVO;
         this.urlImg = urlImg;
-    }
-
-    @Override
-    public String toString() {
-        return "Produto{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", detalhes='" + detalhes + '\'' +
-                ", preco=" + preco +
-                ", quantidade=" + quantidade +
-                ", avaliacao=" + avaliacao +
-                ", status=" + status +
-                ", urlImg='" + urlImg + '\'' +
-                '}';
     }
 
     public Long getId() {

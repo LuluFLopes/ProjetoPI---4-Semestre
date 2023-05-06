@@ -1,5 +1,6 @@
 package br.com.senacsp.ProjetoPI.service;
 
+import br.com.senacsp.ProjetoPI.dto.usuario.UsuarioDTO;
 import br.com.senacsp.ProjetoPI.model.Usuario;
 import br.com.senacsp.ProjetoPI.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
@@ -16,19 +17,27 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    @Transactional
-    public void salvar(Usuario usuario) {
-        usuarioRepository.save(usuario);
+    public List<Usuario> listarTodos() {
+        return usuarioRepository.findAll();
+    }
+
+    public List<Usuario> listarTodosComFiltro(UsuarioDTO dto) {
+        List<Usuario> listagemComFiltro = usuarioRepository.listarComFiltro(dto.conversor(dto).getUsuario());
+        if (listagemComFiltro.size() > 0) {
+            return listagemComFiltro;
+        } else {
+            throw new NullPointerException("Não encontrado!");
+        }
     }
 
     @Transactional
-    public void alterar(Usuario usuario) {
-        usuarioRepository.save(usuario);
+    public void salvar(UsuarioDTO dto) {
+        usuarioRepository.save(dto.conversor(dto));
     }
 
     @Transactional
-    public void habilitarOuDesabilitar(Usuario usuario) {
-        usuarioRepository.habilitarOuDesabilitar(usuario.getStatus(), usuario.getId());
+    public void alterar(UsuarioDTO dto) {
+        usuarioRepository.save(dto.conversor(dto));
     }
 
     public Usuario login(String usuario, String senha) {
@@ -39,11 +48,9 @@ public class UsuarioService {
         return usuarioEncontrado;
     }
 
-    public List<Usuario> listarTodos() {
-        return usuarioRepository.findAll();
-    }
-
-    public List<Usuario> listarTodosComFiltro(Usuario usuario) {
-        return usuarioRepository.listarComFiltro(usuario.getUsuario());
+    @Transactional
+    public void alterarStatus(UsuarioDTO dto) {
+        Usuario usuario = dto.conversorStatus(dto);
+        usuarioRepository.alterarStatus(usuario.getStatus(), usuario.getId());
     }
 }

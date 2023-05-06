@@ -20,15 +20,27 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
 
+    @GetMapping("/buscar/{id}")
+    public ResponseEntity<Cliente> buscarPorId(@PathVariable long id) {
+        Cliente cliente = clienteService.buscarPorId(id);
+        return ResponseEntity.ok(cliente);
+    }
+
+    @GetMapping("/listar")
+    public ResponseEntity<List<Cliente>> listar() {
+        List<Cliente> listarClientes = clienteService.listar();
+        return ResponseEntity.ok(listarClientes);
+    }
+
     @PostMapping("/cadastrar")
     public ResponseEntity<Cliente> cadastrar(@RequestBody ClienteDTO dto) {
-        clienteService.salvar(dto.conversor(dto));
+        clienteService.salvar(dto);
          return ResponseEntity.ok().build();
     }
 
     @PutMapping("/alterar")
     public ResponseEntity<Cliente> alterar(@RequestBody ClienteDTO dto) {
-       clienteService.alterar(dto.conversor(dto));
+        clienteService.alterar(dto);
         return ResponseEntity.ok().build();
     }
 
@@ -40,11 +52,5 @@ public class ClienteController {
         } else {
             return ResponseEntity.internalServerError().build();
         }
-    }
-
-    @GetMapping("/buscar/{id}")
-    public ResponseEntity<Cliente> buscarCliente(@PathVariable long id) {
-        Cliente cliente = clienteService.buscarCliente(id);
-        return ResponseEntity.ok(cliente);
     }
 }
