@@ -49,7 +49,6 @@ public class ClienteDTO {
         );
     }
 
-
     public Long getId() {
         return id;
     }
@@ -120,19 +119,5 @@ public class ClienteDTO {
 
     public void setEnderecoEntrega(List<EnderecoEntrega> enderecoEntrega) {
         this.enderecoEntrega = enderecoEntrega;
-    }
-
-    @Override
-    public String toString() {
-        return "ClienteDTO{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", cpf='" + cpf + '\'' +
-                ", dataNascimento=" + dataNascimento +
-                ", genero='" + genero + '\'' +
-                ", usuario='" + usuario + '\'' +
-                ", senha='" + senha + '\'' +
-                ", enderecoEntrega=" + enderecoEntrega +
-                '}';
     }
 }

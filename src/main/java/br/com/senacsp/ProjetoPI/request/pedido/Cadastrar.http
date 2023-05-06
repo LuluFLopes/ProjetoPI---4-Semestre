@@ -1,0 +1,10 @@
+POST http://localhost:8081/pedidos/cadastrar
+Content-Type: application/json
+
+{
+  "dataCompra": "2023-05-06T00:00:00.000",
+  "valorTotal": 1200.00,
+  "cliente": {
+    "id": 1
+  }
+}

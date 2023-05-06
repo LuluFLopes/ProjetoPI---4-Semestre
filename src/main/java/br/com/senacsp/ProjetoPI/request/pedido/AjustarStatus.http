@@ -1,0 +1,7 @@
+PUT http://localhost:8081/pedidos/ajustarStatus
+Content-Type: application/json
+
+{
+  "id": 1,
+  "statusPedido": "CANCELADO"
+}
