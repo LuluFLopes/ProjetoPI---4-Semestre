@@ -4,6 +4,8 @@ package br.com.senacsp.ProjetoPI.controller;
 import br.com.senacsp.ProjetoPI.dto.cliente.ClienteDTO;
 import br.com.senacsp.ProjetoPI.dto.usuario.LoginDTO;
 import br.com.senacsp.ProjetoPI.model.Cliente;
+import br.com.senacsp.ProjetoPI.model.EnderecoEntrega;
+import br.com.senacsp.ProjetoPI.model.EnderecoFaturamento;
 import br.com.senacsp.ProjetoPI.service.ClienteService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +26,18 @@ public class ClienteController {
     public ResponseEntity<Cliente> buscarPorId(@PathVariable long id) {
         Cliente cliente = clienteService.buscarPorId(id);
         return ResponseEntity.ok(cliente);
+    }
+
+    @GetMapping("/buscarEnderecoFaturamento/{id}")
+    public ResponseEntity<EnderecoFaturamento> buscarEnderecoFaturamento(@PathVariable long id) {
+        Cliente cliente = clienteService.buscarPorId(id);
+        return ResponseEntity.ok(cliente.getEnderecoFaturamento());
+    }
+
+    @GetMapping("/buscarEnderecoEntrega/{id}")
+    public ResponseEntity<List<EnderecoEntrega>> buscarEnderecoEntrega(@PathVariable long id) {
+        Cliente cliente = clienteService.buscarPorId(id);
+        return ResponseEntity.ok(cliente.getEnderecoEntrega());
     }
 
     @GetMapping("/listar")

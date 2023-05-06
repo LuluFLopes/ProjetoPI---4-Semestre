@@ -1,0 +1,2 @@
+GET http://localhost:8081/clientes/buscarEnderecoEntrega/1
+Content-Type: application/json

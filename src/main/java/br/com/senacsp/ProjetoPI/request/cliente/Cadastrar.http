@@ -34,12 +34,12 @@ Content-Type: application/json
       "uf": "TS2"
     },
     {
-      "logradouro": "Rua Teste2",
-      "numero": 2,
-      "complemento": "Bloco 2",
-      "bairro": "Teste2",
-      "cidade": "Teste2",
-      "uf": "TS2"
+      "logradouro": "Rua Teste3",
+      "numero": 3,
+      "complemento": "Bloco 3",
+      "bairro": "Teste3",
+      "cidade": "Teste3",
+      "uf": "TS3"
     }
   ]
 }
