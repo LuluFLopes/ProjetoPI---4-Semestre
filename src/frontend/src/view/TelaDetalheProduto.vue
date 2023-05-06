@@ -7,14 +7,13 @@
 
         <div class="home-text">
         <h1>Jogo Online</h1>
-        <h5>Resident Evil</h5>
-        <h3>R$ 200,00</h3>
+        <h5>{{ this.produto.id }}</h5>
+        <h3>R$ {{ this.produto.preco }}</h3>
         <a href="#" class="btn">Compre Aqui</a>
         </div>
 
-
   <div class="main">
-    <div class="row1" v-for="(row, index)  of detalhesImg" :key="'linha-'+index">
+    <div class="row1" v-for="(row, index)  of this.produto.urlImg" :key="'linha-'+index">
       <li><img :src="row.imagem" class="one"  @click="slider(row.imagem)"></li>
     </div>
   </div>
@@ -26,6 +25,7 @@
 
 <script>
 import { defineComponent } from "vue";
+import {mapState} from "vuex";
 
 export default defineComponent({
   data() {
@@ -41,7 +41,6 @@ export default defineComponent({
           imagem:'https://leiturinha.com.br/blog/wp-content/uploads/2019/08/jogo-LOL.jpg'
         },
       ],
-      imagemAtual:"",
     }
   },
   methods:{
@@ -52,12 +51,12 @@ export default defineComponent({
   computed:{
     imagemDetalhes(){
       return this.imagemAtual ? this.imagemAtual : this.detalhesImg[0].imagem
-    }
-  }
-
+    },
+    ...mapState([
+      'produto'
+    ])
+  },
 });
-
-
 </script>
 
 <style>

@@ -4,27 +4,43 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-    state: {
-        user: {
-            id: "",
-            nome: "",
-            cpf: "",
-            usuario: "",
-            senha: "",
-            status: "",
-            grupo: ""
-        }
+  state: {
+    user: {
+      id: "",
+      nome: "",
+      cpf: "",
+      usuario: "",
+      senha: "",
+      status: "",
+      grupo: ""
     },
-    mutations: {
-        setUserInfo(state, payload) {
-            state.user = payload;
-        }
+    produto: {
+      avaliacao: "",
+      detalhes: "",
+      id: "",
+      nome: "",
+      preco: "",
+      quantidade: "",
+      status: "",
+      urlImg: ""
     },
-    actions: {
-        getUserInfos({commit}, payload) {
-            commit('setUserInfo', payload);
-        }
+  },
+  mutations: {
+    setUserInfo(state, payload) {
+      state.user = payload;
     },
+    setProdutoInfo(state, payload) {
+      state.produto = payload;
+    }
+  },
+  actions: {
+    getUserInfos({commit}, payload) {
+      commit('setUserInfo', payload);
+    },
+    getProdutoInfos({commit}, payload) {
+      commit('setProdutoInfo', payload);
+    }
+  },
 });
 
 export default store;

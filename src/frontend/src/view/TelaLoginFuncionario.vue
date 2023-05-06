@@ -33,19 +33,6 @@ export default defineComponent({
     encrypt(senha) {
       return CryptoJS.SHA512(senha).toString()
     },
-    resgatarInformacoes(usuario) {
-      axios({
-        method: 'get',
-        url: 'http://localhost:8081/listarFiltrando'
-      })
-          .then(function (response) {
-            sessionStorage.setItem("grupo", usuario.push(response.data[4]));
-          })
-          .catch(function (error) {
-            alert("Não foi possível encontrar o grupo do usuário!");
-            console.log(error);
-          });
-    },
     ...mapActions([
       'getUserInfos'
     ])
