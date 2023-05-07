@@ -89,7 +89,6 @@ label, input {
   align-items: center;
   justify-content: left;
   text-align: left;
-
 }
 
 fieldset {

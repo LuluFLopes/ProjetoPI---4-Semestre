@@ -21,6 +21,7 @@
 </template>
 
 <script>
+
 import {defineComponent} from "vue";
 import axios from "axios";
 import router from "@/router";
@@ -63,6 +64,7 @@ export default defineComponent({
     ])
   },
 });
+
 </script>
 
 <style scoped>
@@ -84,16 +86,15 @@ label, p, a {
 
 h1 {
   color: aliceblue;
-  font-size: 3 dvw;
+  font-size: 3dvw;
 }
 
 label, input {
-  padding: 2%;
-  margin: 2%;
-  align-items: left;
+  padding: 10px;
+  margin: 2dvh;
+  align-items: center;
   justify-content: left;
   text-align: left;
-
 }
 
 fieldset {
@@ -101,7 +102,7 @@ fieldset {
   border-radius: 10px;
   border-color: rgb(35, 75, 110);
   align-items: center;
+  height: 250px;
 }
-
 
 </style>
