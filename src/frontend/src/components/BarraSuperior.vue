@@ -5,11 +5,9 @@
         <router-link to="/" style="text-decoration: none; color: inherit;"><h1>Bazinga Games</h1></router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon class="login" v-show="!usuarioLogado">
-        <router-link to="login">
-          <v-icon>mdi-login</v-icon>
-        </router-link>
-      </v-btn>
+      <modal-tipo-usuario
+          v-on="this.modalAtivo"
+          v-show="!usuarioLogado"></modal-tipo-usuario>
       <label class="usuario" v-show="usuarioLogado">
         Olá, {{ this.user.nome }}!
       </label>
@@ -24,12 +22,18 @@
 import {defineComponent} from "vue";
 import {mapState} from "vuex";
 import router from "@/router";
+import ModalTipoUsuario from "@/components/ModalTipoUsuario";
 
 export default defineComponent({
-  components: {},
+  components: {
+    ModalTipoUsuario
+  },
   data() {
     return {
-      usuarioLogado: false
+      usuarioLogado: false,
+      modalAtivo: {
+        isActive: true
+      }
     }
   },
   methods: {

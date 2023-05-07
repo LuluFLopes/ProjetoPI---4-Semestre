@@ -1,55 +1,54 @@
 <template>
 
-      <section class="home">
-        <div class="home-img">
-          <img :src="imagemDetalhes" class="one">
-        </div>
-
-        <div class="home-text">
-        <h1>Jogo Online</h1>
-        <h5>{{ this.produto.id }}</h5>
-        <h3>R$ {{ this.produto.preco }}</h3>
-        <a href="#" class="btn">Compre Aqui</a>
-        </div>
-
-  <div class="main">
-    <div class="row1" v-for="(row, index)  of this.produto.urlImg" :key="'linha-'+index">
-      <li><img :src="row.imagem" class="one"  @click="slider(row.imagem)"></li>
+  <section class="home">
+    <div class="home-img">
+      <img :src="imagemDetalhes" class="one">
     </div>
-  </div>
 
-      </section>
+    <div class="home-text">
+      <h1>Jogo Online</h1>
+      <h5>{{ this.produto.id }}</h5>
+      <h3>R$ {{ this.produto.preco }}</h3>
+      <a href="#" class="btn">Compre Aqui</a>
+    </div>
+
+    <div class="main">
+      <div class="row1" v-for="(row, index)  of this.produto.urlImg" :key="'linha-'+index">
+        <li><img :src="row.imagem" class="one" @click="slider(row.imagem)"></li>
+      </div>
+    </div>
+
+  </section>
 
 </template>
 
-
 <script>
-import { defineComponent } from "vue";
+import {defineComponent} from "vue";
 import {mapState} from "vuex";
 
 export default defineComponent({
   data() {
     return {
-      detalhesImg:[
+      detalhesImg: [
         {
-          imagem:'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp',
+          imagem: 'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp',
         },
         {
-         imagem:'https://s2.glbimg.com/9K5eFTG7MONGExnCW-5G7yDFpq4=/0x250:1892x1264/984x0/smart/filters:strip_icc()/s.glbimg.com/po/tt2/f/original/2018/04/10/free_fire.png'
+          imagem: 'https://s2.glbimg.com/9K5eFTG7MONGExnCW-5G7yDFpq4=/0x250:1892x1264/984x0/smart/filters:strip_icc()/s.glbimg.com/po/tt2/f/original/2018/04/10/free_fire.png'
         },
         {
-          imagem:'https://leiturinha.com.br/blog/wp-content/uploads/2019/08/jogo-LOL.jpg'
+          imagem: 'https://leiturinha.com.br/blog/wp-content/uploads/2019/08/jogo-LOL.jpg'
         },
       ],
     }
   },
-  methods:{
-    slider(imagem){
+  methods: {
+    slider(imagem) {
       return this.imagemAtual = imagem
     }
   },
-  computed:{
-    imagemDetalhes(){
+  computed: {
+    imagemDetalhes() {
       return this.imagemAtual ? this.imagemAtual : this.detalhesImg[0].imagem
     },
     ...mapState([
@@ -71,35 +70,36 @@ export default defineComponent({
   gap: 2rem;
   background: rgba(45, 46, 50);
 }
-  .home-text h1{
-    font-size: 4rem;
-    line-height: 1.2;
-    margin-bottom: 2px;
 
-  }
+.home-text h1 {
+  font-size: 4rem;
+  line-height: 1.2;
+  margin-bottom: 2px;
 
-.home-text h5{
+}
+
+.home-text h5 {
   color: #ffffff99;
   font-size: 14px;
   font-weight: 400;
   margin-bottom: 60px;
 }
 
-.home-text h3{
+.home-text h3 {
   font-size: 40px;
   font-weight: 700;
   letter-spacing: 2px;
   margin-bottom: 35px;
 }
 
-.home-img img{
+.home-img img {
   max-width: 100%;
   width: 28rem;
   height: auto;
   margin-left: 25%;
 }
 
-.btn{
+.btn {
   display: inline-block;
   padding: 15px 70px;
   font-size: 16px;
@@ -107,16 +107,16 @@ export default defineComponent({
   background: transparent;
   border: solid 2px #ffffff;
   transition: all ease-out;
-  color:#ffffff;
+  color: #ffffff;
 }
 
-.btn:hover{
+.btn:hover {
   background: white;
   border: 2px solid #ffffff;
   color: #111111;
 }
 
-.main{
+.main {
   position: absolute;
   top: 50%;
   left: 3%;
@@ -126,49 +126,46 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  list-style:none;
+  list-style: none;
 }
 
-.main li img{
+.main li img {
   width: 120px;
   height: auto;
   max-width: 100%;
 }
 
-.row1{
+.row1 {
   justify-content: center;
   transition: all ease-out;
   cursor: pointer;
   display: inline-flex;
 }
 
-.row1:hover{
+.row1:hover {
   transform: translateY(-8px);
 }
 
-.row2{
+.row2 {
   justify-content: center;
   transition: all ease-out;
   cursor: pointer;
   display: inline-flex;
 }
 
-.row2:hover{
+.row2:hover {
   transform: translateY(-8px);
 }
 
-
-.row3{
+.row3 {
   justify-content: center;
   transition: all ease-out;
   cursor: pointer;
   display: inline-flex;
 }
 
-.row3:hover{
+.row3:hover {
   transform: translateY(-8px);
 }
-
-
 
 </style>
