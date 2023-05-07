@@ -98,6 +98,10 @@ export default defineComponent( {
 
       })
       .then(function (response) {
+        this.produtos = [];
+        this.pagina = 0;
+        this.totalPaginas = 0;
+        listarProdutos(produtos);
         console.log(response);
       })
       .catch(function (error) {

@@ -87,6 +87,8 @@ export default defineComponent({
 
       })
       .then(function (response) {
+        this.usuarios = [];
+        listarUsuarios(usuarios);
         console.log(response);
       })
       .catch(function (error) {
