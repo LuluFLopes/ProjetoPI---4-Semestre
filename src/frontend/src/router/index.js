@@ -83,10 +83,10 @@ const routes = [
     component: TelaDetalhePedido
   },
 
-
 ]
 
 const router = new VueRouter({
+  mode: "history",
   routes
 })
 

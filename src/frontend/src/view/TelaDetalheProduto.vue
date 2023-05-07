@@ -7,9 +7,10 @@
 
     <div class="home-text">
       <h1>Jogo Online</h1>
-      <h5>{{ this.produto.id }}</h5>
+      <h5>{{ this.produto.nome }}</h5>
       <h3>R$ {{ this.produto.preco }}</h3>
-      <a href="#" class="btn">Compre Aqui</a>
+      <h3> {{ this.produto.detalhes }} </h3>
+      <a href="#" class="btn" @click="adicionaNoCarrinho()">Adicionar no carrinho</a>
     </div>
 
     <div class="main">
@@ -17,14 +18,14 @@
         <li><img :src="row.imagem" class="one" @click="slider(row.imagem)"></li>
       </div>
     </div>
-
   </section>
 
 </template>
 
 <script>
 import {defineComponent} from "vue";
-import {mapState} from "vuex";
+import {mapActions, mapState} from "vuex";
+import router from "@/router";
 
 export default defineComponent({
   data() {
@@ -45,6 +46,14 @@ export default defineComponent({
   methods: {
     slider(imagem) {
       return this.imagemAtual = imagem
+    },
+    ...mapActions([
+      'getCarrinhoInfos'
+    ]),
+    adicionaNoCarrinho() {
+      console.log(this.produto);
+      this.getCarrinhoInfos(this.produto);
+      router.push("/");
     }
   },
   computed: {
@@ -52,8 +61,9 @@ export default defineComponent({
       return this.imagemAtual ? this.imagemAtual : this.detalhesImg[0].imagem
     },
     ...mapState([
-      'produto'
-    ])
+      'produto',
+      'carrinho'
+    ]),
   },
 });
 </script>

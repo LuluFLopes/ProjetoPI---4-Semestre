@@ -1,15 +1,11 @@
-import import Vue from 'vue'
-
-
 <template>
 
   <div class="hello">
     <div id="prd">
       <img class="imagem-principal" src="../assets/bazinga.png">
 
-
       <h1>Lista de Jogos</h1>
-      <div class="products" v-for="produto in detalhesProdutos" :key="produto.id">
+      <div class="products" v-for="(produto, index) of detalhesProdutos" :key="produto.id">
         <v-card
             class="prod"
             variant="tonal"
@@ -26,7 +22,7 @@ import import Vue from 'vue'
                  height="200"
           />
           <v-card-actions>
-            <v-btn v-on:click="abreTelaDetalhes(produto.id)">Detalhes</v-btn>
+            <v-btn v-on:click="abreTelaDetalhes(index)">Detalhes</v-btn>
           </v-card-actions>
         </v-card>
 
@@ -34,7 +30,6 @@ import import Vue from 'vue'
     </div>
   </div>
 </template>
-
 
 <script>
 import {defineComponent} from 'vue';
@@ -62,11 +57,11 @@ export default defineComponent({
         console.log(ex.message);
       }
     },
-    abreTelaDetalhes(id) {
-      this.getProdutoInfos(this.detalhesProdutos[id]);
+    abreTelaDetalhes(index) {
+      this.getProdutoInfos(this.detalhesProdutos[index]);
       router.push('/DetalheProduto');
     },
-    ...mapActions ([
+    ...mapActions([
       'getProdutoInfos'
     ])
   },
@@ -78,14 +73,12 @@ export default defineComponent({
 
 </script>
 
-
 <style>
 
 .hello {
   background: rgba(45, 46, 50);
   height: 100%;
 }
-
 
 .imagem-principal {
   width: auto;
@@ -112,8 +105,6 @@ export default defineComponent({
   padding: 50px;
   margin: auto;
   width: 33.3%;
-
-
 }
 
 #cartao {
@@ -130,6 +121,5 @@ h1 {
 #prd {
   padding: 0;
 }
-
 
 </style>

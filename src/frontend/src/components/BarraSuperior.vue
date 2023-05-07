@@ -5,6 +5,13 @@
         <router-link to="/" style="text-decoration: none; color: inherit;"><h1>Bazinga Games</h1></router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+      <div class="main-carrinho" @click="verificaUsuarioLogado()">
+        <v-btn class="btn-carrinho" @click="verificaLoginAntesDeCheckout">
+        <img class="carrinho" src="../assets/shopping-cart.png">
+        <p class="quantidade-carrinho"> {{ this.carrinho.length }} </p>
+        </v-btn>
+      </div>
+
       <modal-tipo-usuario
           v-on="this.modalAtivo"
           v-show="!usuarioLogado"></modal-tipo-usuario>
@@ -45,6 +52,13 @@ export default defineComponent({
       this.usuarioLogado = false;
       router.push('/');
     },
+    verificaLoginAntesDeCheckout() {
+      if (this.user.usuario === "") {
+          router.push('/loginCliente');
+      } else {
+        // router.push('/telaDetalhePedido');
+      }
+    },
     mounted() {
       if (this.verificaUsuarioLogado(this.user)) {
         this.usuarioLogado = true;
@@ -54,7 +68,8 @@ export default defineComponent({
   },
   computed: {
     ...mapState([
-      'user'
+      'user',
+      'carrinho'
     ])
   },
 });
@@ -75,6 +90,29 @@ export default defineComponent({
 .usuario {
   align-items: center;
 }
+
+.main-carrinho {
+  display: flex;
+}
+
+.carrinho {
+  width: 30%;
+  height: 30%;
+  margin-right: 15px;
+}
+
+.quantidade-carrinho {
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 12px;
+}
+
+.btn-carrinho {
+  margin-right: 20px;
+  width: 10%;
+}
+
+
 </style>
 
 

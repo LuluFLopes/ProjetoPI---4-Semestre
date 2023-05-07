@@ -21,9 +21,6 @@ export default defineComponent({
       try {
         this.formData.senha = this.encrypt(this.formData.senha)
         const request = await axios.post(url, this.formData)
-        console.log(request)
-        const date = new Date().getTime().toString();
-        sessionStorage.setItem("token", date);
         this.getUserInfos(request.data);
         await router.push('/logado');
       } catch (ex) {

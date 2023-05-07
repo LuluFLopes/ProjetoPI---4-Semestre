@@ -26,7 +26,7 @@ import {defineComponent} from "vue";
 import axios from "axios";
 import router from "@/router";
 import CryptoJS from "crypto-js";
-import {mapActions} from "vuex";
+import {mapActions, mapState} from "vuex";
 
 const url = 'http://localhost:8081/clientes/login';
 
@@ -42,6 +42,11 @@ export default defineComponent({
       }
     }
   },
+  computed: {
+    ...mapState([
+        'carrinho'
+    ])
+  },
   methods: {
     async submitSignIn() {
       try {
@@ -51,7 +56,11 @@ export default defineComponent({
         const date = new Date().getTime().toString();
         sessionStorage.setItem("token", date);
         this.getUserInfos(request.data);
-        await router.push('/');
+        if (this.carrinho.length === 0){
+          await router.push('/');
+        } else {
+          //await router.push('/telaDetalheProduto');
+        }
       } catch (ex) {
         console.log(ex.message);
       }

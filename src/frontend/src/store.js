@@ -24,14 +24,18 @@ const store = new Vuex.Store({
       status: "",
       urlImg: ""
     },
+    carrinho: []
   },
   mutations: {
     setUserInfo(state, payload) {
       state.user = payload;
     },
-
     setProdutoInfo(state, payload) {
+      console.log(payload);
       state.produto = payload;
+    },
+    setCarrinhoInfo(state, payload) {
+      state.carrinho.push(payload);
     }
   },
   actions: {
@@ -40,6 +44,9 @@ const store = new Vuex.Store({
     },
     getProdutoInfos({commit}, payload) {
       commit('setProdutoInfo', payload);
+    },
+    getCarrinhoInfos({commit}, payload) {
+      commit('setCarrinhoInfo', payload);
     }
   },
 
