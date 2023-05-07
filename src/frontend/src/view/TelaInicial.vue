@@ -57,9 +57,7 @@ export default defineComponent({
     async listaProduto() {
       try {
         const request = await axios.get('http://localhost:8081/produtos/listar')
-        console.log(request);
         this.detalhesProdutos = request.data.content;
-        console.log(this.detalhesProdutos)
       } catch (ex) {
         console.log(ex.message);
       }

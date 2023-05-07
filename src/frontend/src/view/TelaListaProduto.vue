@@ -76,7 +76,6 @@ export default defineComponent( {
       })
           .then(function (response) {
             for (let i = 0; i< response.data.content.length;i++){
-              console.log(response.data.content[i])
               produtos.push(response.data.content[i])
             }
           })

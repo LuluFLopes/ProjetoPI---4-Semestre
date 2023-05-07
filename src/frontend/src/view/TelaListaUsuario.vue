@@ -79,7 +79,7 @@ export default defineComponent({
     mandarStatus(identificação, checkbox) {
       axios({
         method: 'post',
-        url: 'http://localhost:8081/habilitarOuDesabilitar',
+        url: 'http://localhost:8081/ajustarStatus',
         data: {
           id: identificação,
           status: checkbox
@@ -93,20 +93,10 @@ export default defineComponent({
         console.log(error);
       });
     },
-    validaCheckbox() {
-      for (const usuario of this.usuarios) {
-        if (usuario.status === "ATIVO") {
-          usuario.checkbox = true;
-        } else {
-          usuario.checkbox = false;
-        }
-        this.mandarStatus(usuario.id, usuario.checkbox);        
-      }
-    },    
+
   },
   beforeMount() {
     this.listarUsuarios(this.usuarios);
-    this.validaCheckbox();
   }
 });
 </script>

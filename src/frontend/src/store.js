@@ -29,6 +29,7 @@ const store = new Vuex.Store({
     setUserInfo(state, payload) {
       state.user = payload;
     },
+
     setProdutoInfo(state, payload) {
       state.produto = payload;
     }
@@ -41,6 +42,7 @@ const store = new Vuex.Store({
       commit('setProdutoInfo', payload);
     }
   },
+
 });
 
 export default store;
