@@ -28,7 +28,7 @@
             <td>{{ usuario.status }}</td>
             <td id="alterarStatus">
               <v-checkbox
-                  v-model="usuario.checkbox"
+                  v-model="usuario.checkbox" @onChange="mandarStatus(usuario.id, usuario.status)"
               ></v-checkbox>
             </td>
           </tr>

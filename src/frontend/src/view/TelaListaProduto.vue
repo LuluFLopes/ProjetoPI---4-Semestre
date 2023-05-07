@@ -34,6 +34,9 @@
               <td>{{produto.quantidade}}</td>
               <td>{{produto.preco}}</td>
               <td>{{produto.status}}</td>
+              <v-checkbox
+                  v-model="produto.checkbox" @onChange="mandarStatus(produto.id, produto.status)"
+              ></v-checkbox>
             </tr>
             </tbody>
           </table>
@@ -107,8 +110,7 @@ export default defineComponent( {
           produto.checkbox = true;
         } else {
           produto.checkbox = false;
-        }
-        this.mandarStatus(produto.id, produto.checkbox);        
+        }  
       }
     },
 
