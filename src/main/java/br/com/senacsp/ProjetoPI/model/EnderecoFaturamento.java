@@ -19,8 +19,9 @@ public class EnderecoFaturamento {
     private String bairro;
     private String cidade;
     private String uf;
+    private String cep;
 
-    public EnderecoFaturamento(long id, String logradouro, int numero, String complemento, String bairro, String cidade, String uf) {
+    public EnderecoFaturamento(long id, String logradouro, int numero, String complemento, String bairro, String cidade, String uf, String cep) {
         this.id = id;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -28,6 +29,7 @@ public class EnderecoFaturamento {
         this.bairro = bairro;
         this.cidade = cidade;
         this.uf = uf;
+        this.cep = cep;
     }
 
     public long getId() {
@@ -84,5 +86,13 @@ public class EnderecoFaturamento {
 
     public void setUf(String uf) {
         this.uf = uf;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 }
