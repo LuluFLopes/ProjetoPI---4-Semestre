@@ -17,3 +17,7 @@ npm install axios
 ```
 npm install crypto-js
 ```
+
+```
+npm install v-mask
+```
