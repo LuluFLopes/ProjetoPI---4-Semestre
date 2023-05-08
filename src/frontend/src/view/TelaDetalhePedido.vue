@@ -9,7 +9,6 @@
       <h1>Detalhe Pedido</h1>
       <h5>Resident Evil</h5>
       <h3>R$ 200,00</h3>
-      <a href="#" class="btn" v-on:click.prevent="addcart(products)"><i class="fas fa-shopping-cart"></i>Add Cart</a>
       <a href="#" class="btn">Finalizar Compra</a>
     </div>
 
@@ -18,46 +17,42 @@
         <li><img :src="row.imagem" class="one"  @click="slider(row.imagem)"></li>
       </div>
     </div>
+
+
+    <div class="container">
+      <h1>Checkout de Pedido</h1>
+      <form>
+        <label for="endereco">Endereço:</label>
+
+        <label for="cep">CEP:</label>
+
+        <label for="produto" >Produto:</label>
+
+        <ul>
+          <li id="produto" name="produto" required>1</li>
+          <li id="produto" name="produto" required>2</li>
+          <li id="produto" name="produto" required>3</li>
+          <li id="produto" name="produto" required>4</li>
+          <li id="produto" name="produto" required>5</li>
+        </ul>
+
+        <label for="quantidade">Total:</label>
+
+      </form>
+    </div>
+
   </section>
+
 </template>
 
 <script>
 import { defineComponent } from "vue";
-import telaCadastroProduto from "./TelaCadastroProduto.vue";
 
 export default defineComponent({
   data() {
     return {
-      detalhesImg:[
-        {
-          imagem:'https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp',
-        },
-        {
-          imagem:'https://s2.glbimg.com/9K5eFTG7MONGExnCW-5G7yDFpq4=/0x250:1892x1264/984x0/smart/filters:strip_icc()/s.glbimg.com/po/tt2/f/original/2018/04/10/free_fire.png'
-        },
-        {
-          imagem:'https://leiturinha.com.br/blog/wp-content/uploads/2019/08/jogo-LOL.jpg'
-        },
-      ],
-      imagemAtual:"",
     }
   },
-  methods:{
-    slider(imagem){
-      return this.imagemAtual = imagem
-    },
-    addcart(product){
-      this.cart.push(product)
-    }
-  },
-  computed:{
-    telaCadastroProduto() {
-      return telaCadastroProduto
-    },
-    imagemDetalhes(){
-      return this.imagemAtual ? this.imagemAtual : this.detalhesImg[0].imagem
-    }
-  }
 });
 </script>
 
@@ -75,12 +70,12 @@ export default defineComponent({
   gap: 2rem;
   background: rgba(45, 46, 50);
 }
-  .home-text h1{
-    font-size: 4rem;
-    line-height: 1.2;
-    margin-bottom: 2px;
+.home-text h1{
+  font-size: 4rem;
+  line-height: 1.2;
+  margin-bottom: 2px;
 
-  }
+}
 
 .home-text h5{
   color: #ffffff99;
@@ -115,7 +110,7 @@ export default defineComponent({
   margin-top: 30px;
 }
 
-.btn:hover{
+.btn:hover a{
   background: white;
   border: 2px solid #ffffff;
   color: #111111;
@@ -151,27 +146,57 @@ export default defineComponent({
   transform: translateY(-8px);
 }
 
-.row2{
-  justify-content: center;
-  transition: all ease-out;
+.container {
+  position: absolute;
+  max-width: 600px;
+  margin-top: 0px;
+  padding: 20px;
+
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  margin-top: 0px;
+}
+
+label {
+  display: block;
+}
+
+input[type="text"],
+input[type="email"],
+select,
+input[type="number"] {
+  width: 100%;
+  padding: 1px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-left: -470px;
+}
+
+button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
-  display: inline-flex;
 }
 
-.row2:hover{
-  transform: translateY(-8px);
+button:hover {
+  background-color: #0062cc;
 }
-
-
-.row3{
-  justify-content: center;
-  transition: all ease-out;
-  cursor: pointer;
-  display: inline-flex;
-}
-
-.row3:hover{
-  transform: translateY(-8px);
+#produto{
+  margin-left: -470px;
+  list-style:none;
 }
 
 

@@ -9,7 +9,7 @@
       <router-link to="/cadastrarUsuario" custom v-slot="{ navigate }">
         <button id="btnCadastrar" @click="navigate" role="link">Cadastrar</button>
       </router-link>
-      <div>
+      <div class="main-table">
         <table class="listaProdutos">
           <thead>
           <tr>
@@ -34,7 +34,6 @@
           </tr>
           </tbody>
         </table>
-        <v-pagination :length="5"></v-pagination>
       </div>
     </div>
   </div>
@@ -86,14 +85,14 @@ export default defineComponent({
         }
 
       })
-      .then(function (response) {
-        this.usuarios = [];
-        listarUsuarios(usuarios);
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+          .then(function (response) {
+            this.usuarios = [];
+            this.listarUsuarios();
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
     },
 
   },
@@ -104,6 +103,11 @@ export default defineComponent({
 </script>
 
 <style>
+
+.main-table {
+  height: 300px;
+  overflow: auto;
+}
 
 .fundo {
   position: relative;

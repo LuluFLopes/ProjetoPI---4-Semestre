@@ -46,19 +46,6 @@ public class Usuario {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", cpf='" + cpf + '\'' +
-                ", usuario='" + usuario + '\'' +
-                ", senha='" + senha + '\'' +
-                ", status=" + status +
-                ", grupo=" + grupo +
-                '}';
-    }
-
     public Long getId() {
         return id;
     }

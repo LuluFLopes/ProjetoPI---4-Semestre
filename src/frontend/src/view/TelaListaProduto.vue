@@ -7,18 +7,18 @@
     <div class="frame">
       <h1>Produtos</h1>
 
-      <<<<<<< Updated upstream
       <router-link to="/cadastrarProduto" custom v-slot="{ navigate }">
         <button id="btnCadastrar" @click="navigate" role="link">Cadastrar</button>
       </router-link>
 
-      <div>
-        <div class="inp-pesquisar">
-          <v-text-field
-              variant="underlined"
-              label="Pesquisar"
-          ></v-text-field>
-        </div>
+      <div class="inp-pesquisar">
+        <v-text-field
+            variant="underlined"
+            label="Pesquisar"
+        ></v-text-field>
+      </div>
+
+      <div class="main-table">
 
         <table class="listaProdutos">
           <thead>
@@ -28,6 +28,7 @@
             <th>Qtd Estoque</th>
             <th>Valor</th>
             <th>Status</th>
+            <th>Ativar/Inativar</th>
           </tr>
           </thead>
           <tbody>
@@ -37,55 +38,19 @@
             <td>{{ produto.quantidade }}</td>
             <td>{{ produto.preco }}</td>
             <td>{{ produto.status }}</td>
-            <v-checkbox
-                v-model="produto.checkbox" @onChange="mandarStatus(produto.id, produto.status)"
-            ></v-checkbox>
+            <td id="alterarStatus">
+              <v-checkbox
+              ></v-checkbox>
+            </td>
           </tr>
           </tbody>
         </table>
-
-        <v-pagination :length="5"></v-pagination>
-        =======
-        <router-link to="/cadastrarProduto" custom v-slot="{ navigate }">
-          <button id="btnCadastrar" @click="navigate" role="link">Cadastrar</button>
-        </router-link>
-        >>>>>>> Stashed changes
-
-        <div class="inp-pesquisar">
-          <v-text-field
-              variant="underlined"
-              label="Pesquisar"
-          ></v-text-field>
-        </div>
-
-        <div class="main-table">
-
-          <table class="listaProdutos">
-            <thead>
-            <tr>
-              <th>Código</th>
-              <th>Nome Produto</th>
-              <th>Qtd Estoque</th>
-              <th>Valor</th>
-              <th>Status</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="(produto,index) in produtos" v-bind:key="index">
-              <td>{{ produto.id }}</td>
-              <td>{{ produto.nome }}</td>
-              <td>{{ produto.quantidade }}</td>
-              <td>{{ produto.preco }}</td>
-              <td>{{ produto.status }}</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <v-pagination :length="totalPaginas" v-model="pagina"></v-pagination>
-
       </div>
+
+      <v-pagination :length="totalPaginas" v-model="pagina"></v-pagination>
+
     </div>
+  </div>
 </template>
 
 <script>
@@ -144,27 +109,24 @@ export default defineComponent({
             this.produtos = [];
             this.pagina = 0;
             this.totalPaginas = 0;
-            listarProdutos(produtos);
-            console.log(response);
-          })
-          .then(function (response) {
+            this.listarProdutos();
             console.log(response);
           })
           .catch(function (error) {
             console.log(error);
           });
     },
-    validaCheckbox() {
-      for (const produto of this.produtos) {
-        if (produto.status === "ATIVO") {
-          produto.checkbox = true;
-        } else {
-          produto.checkbox = false;
-        }
-
-      }
-      this.mandarStatus(produto.id, produto.checkbox);
-    }
+    // validaCheckbox() {
+    //   for (const produto of this.produtos) {
+    //     if (produto.status === "ATIVO") {
+    //       produto.checkbox = true;
+    //     } else {
+    //       produto.checkbox = false;
+    //     }
+    //
+    //   }
+    //   this.mandarStatus(produto.id, produto.checkbox);
+    // }
   },
 });
 
