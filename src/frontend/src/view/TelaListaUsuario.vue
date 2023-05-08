@@ -150,8 +150,6 @@ export default defineComponent({
   margin-left: 15%;
   width: 75%;
   height: 75%;
-
-
 }
 
 th, td {
@@ -180,7 +178,6 @@ th, td {
   font-weight: bold;
   background-color: red;
   border-radius: 5px;
-
 }
 
 </style>

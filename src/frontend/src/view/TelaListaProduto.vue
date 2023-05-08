@@ -132,7 +132,7 @@ export default defineComponent({
 
 </script>
 
-<style>
+<style scoped>
 
 .main-table {
   height: 300px;
