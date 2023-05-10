@@ -14,6 +14,11 @@
             <input id="userPassword" type="password" aria-label="Senha" placeholder="Senha" v-model="formData.senha">
           </div>
           <button type="submit">Entrar</button>
+
+          <div class="cadastro">
+            <label>Não possui cadastro?</label>
+            <router-link to="cadastro">Cadastre-se aqui!</router-link>
+          </div>
         </fieldset>
       </form>
     </div>
@@ -112,6 +117,11 @@ fieldset {
   border-color: rgb(35, 75, 110);
   align-items: center;
   height: 250px;
+}
+.cadastro{
+  display: flex;
+  align-items: center;
+  font-size: small;
 }
 
 </style>

@@ -5,6 +5,18 @@
       <form action="" v-on:submit.prevent="checkForm" role="form" class="formulario">
         <fieldset>
 
+          <div class="subMenu">
+
+            <!--<router-link class="subMenu-itens" to="" >Dados Pessoais</router-link>>-->
+            <button class="subMenu-itens" @click="dados_P = true , Enderecos_P = false">Dados Pessoais</button>
+
+            <!--<router-link class="subMenu-itens" to="">Endereços</router-link>-->
+            <button class="subMenu-itens" @click="Enderecos_P = true, dados_P = false">Endereços</button>
+
+          </div>
+
+          <div v-show="dados_P === true">
+
           <div class="itens-formulario">
             <label class="textLabel" for="userLogin">Usuário:</label>
             <input class="itens-entrada usuario" type="text" aria-label="Usuário" placeholder="Usuário" v-model="nome">
@@ -25,7 +37,7 @@
 
             <div class="itens-formulario">
               <label class="textLabel" for="CPF">CPF:</label>
-              <input class="itens-entrada" v-mask="'###.###.###-##'" type="text" aria-label="CPF" placeholder="CPF"
+              <input class="itens-entrada"  type="text" aria-label="CPF" placeholder="CPF"
                      v-model="cpf">
             </div>
 
@@ -45,7 +57,25 @@
 
             </div>
 
+
+
+
           </div>
+            <div class="grid">
+              <div class="itens-formulario">
+                <label class="textLabel" for="userPassword">Senha:</label>
+                <input class="itens-entrada" type="password" aria-label="Senha" placeholder="Senha" v-model="senha">
+              </div>
+
+              <div class="itens-formulario">
+                <label class="textLabelCS" for="userPasswordConf">Confirmar Senha:</label>
+                <input class="itens-entrada" type="password" aria-label="Confirmar Senha" placeholder="Confirmar Senha"
+                       v-model="confirmaSenha">
+              </div>
+            </div>
+          </div>
+
+          <div v-show="Enderecos_P === true">
 
           <div class="grid2">
 
@@ -58,15 +88,24 @@
 
             <div class="itens-formulario">
 
-              <v-checkbox v-model="enderecoFaturamento.mesmoEnd"
+              <label class="textLabelCS" for="genero">Tipo de Endereço:</label>
+              <select class="itens-entrada inputSelect" aria-label="Genero" name="Genero" v-model="enderecoEntrega.tipoEnd">
+                <option value="">Selecione...</option>
+                <option value="Masculino">Entrega/Faturamento</option>
+                <option value="Feminino">Entrega</option>
+                <option value="Feminino">Faturamento</option>
+              </select>
+
+              <!--<v-checkbox v-model="enderecoFaturamento.mesmoEnd"
                           :label="'Endereço Entrega/Faturamento'"
                           class="font-weight-bold"
-              ></v-checkbox>
+              ></v-checkbox>-->
 
             </div>
 
 
           </div>
+
 
           <div class="grid">
 
@@ -107,7 +146,9 @@
             </div>
           </div>
 
-          <div v-show="this.enderecoFaturamento.mesmoEnd === false">
+            <button class="BtnCadEnd" @click="AddEnd(enderecoEntrega)">+ Adicionar</button>
+
+          <!--<div v-show="this.enderecoFaturamento.mesmoEnd === false">
 
             <h3>Endereço de Faturamento</h3>
 
@@ -158,24 +199,40 @@
             </div>
 
 
+          </div>-->
+
+            <!--<table class="listaEndereco">
+              <thead>
+              <tr>
+
+                <th>CEP</th>
+                <th>Logradouro</th>
+                <th>Número</th>
+                <th>Complemento</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
+                <th>UF</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="(endereco,index) in enderecos" v-bind:key="index">
+                <td>{{endereco.cep}}</td>
+                <td>{{endereco.logradouro}}</td>
+                <td>{{endereco.numero}}</td>
+                <td>{{endereco.complemento}}</td>
+                <td>{{endereco.bairro}}</td>
+                <td>{{endereco.cidade}}</td>
+                <td>{{endereco.uf}}</td>
+              </tr>
+              </tbody>
+            </table>-->
+
+
+
           </div>
-
-          <div class="grid">
-            <div class="itens-formulario">
-              <label class="textLabel" for="userPassword">Senha:</label>
-              <input class="itens-entrada" type="password" aria-label="Senha" placeholder="Senha" v-model="senha">
-            </div>
-
-            <div class="itens-formulario">
-              <label class="textLabelCS" for="userPasswordConf">Confirmar Senha:</label>
-              <input class="itens-entrada" type="password" aria-label="Confirmar Senha" placeholder="Confirmar Senha"
-                     v-model="confirmaSenha">
-            </div>
-          </div>
-
 
           <input type="submit" class="btnAcao green" value="Cadastrar"
-                 @click="mandarInformacoes(nome, cpf, dtnasc, genero, usuario, senha, enderecoEntrega,enderecoFaturamento, confirmaSenha)">
+                 @click="mandarInformacoes(nome, cpf, dtnasc, genero, usuario, senha, enderecoEntrega, confirmaSenha)">
 
           <router-link to="/WlistaUsuario" custom v-slot="{ navigate }">
             <button class="btnAcao red" @click="navigate" role="link">Fechar</button>
@@ -198,6 +255,8 @@ const CryptoJS = require("crypto-js");
 export default defineComponent({
   data() {
     return {
+      dados_P: true,
+      Enderecos_P: false,
       nome: "",
       usuario: "",
       cpf: "",
@@ -207,7 +266,7 @@ export default defineComponent({
       senha: "",
       confirmaSenha: "",
       grupo: "",
-      enderecoFaturamento: {
+      enderecoEntrega: {
         CEP: "",
         mesmoEnd: "true",
         logradouro: "",
@@ -215,23 +274,23 @@ export default defineComponent({
         compl: "",
         bairro: "",
         localidade: "",
-        uf: ""
+        uf: "",
+        tipoEnd: "",
       },
-      enderecoEntrega: {
-        CEPFat: "",
-        logradouroFat: "",
-        numFat: "",
-        complFat: "",
-        bairroFat: "",
-        localidadeFat: "",
-        ufFat: "",
-      }
+
+      enderecos:[],
+      pagina:1,
+
     }
+  },
+  /*beforeMount() {
+    this.listarEnderecosFat(this.enderecos)
+    this.listarEnderecosEntg(this.enderecos)
   }
-  ,
+  ,*/
   methods: {
 
-    mandarInformacoes(nome, cpf, dtnasc, genero, usuario, senha, enderecoEntrega, enderecoFaturamento, confirmaSenha) {
+    mandarInformacoes(nome, cpf, dtnasc, genero, usuario, senha, enderecoEntrega, confirmaSenha) {
       var cErro = 0
       var cMsg = ''
 
@@ -263,7 +322,7 @@ export default defineComponent({
         }
       }
 
-      var cpfValido = cpf.replace(/\D/g, '');
+      var cpfValido //= cpf.replace(/\D/g, '');
       cpfValido = this.TestaCPF(cpf)
 
       if (cpfValido === true && cErro === 0) {
@@ -280,23 +339,14 @@ export default defineComponent({
             genero: genero,
             usuario: usuario,
             senha: senha,
-            enderecoFaturamento: {
-              cep: enderecoFaturamento.CEP,
-              logradouro: enderecoFaturamento.logradouro,
-              numero: enderecoFaturamento.num,
-              complemento: enderecoFaturamento.compl,
-              bairro: enderecoFaturamento.bairro,
-              cidade: enderecoFaturamento.localidade,
-              uf: enderecoFaturamento.uf
-            },
             enderecoEntrega: {
-              cep: enderecoEntrega.CEPFat,
-              logradouro: enderecoEntrega.complFat,
-              numero: enderecoEntrega.numFat,
-              complemento: enderecoEntrega.complFat,
-              bairro: enderecoEntrega.bairroFat,
-              cidade: enderecoEntrega.localidadeFat,
-              uf: enderecoEntrega.ufFat
+              cep: enderecoEntrega.CEP,
+              logradouro: enderecoEntrega.logradouro,
+              numero: enderecoEntrega.num,
+              complemento: enderecoEntrega.compl,
+              bairro: enderecoEntrega.bairro,
+              cidade: enderecoEntrega.localidade,
+              uf: enderecoEntrega.uf
             }
           }
         })
@@ -372,17 +422,10 @@ export default defineComponent({
 
             if (request.data.erro !== false) {
               if (tipo == 1) {
-                this.enderecoFaturamento.logradouro = request.data.logradouro;
-                this.enderecoFaturamento.bairro = request.data.bairro;
-                this.enderecoFaturamento.localidade = request.data.localidade;
-                this.enderecoFaturamento.uf = request.data.uf;
-              }
-
-              if (tipo == 2) {
-                this.enderecoEntrega.logradouroFat = request.data.logradouro;
-                this.enderecoEntrega.bairroFat = request.data.bairro;
-                this.enderecoEntrega.localidadeFat = request.data.localidade;
-                this.enderecoEntrega.ufFat = request.data.uf;
+                this.enderecoEntrega.logradouro = request.data.logradouro;
+                this.enderecoEntrega.bairro = request.data.bairro;
+                this.enderecoEntrega.localidade = request.data.localidade;
+                this.enderecoEntrega.uf = request.data.uf;
               }
 
             }
@@ -400,19 +443,54 @@ export default defineComponent({
         }
       }
 
-    }
+    },
 
+    listarEnderecosFat(enderecos) {
+      axios({
+        method: 'get',
+        url: 'http://localhost:8081/clientes/buscarEnderecoFaturamento/' + this.pagina
+
+      })
+          .then(function (response) {
+            for (let i = 0; i< response.data.length;i++){
+              console.log(response.data[i])
+              enderecos.push(response.data[i])
+            }
+          })
+          .catch(function (error) {
+            alert("Não foi possível listar.");
+            console.log(error);
+          });
+    },
+
+    listarEnderecosEntg(enderecos) {
+      axios({
+        method: 'get',
+        url: 'http://localhost:8081/clientes/buscarEnderecoEntrega/' + this.pagina
+
+      })
+          .then(function (response) {
+            for (let i = 0; i< response.data.length;i++){
+              console.log(response.data[i])
+              enderecos.push(response.data[i])
+            }
+          })
+          .catch(function (error) {
+            alert("Não foi possível listar.");
+            console.log(error);
+          });
+    },
 
   }
+
 });
 
 </script>
 
-
 <style scoped>
 main {
   background: rgba(45, 46, 50);
-  height: 170 dvh;
+  height: 140dvh;
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -421,17 +499,16 @@ main {
 
 h1 {
   color: aliceblue;
-  font-size: 3 dvw;
+  font-size: 3dvw;
   margin-top: 1%;
 }
 
 input, select {
-  padding: 0.5 dvw;
+  padding: 0.5dvw;
   align-items: left;
   justify-content: left;
   text-align: left;
   font-weight: bold;
-
 }
 
 fieldset {
@@ -439,8 +516,8 @@ fieldset {
   opacity: 0.90;
   border-radius: 40px;
   border-color: rgb(35, 75, 110);
-  height: 150 dvh;
-  width: 50 dvw;
+  height: 120dvh;
+  width: 50dvw;
 }
 
 
@@ -453,7 +530,6 @@ fieldset {
   border: 1px solid #222222;
   border-radius: 5px;
   margin-left: auto;
-
 }
 
 .btnAcao {
@@ -461,7 +537,7 @@ fieldset {
   border-radius: 10px;
   border-color: rgb(35, 75, 110);
   padding: 5px;
-  margin: -1% 10%;
+  margin: 32% 10%;
 }
 
 .grid {
@@ -473,9 +549,8 @@ fieldset {
 }
 
 .grid2 {
-  margin-top: -5%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-content: left;
   text-align: left;
 }
@@ -521,6 +596,34 @@ fieldset {
 
 .inputSelect {
   width: 200px;
+}
+
+.subMenu{
+  height: 50px;
+  margin-left: 6%;
+  display: flex;
+}
+
+.subMenu-itens{
+  margin: 0 3%;
+}
+
+.listaEndereco{
+  text-align: center;
+  justify-content: center;
+  margin-top: 2%;
+  margin-left: 15%;
+  width: 75%;
+  height:75%;
+}
+
+.BtnCadEnd{
+  margin-left: 80%;
+  padding: 1%;
+  border: solid;
+  border-color: darkgreen;
+  color: green;
+
 }
 
 </style>
