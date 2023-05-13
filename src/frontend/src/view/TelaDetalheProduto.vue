@@ -10,6 +10,9 @@
       <h5>{{ this.produto.nome }}</h5>
       <h3>R$ {{ this.produto.preco }}</h3>
       <h3> {{ this.produto.detalhes }} </h3>
+      <h3> Unindades disponíveis: {{ this.produto.quantidade }} </h3>
+      <label> Selecione a quantidade: </label>
+      <input type="number" v-model="quantidadeSelecionada">
       <a href="#" class="btn" @click="adicionaNoCarrinho()">Adicionar no carrinho</a>
     </div>
 
@@ -41,6 +44,9 @@ export default defineComponent({
           imagem: 'https://leiturinha.com.br/blog/wp-content/uploads/2019/08/jogo-LOL.jpg'
         },
       ],
+      jaAdicionado: false,
+      elementoJaAdicionado: -1,
+      quantidadeSelecionada: 0
     }
   },
   methods: {
@@ -51,8 +57,24 @@ export default defineComponent({
       'getCarrinhoInfos'
     ]),
     adicionaNoCarrinho() {
-      console.log(this.produto);
-      this.getCarrinhoInfos(this.produto);
+
+      this.carrinho.forEach((el,i) => {
+        if (el.id === this.produto.id) {
+          this.jaAdicionado = true;
+          this.elementoJaAdicionado = i;
+        }
+      });
+
+      this.produto.quantidade = this.quantidadeSelecionada;
+
+      if (this.jaAdicionado) {
+        let quantidadeAtual = parseInt(this.carrinho[this.elementoJaAdicionado].quantidade);
+        quantidadeAtual += parseInt(this.quantidadeSelecionada);
+        this.carrinho[this.elementoJaAdicionado].quantidade = quantidadeAtual;
+      }else {
+        this.getCarrinhoInfos(this.produto);
+      }
+      this.jaAdicionado = false;
       router.push("/");
     }
   },
