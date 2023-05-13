@@ -5,6 +5,6 @@ Content-Type: application/json
   "nome": "José Stevart",
   "cpf": "111.111.111-11",
   "usuario": "stevart@hotmail.com",
-  "senha": "irmãdosevart123",
+  "senha": "irmadostevart123",
   "grupo": "ADMINISTRADOR"
 }

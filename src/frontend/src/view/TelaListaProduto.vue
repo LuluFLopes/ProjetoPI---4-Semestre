@@ -40,6 +40,8 @@
             <td>{{ produto.status }}</td>
             <td id="alterarStatus">
               <v-checkbox
+                      v-model="produto.checkbox"
+                      @change="mandarStatus(produto.id, produto.status)"
               ></v-checkbox>
             </td>
           </tr>
@@ -79,8 +81,7 @@ export default defineComponent({
     }
   },
   beforeMount() {
-    this.listarProdutos(this.produtos),
-        this.validaCheckbox();
+    this.listarProdutos(this.produtos)
   },
   methods: {
     async listarProdutos() {
@@ -97,36 +98,29 @@ export default defineComponent({
       }
     },
     mandarStatus(identificacao, checkbox) {
+        if(checkbox === "ATIVO"){
+            checkbox = "INATIVO"
+        } else {
+            checkbox = "ATIVO"
+        }
       axios({
         method: 'post',
-        url: 'http://localhost:8081/alterarStatus',
+        url: 'http://localhost:8081/produtos/alterarStatus',
         data: {
           id: identificacao,
           status: checkbox
         }
       })
           .then(function (response) {
-            this.produtos = [];
-            this.pagina = 0;
-            this.totalPaginas = 0;
-            this.listarProdutos();
             console.log(response);
+
           })
           .catch(function (error) {
             console.log(error);
           });
+        this.produtos = [];
+        this.listarProdutos();
     },
-    // validaCheckbox() {
-    //   for (const produto of this.produtos) {
-    //     if (produto.status === "ATIVO") {
-    //       produto.checkbox = true;
-    //     } else {
-    //       produto.checkbox = false;
-    //     }
-    //
-    //   }
-    //   this.mandarStatus(produto.id, produto.checkbox);
-    // }
   },
 });
 

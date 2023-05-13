@@ -28,7 +28,8 @@
             <td>{{ usuario.status }}</td>
             <td id="alterarStatus">
               <v-checkbox
-                  v-model="usuario.checkbox" @onChange="mandarStatus(usuario.id, usuario.status)"
+                  v-model="usuario.checkbox"
+                  @change="mandarStatus(usuario.id, usuario.status)"
               ></v-checkbox>
             </td>
           </tr>
@@ -75,24 +76,29 @@ export default defineComponent({
             console.log(error);
           });
     },
-    mandarStatus(identificação, checkbox) {
+    mandarStatus(identificacao, checkbox) {
+        if(checkbox === "ATIVO"){
+            checkbox = "INATIVO"
+        } else {
+            checkbox = "ATIVO"
+        }
       axios({
-        method: 'post',
-        url: 'http://localhost:8081/ajustarStatus',
+        method: 'put',
+        url: 'http://localhost:8081/alterarStatus',
         data: {
-          id: identificação,
+          id: identificacao,
           status: checkbox
         }
 
       })
           .then(function (response) {
-            this.usuarios = [];
-            this.listarUsuarios();
             console.log(response);
           })
           .catch(function (error) {
             console.log(error);
           });
+        this.usuarios = [];
+        this.listarUsuarios(this.usuarios);
     },
 
   },
@@ -121,7 +127,7 @@ export default defineComponent({
   left: 25%;
   width: 65%;
   height: 75%;
-  background: blue;
+  background: rgba(217, 217, 217, 1);
   color: #111111;
 }
 
