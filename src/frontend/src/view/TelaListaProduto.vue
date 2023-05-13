@@ -7,15 +7,19 @@
     <div class="frame">
       <h1>Produtos</h1>
 
-      <router-link to="/cadastrarProduto" custom v-slot="{ navigate }">
-        <button id="btnCadastrar" @click="navigate" role="link">Cadastrar</button>
-      </router-link>
-
       <div class="inp-pesquisar">
         <v-text-field
+            class="input-pesquisar"
             variant="underlined"
             label="Pesquisar"
+            v-model="produto.nome"
         ></v-text-field>
+        <v-btn class="btn-pesquisar" width="10px" @click="listarProdutoPorNome(produto)">
+          &#128269;
+        </v-btn>
+        <router-link to="/cadastrarProduto" custom v-slot="{ navigate }">
+          <button id="btnCadastrar" @click="navigate" role="link">Cadastrar</button>
+        </router-link>
       </div>
 
       <div class="main-table">
@@ -39,6 +43,7 @@
             <td>{{ produto.preco }}</td>
             <td>{{ produto.status }}</td>
             <td id="alterarStatus">
+              &nbsp;
               <v-checkbox
                       v-model="produto.checkbox"
                       @change="mandarStatus(produto.id, produto.status)"
@@ -70,7 +75,10 @@ export default defineComponent({
     return {
       produtos: [],
       pagina: 0,
-      totalPaginas: 0
+      totalPaginas: 0,
+      produto: {
+        nome: ""
+      }
     }
   },
   watch: {
@@ -87,7 +95,6 @@ export default defineComponent({
     async listarProdutos() {
       try {
         const response = await axios.get('http://localhost:8081/produtos/listar?size=5&page=' + (this.pagina - 1))
-        console.log("Pagina atual" + this.pagina);
         for (let i = 0; i < response.data.content.length; i++) {
           this.produtos.push(response.data.content[i])
         }
@@ -120,6 +127,21 @@ export default defineComponent({
           });
         this.produtos = [];
         this.listarProdutos();
+    },
+    async listarProdutoPorNome(produto) {
+      try {
+        const response = await axios.post('http://localhost:8081/produtos/listarPorNome?size=5&page=' + (this.pagina - 1), produto);
+
+        this.produtos = [];
+
+        for (let i = 0; i < response.data.content.length; i++) {
+          this.produtos.push(response.data.content[i])
+        }
+        this.totalPaginas = response.data.totalPages;
+      } catch (ex) {
+        alert("Não foi possível listar.");
+        console.log(ex.message);
+      }
     },
   },
 });
@@ -181,9 +203,22 @@ th, td {
 }
 
 .inp-pesquisar {
-  width: 600px;
-  margin: 1% 20%;
+  width: 400px;
+  margin: 1% auto;
   margin-bottom: 1px;
 }
 
+.btn-pesquisar {
+  display: inline-block;
+}
+
+.input-pesquisar {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+#btnCadastrar {
+  display: inline-block;
+  margin-left: 10px;
+}
 </style>
