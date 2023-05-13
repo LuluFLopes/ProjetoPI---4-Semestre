@@ -2,7 +2,7 @@
   <main>
     <div id="app">
       <h1>Cadastro de Cliente</h1>
-      <form action="" v-on:submit.prevent="checkForm" role="form" class="formulario">
+      <form v-on:submit.prevent role="form" class="formulario">
         <fieldset>
 
           <div class="subMenu">
@@ -280,6 +280,23 @@ export default defineComponent({
 
       enderecos:[],
       pagina:1,
+      data: {
+        nome: "",
+        cpf: "",
+        dataNascimento: "",
+        genero: "",
+        usuario: "",
+        senha: "",
+        enderecoEntrega: {
+          cep: "",
+          logradouro: "",
+          numero: "",
+          complemento: "",
+          bairro: "",
+          cidade: "",
+          uf: ""
+        }
+      }
 
     }
   },
@@ -290,7 +307,7 @@ export default defineComponent({
   ,*/
   methods: {
 
-    mandarInformacoes(nome, cpf, dtnasc, genero, usuario, senha, enderecoEntrega, confirmaSenha) {
+    async mandarInformacoes(nome, cpf, dtnasc, genero, usuario, senha, enderecoEntrega, confirmaSenha) {
       var cErro = 0
       var cMsg = ''
 
@@ -329,35 +346,30 @@ export default defineComponent({
 
         //senha = this.encrypt(senha);
 
-        axios({
-          method: 'post',
-          url: 'http://localhost:8081/clientes/cadastrar',
-          data: {
-            nome: nome,
-            cpf: cpf,
-            dtnasc: dtnasc,
-            genero: genero,
-            usuario: usuario,
-            senha: senha,
-            enderecoEntrega: {
-              cep: enderecoEntrega.CEP,
-              logradouro: enderecoEntrega.logradouro,
-              numero: enderecoEntrega.num,
-              complemento: enderecoEntrega.compl,
-              bairro: enderecoEntrega.bairro,
-              cidade: enderecoEntrega.localidade,
-              uf: enderecoEntrega.uf
-            }
-          }
-        })
-            .then(function (response) {
+          try {
+            this.data.senha = this.encrypt(this.data.senha)
+
+            this.data.nome = nome;
+            this.data.cpf = cpf;
+            this.data.dataNascimento = Date.parse(dtnasc);
+            this.data.genero = genero;
+            this.data.usuario = usuario;
+            this.data.senha = senha;
+            this.data.enderecoEntrega = enderecoEntrega;
+            this.data.enderecoEntrega = parseInt(this.data.enderecoEntrega);
+
+            const response = await axios.post('http://localhost:8081/clientes/cadastrar', this.data)
+
+            if (this.carrinho.length === 0){
+              await router.push('/');
+            } else {
               console.log(response);
               alert("Cadastrado com Sucesso!");
-              router.push('/loginCliente')
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
+              await router.push('/loginCliente')
+            }
+          } catch (ex) {
+            console.log(ex.message);
+          }
       } else {
         cErro = 1
         if (cMsg.length === 0) {
