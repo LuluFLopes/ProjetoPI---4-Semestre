@@ -25,7 +25,8 @@ Content-Type: application/json
       "bairro": "Teste1",
       "cidade": "Teste1",
       "uf": "TS1",
-      "cep": "11111-111"
+      "cep": "11111-111",
+      "tipoEndereco" : "PRINCIPAL"
     },
     {
       "logradouro": "Rua Teste2",
@@ -34,7 +35,8 @@ Content-Type: application/json
       "bairro": "Teste2",
       "cidade": "Teste2",
       "uf": "TS2",
-      "cep": "22222-222"
+      "cep": "22222-222",
+      "tipoEndereco" : "SECUNDARIO"
     },
     {
       "logradouro": "Rua Teste3",
@@ -43,7 +45,8 @@ Content-Type: application/json
       "bairro": "Teste3",
       "cidade": "Teste3",
       "uf": "TS3",
-      "cep": "33333-333"
+      "cep": "33333-333",
+      "tipoEndereco" : "SECUNDARIO"
     }
   ]
 }

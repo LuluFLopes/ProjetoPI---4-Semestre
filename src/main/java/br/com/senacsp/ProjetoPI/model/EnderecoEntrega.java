@@ -1,6 +1,7 @@
 package br.com.senacsp.ProjetoPI.model;
 
 
+import br.com.senacsp.ProjetoPI.enumeracoes.endereco.TipoEndereco;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
@@ -17,8 +18,18 @@ public class EnderecoEntrega {
     private String cidade;
     private String uf;
     private String cep;
+    private TipoEndereco tipoEndereco;
 
-    public EnderecoEntrega(long id, String logradouro, int numero, String complemento, String bairro, String cidade, String uf, String cep) {
+    public EnderecoEntrega(
+            long id,
+            String logradouro,
+            int numero,
+            String complemento,
+            String bairro,
+            String cidade,
+            String uf,
+            String cep,
+            TipoEndereco tipoEndereco) {
         this.id = id;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -27,6 +38,7 @@ public class EnderecoEntrega {
         this.cidade = cidade;
         this.uf = uf;
         this.cep = cep;
+        this.tipoEndereco = tipoEndereco;
     }
 
     public long getId() {
@@ -91,5 +103,13 @@ public class EnderecoEntrega {
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public TipoEndereco getTipoEndereco() {
+        return tipoEndereco;
+    }
+
+    public void setTipoEndereco(TipoEndereco tipoEndereco) {
+        this.tipoEndereco = tipoEndereco;
     }
 }
