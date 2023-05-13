@@ -167,3 +167,90 @@ VALUES (10, 'link'),
        (10, 'link'),
        (10, 'link'),
        (10, 'link');
+
+INSERT INTO ENDERECO_ENTREGA(
+    LOGRADOURO,
+    NUMERO,
+    COMPLEMENTO,
+    CIDADE,
+    BAIRRO,
+    UF,
+    CEP,
+    TIPO_ENDERECO
+)
+VALUES (
+           'Rua teste 1',
+           1,
+           'Bloco 1',
+           'Teste 1',
+           'Teste 1',
+           'TS1',
+           'Cep 11111-111',
+           0
+       ),
+       (
+           'Rua teste 2',
+           2,
+           'Bloco 2',
+           'Teste 2',
+           'Teste 2',
+           'TS2',
+           'Cep 22222-222',
+           1
+       ),
+       (
+           'Rua teste 3',
+           3,
+           'Bloco 3',
+           'Teste 3',
+           'Teste 3',
+           'TS3',
+           'Cep 33333-333',
+           1
+       );
+
+INSERT INTO ENDERECO_FATURAMENTO (
+    LOGRADOURO,
+    NUMERO,
+    COMPLEMENTO,
+    CIDADE,
+    BAIRRO,
+    UF,
+    CEP
+)
+VALUES (
+        'Rua teste 1',
+        1,
+        'Bloco 1',
+        'Teste 1',
+        'Teste 1',
+        'TS1',
+        'Cep 11111-111'
+       );
+
+INSERT INTO CLIENTE (
+    CPF,
+    DATA_NASCIMENTO,
+    GENERO,
+    NOME,
+    SENHA,
+    USUARIO,
+    ENDERECO_FATURAMENTO_ID
+)
+VALUES (
+           '777.777.777-77',
+           '1994-01-11 18:47:52.069',
+           'Masculino',
+           'Igor',
+           '123',
+           'igor@gmail.com',
+           1
+       );
+
+INSERT INTO CLIENTE_ENDERECO_ENTREGA (
+    CLIENTE_ID,
+    ENDERECO_ENTREGA_ID
+)
+VALUES(1,1),
+      (1,2),
+      (1,3);
