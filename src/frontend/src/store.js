@@ -24,7 +24,8 @@ const store = new Vuex.Store({
       status: "",
       urlImg: ""
     },
-    carrinho: []
+    carrinho: [],
+    valorTotal: 0
   },
   mutations: {
     setUserInfo(state, payload) {
@@ -36,6 +37,14 @@ const store = new Vuex.Store({
     },
     setCarrinhoInfo(state, payload) {
       state.carrinho.push(payload);
+    },
+    calculaTotalCarrinho(state){
+      state.valorTotal = 0;
+      state.carrinho.forEach(el => {
+        let valorCalculadoPorElemento = 0;
+        valorCalculadoPorElemento = parseInt(el.preco * el.quantidade);
+        state.valorTotal += valorCalculadoPorElemento;
+      })
     }
   },
   actions: {
@@ -47,6 +56,9 @@ const store = new Vuex.Store({
     },
     getCarrinhoInfos({commit}, payload) {
       commit('setCarrinhoInfo', payload);
+    },
+    alteraValorTotalCarrinho({commit}, payload) {
+      commit('calculaTotalCarrinho', payload);
     }
   },
 

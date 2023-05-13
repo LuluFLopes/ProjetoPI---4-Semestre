@@ -54,7 +54,8 @@ export default defineComponent({
       return this.imagemAtual = imagem
     },
     ...mapActions([
-      'getCarrinhoInfos'
+      'getCarrinhoInfos',
+      'alteraValorTotalCarrinho'
     ]),
     adicionaNoCarrinho() {
 
@@ -71,8 +72,10 @@ export default defineComponent({
         let quantidadeAtual = parseInt(this.carrinho[this.elementoJaAdicionado].quantidade);
         quantidadeAtual += parseInt(this.quantidadeSelecionada);
         this.carrinho[this.elementoJaAdicionado].quantidade = quantidadeAtual;
+        this.alteraValorTotalCarrinho();
       }else {
         this.getCarrinhoInfos(this.produto);
+        this.alteraValorTotalCarrinho();
       }
       this.jaAdicionado = false;
       router.push("/");
@@ -84,7 +87,8 @@ export default defineComponent({
     },
     ...mapState([
       'produto',
-      'carrinho'
+      'carrinho',
+      'valorTotal'
     ]),
   },
 });
