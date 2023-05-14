@@ -12,9 +12,9 @@
             class="input-pesquisar"
             variant="underlined"
             label="Pesquisar"
-            v-model="produto.nome"
+            v-model="produtoPesquisado.nome"
         ></v-text-field>
-        <v-btn class="btn-pesquisar" width="10px" @click="listarProdutoPorNome(produto)">
+        <v-btn class="btn-pesquisar" width="10px" @click="listarProdutoPorNome(produtoPesquisado)">
           &#128269;
         </v-btn>
         <router-link to="/cadastrarProduto" custom v-slot="{ navigate }">
@@ -23,7 +23,6 @@
       </div>
 
       <div class="main-table">
-
         <table class="listaProdutos">
           <thead>
           <tr>
@@ -49,6 +48,11 @@
                       @change="mandarStatus(produto.id, produto.status)"
               ></v-checkbox>
             </td>
+            <td>
+              <v-btn @click="redirecionaParaAlterar(index)">
+                &#9998;
+              </v-btn>
+            </td>
           </tr>
           </tbody>
         </table>
@@ -65,6 +69,7 @@
 import {defineComponent} from "vue";
 import MenuLateral from "@/components/MenuLateral.vue";
 import axios from "axios";
+import {mapActions} from "vuex";
 
 export default defineComponent({
   name: "TelaListaProdutos",
@@ -76,7 +81,7 @@ export default defineComponent({
       produtos: [],
       pagina: 0,
       totalPaginas: 0,
-      produto: {
+      produtoPesquisado: {
         nome: ""
       }
     }
@@ -92,6 +97,11 @@ export default defineComponent({
     this.listarProdutos(this.produtos)
   },
   methods: {
+
+    redirecionaParaAlterar(index){
+      this.getProdutoInfos(this.produtos[index]);
+      //router.push("/telaAlterarProdutos");
+    },
     async listarProdutos() {
       try {
         const response = await axios.get('http://localhost:8081/produtos/listar?size=5&page=' + (this.pagina - 1))
@@ -143,6 +153,9 @@ export default defineComponent({
         console.log(ex.message);
       }
     },
+    ...mapActions([
+      'getProdutoInfos'
+    ])
   },
 });
 

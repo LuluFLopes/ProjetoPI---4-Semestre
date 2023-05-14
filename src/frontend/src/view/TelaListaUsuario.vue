@@ -32,6 +32,11 @@
                   @change="mandarStatus(usuario.id, usuario.status)"
               ></v-checkbox>
             </td>
+            <td>
+              <v-btn @click="redirecionaParaAlterar(index)">
+                &#9998;
+              </v-btn>
+            </td>
           </tr>
           </tbody>
         </table>
@@ -44,6 +49,7 @@
 import {defineComponent} from "vue";
 import MenuLateral from "@/components/MenuLateral.vue";
 import axios from "axios";
+import {mapActions, mapMutations} from "vuex";
 
 export default defineComponent({
   name: "TelaListaUsuario",
@@ -89,7 +95,6 @@ export default defineComponent({
           id: identificacao,
           status: checkbox
         }
-
       })
           .then(function (response) {
             console.log(response);
@@ -100,7 +105,16 @@ export default defineComponent({
         this.usuarios = [];
         this.listarUsuarios(this.usuarios);
     },
-
+    redirecionaParaAlterar(index) {
+      this.atualizarUsuario(this.usuarios[index]);
+      //router.push("/telaAlterar");
+    },
+    ...mapActions([
+      'getUserInfos'
+    ]),
+    ...mapMutations([
+      'atualizarUsuario'
+    ])
   },
   beforeMount() {
     this.listarUsuarios(this.usuarios);
