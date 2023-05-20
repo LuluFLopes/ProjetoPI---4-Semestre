@@ -49,7 +49,8 @@
 import {defineComponent} from "vue";
 import MenuLateral from "@/components/MenuLateral.vue";
 import axios from "axios";
-import {mapActions, mapMutations} from "vuex";
+import {mapActions, mapMutations, mapState} from "vuex";
+import router from "@/router";
 
 export default defineComponent({
   name: "TelaListaUsuario",
@@ -63,16 +64,18 @@ export default defineComponent({
 
     }
   },
-
+  computed: {
+    ...mapState([
+      'user'
+    ])
+  },
   methods: {
     listarUsuarios(usuarios) {
       axios({
         method: 'get',
         url: 'http://localhost:8081/listar'
-
       })
           .then(function (response) {
-
             for (let i = 0; i < response.data.length; i++) {
               usuarios.push(JSON.parse(JSON.stringify(response.data[i])));
             }
@@ -83,11 +86,11 @@ export default defineComponent({
           });
     },
     mandarStatus(identificacao, checkbox) {
-        if(checkbox === "ATIVO"){
-            checkbox = "INATIVO"
-        } else {
-            checkbox = "ATIVO"
-        }
+      if (checkbox === "ATIVO") {
+        checkbox = "INATIVO"
+      } else {
+        checkbox = "ATIVO"
+      }
       axios({
         method: 'put',
         url: 'http://localhost:8081/alterarStatus',
@@ -102,12 +105,16 @@ export default defineComponent({
           .catch(function (error) {
             console.log(error);
           });
-        this.usuarios = [];
-        this.listarUsuarios(this.usuarios);
+      this.usuarios = [];
+      this.listarUsuarios(this.usuarios);
     },
     redirecionaParaAlterar(index) {
       this.atualizarUsuario(this.usuarios[index]);
-      //router.push("/telaAlterar");
+      if (this.user.id !== this.usuarios[index].id) {
+        router.push("/alterarUsuario");
+      } else {
+        alert("Não é possível alterar seu próprio usuário!")
+      }
     },
     ...mapActions([
       'getUserInfos'

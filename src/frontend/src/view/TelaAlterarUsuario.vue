@@ -1,7 +1,7 @@
 <template>
   <main>
     <div id="app">
-      <h1>Cadastro de Usuário</h1>
+      <h1>Alteração de Usuário</h1>
       <form action="" v-on:submit.prevent="checkForm" role="form" class="formulario">
         <fieldset>
 
@@ -41,7 +41,7 @@
             </select>
           </div>
 
-          <input type="submit" class="btnAcao green" value="Cadastrar"
+          <input type="button" class="btnAcao green" value="Cadastrar"
                  @click="mandarInformacoes(nome, cpf ,usuario, senha, grupo, confirmaSenha)">
 
           <router-link to="/WlistaUsuario" custom v-slot="{ navigate }">
@@ -58,6 +58,7 @@
 import {defineComponent} from 'vue';
 import axios from 'axios';
 import router from "@/router";
+import {mapState} from "vuex";
 
 const CryptoJS = require("crypto-js");
 
@@ -72,6 +73,11 @@ export default defineComponent({
       grupo: "",
 
     }
+  },
+  computed: {
+    ...mapState([
+      'alteracaoUsuario'
+    ])
   },
   methods: {
     mandarInformacoes(nome, cpf, usuario, senha, grupo, confirmaSenha) {
@@ -115,14 +121,18 @@ export default defineComponent({
         }
       }
 
-      var cpfValido = this.TestaCPF(cpf)
+      let cpfFormatado = cpf.replaceAll('.', '');
+      cpfFormatado = cpfFormatado.replace('-', '');
+
+      var cpfValido = this.TestaCPF(cpfFormatado)
       if (cpfValido === true && cErro === 0) {
         senha = this.encrypt(senha);
 
         axios({
           method: 'post',
-          url: 'http://localhost:8081/cadastrar',
+          url: 'http://localhost:8081/alterar',
           data: {
+            id: this.alteracaoUsuario.id,
             nome: nome,
             cpf: cpf,
             usuario: usuario,
@@ -177,7 +187,18 @@ export default defineComponent({
       if ((Resto === 10) || (Resto === 11)) Resto = 0
       if (Resto !== parseInt(cpf.substring(10, 11))) return false
       return true
-    }
+    },
+    preecherCampos() {
+
+      this.nome = this.alteracaoUsuario.nome;
+      this.cpf = this.alteracaoUsuario.cpf;
+      this.usuario = this.alteracaoUsuario.usuario;
+      this.senha = this.alteracaoUsuario.senha;
+      this.grupo = this.alteracaoUsuario.grupo;
+    },
+  },
+  mounted() {
+    this.preecherCampos();
 
   }
 });

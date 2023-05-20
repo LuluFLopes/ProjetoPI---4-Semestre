@@ -1,4 +1,4 @@
-PUT http://localhost:8081/produtos/alterar
+POST http://localhost:8081/produtos/alterar
 Content-Type: application/json
 
 {

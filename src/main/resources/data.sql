@@ -10,19 +10,19 @@ INSERT INTO USUARIO
 VALUES ('013.656.400-35',
         0,
         'Luciano',
-        '30226b752d6e29785387c9a5ec496e3f2a238c7f72091f19eed8e05b1bb52eab9ca0b19bec16b32eb35de593043665739c81ecf9de1787c8745cecdc57efca00',
+        '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2',
         0,
         'luciano@senacsp.edu.br'),
        ('273.660.930-17',
         1,
         'Stevart O Velho',
-        'b012e956a68a2098c4127fe6ff87d5a27088445cd67ef1cf4cca131bddaf52e0319af8d2fb5fc0dfe9710f793adb6ad0c9f7dd015fe8c20adb8b65ceae7164a7',
+        '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2',
         0,
         'stevart@senacsp.edu.br'),
        ('128.960.250-65',
         1,
         'Vitor',
-        'f1bde22e97b2e3d4e454001aec2dfb827f2eed8996d2a6ac7e747b84974e6dd59bf499c19ef12f19b5ffa358dc2e378a7d5f7b7b1439b61dc3fd031cf90cce56',
+        '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2',
         0,
         'frenchboy@senacsp.edu.br');
 
@@ -242,7 +242,7 @@ VALUES (
            '1994-01-11 18:47:52.069',
            'Masculino',
            'Igor',
-           '123',
+           '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2',
            'igor@gmail.com',
            1
        );

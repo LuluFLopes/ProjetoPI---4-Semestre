@@ -27,6 +27,19 @@ public class UsuarioDTO {
         return usuario;
     }
 
+    public Usuario conversorAlterar(UsuarioDTO dto) {
+        Usuario usuario = new Usuario(
+                dto.getId(),
+                dto.getNome(),
+                dto.getCpf(),
+                dto.getUsuario(),
+                dto.getSenha(),
+                Status.ATIVO,
+                dto.getGrupo()
+        );
+        return usuario;
+    }
+
     public Usuario conversorStatus(UsuarioDTO dto) {
         Usuario usuario = new Usuario(
                 dto.getId(),
