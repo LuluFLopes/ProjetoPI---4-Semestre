@@ -7,10 +7,10 @@
 
           <div class="subMenu">
 
-            <!--<router-link class="subMenu-itens" to="" >Dados Pessoais</router-link>>-->
+
             <button class="subMenu-itens" @click="dados_P = true , Enderecos_P = false">Dados Pessoais</button>
 
-            <!--<router-link class="subMenu-itens" to="">Endereços</router-link>-->
+
             <button class="subMenu-itens" @click="Enderecos_P = true, dados_P = false">Endereços</button>
 
           </div>
@@ -42,9 +42,46 @@
             </div>
 
             <div class="itens-formulario">
-              <label class="textLabelCS" for="dnasc">Data Nascimento:</label>
-              <input class="itens-entrada" v-mask="'##/##/####'" type="text" aria-label="Data Nascimento"
-                     placeholder="Data Nascimento" v-model="dtnasc">
+
+              <v-dialog
+                  ref="dialog"
+                  v-model="modal"
+                  :return-value.sync="dtnasc"
+                  persistent
+                  width="290px"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                      v-model="dtnasc"
+                      label="Data Nascimento:"
+                      prepend-icon="mdi-calendar"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                  ></v-text-field>
+                </template>
+                <v-date-picker
+                    v-model="dtnasc"
+                    scrollable
+                >
+                  <v-spacer></v-spacer>
+                  <v-btn
+                      text
+                      color="primary"
+                      @click="modal = false"
+                  >
+                    Cancel
+                  </v-btn>
+                  <v-btn
+                      text
+                      color="primary"
+                      @click="$refs.dialog.save(dtnasc)"
+                  >
+                    OK
+                  </v-btn>
+                </v-date-picker>
+              </v-dialog>
+
             </div>
 
             <div class="itens-formulario">
@@ -91,15 +128,15 @@
               <label class="textLabelCS" for="genero">Tipo de Endereço:</label>
               <select class="itens-entrada inputSelect" aria-label="Genero" name="Genero" v-model="enderecoEntrega.tipoEnd">
                 <option value="">Selecione...</option>
-                <option value="Masculino">Entrega/Faturamento</option>
-                <option value="Feminino">Entrega</option>
-                <option value="Feminino">Faturamento</option>
+                <option value="EF">Entrega/Faturamento</option>
+                <option value="E">Entrega</option>
+                <option value="F">Faturamento</option>
               </select>
 
-              <!--<v-checkbox v-model="enderecoFaturamento.mesmoEnd"
-                          :label="'Endereço Entrega/Faturamento'"
+              <v-checkbox v-if="enderecoEntrega.tipoEnd !== 'F'" v-model="enderecoEntrega.tipoEndereco"
+                          :label="'Endereço Principal'"
                           class="font-weight-bold"
-              ></v-checkbox>-->
+              ></v-checkbox>
 
             </div>
 
@@ -148,60 +185,7 @@
 
             <button class="BtnCadEnd" @click="AddEnd(enderecoEntrega)">+ Adicionar</button>
 
-          <!--<div v-show="this.enderecoFaturamento.mesmoEnd === false">
-
-            <h3>Endereço de Faturamento</h3>
-
-            <div class="itens-formulario">
-              <label class="textLabel" for="cep">CEP:</label>
-              <input class="itens-entrada" v-mask="'#####-###'" value="" @blur="GetAdress(enderecoFaturamento.CEPFat,2)"
-                     maxlength="9" type="text" aria-label="cep" placeholder="CEP" v-model="enderecoFaturamento.CEPFat">
-
-            </div>
-
-            <div class="grid">
-
-              <div class="itens-formulario">
-                <label class="textLabel" for="logradouro">Logradouro:</label>
-                <input class="itens-entrada" readonly="readonly" type="text" aria-label="Logradouro"
-                       placeholder="Logradouro" v-model="enderecoFaturamento.logradouroFat">
-              </div>
-
-              <div class="itens-formulario">
-                <label class="textLabel" for="num">Número:</label>
-                <input class="itens-entrada" type="text" aria-label="Número" placeholder="Número"
-                       v-model="enderecoFaturamento.numFat">
-              </div>
-
-              <div class="itens-formulario">
-                <label class="textLabel" for="compl">Complemento:</label>
-                <input class="itens-entrada" type="text" aria-label="Complemento" placeholder="Complemento"
-                       v-model="enderecoFaturamento.complFat">
-              </div>
-
-              <div class="itens-formulario">
-                <label class="textLabel" for="bairro">Bairro:</label>
-                <input class="itens-entrada" readonly="readonly" type="text" aria-label="Bairro" placeholder="Bairro"
-                       v-model="enderecoFaturamento.bairroFat">
-              </div>
-
-              <div class="itens-formulario">
-                <label class="textLabel" for="cidade">Cidade:</label>
-                <input class="itens-entrada" readonly="readonly" type="text" aria-label="Cidade" placeholder="Cidade"
-                       v-model="enderecoFaturamento.localidadeFat">
-              </div>
-
-              <div class="itens-formulario">
-                <label class="textLabel" for="UF">UF:</label>
-                <input class="itens-entrada" readonly="readonly" type="text" aria-label="UF" placeholder="UF"
-                       v-model="enderecoFaturamento.ufFat">
-              </div>
-            </div>
-
-
-          </div>-->
-
-            <!--<table class="listaEndereco">
+            <table class="listaEndereco">
               <thead>
               <tr>
 
@@ -216,16 +200,16 @@
               </thead>
               <tbody>
               <tr v-for="(endereco,index) in enderecos" v-bind:key="index">
-                <td>{{endereco.cep}}</td>
+                <td>{{endereco.CEP}}</td>
                 <td>{{endereco.logradouro}}</td>
-                <td>{{endereco.numero}}</td>
-                <td>{{endereco.complemento}}</td>
+                <td>{{endereco.num}}</td>
+                <td>{{endereco.compl}}</td>
                 <td>{{endereco.bairro}}</td>
-                <td>{{endereco.cidade}}</td>
+                <td>{{endereco.localidade}}</td>
                 <td>{{endereco.uf}}</td>
               </tr>
               </tbody>
-            </table>-->
+            </table>
 
 
 
@@ -248,12 +232,13 @@
 import {defineComponent} from 'vue';
 import axios from 'axios';
 import router from "@/router";
+import {mapState} from "vuex";
 
 const CryptoJS = require("crypto-js");
 
 
 export default defineComponent({
-  data() {
+  data: function () {
     return {
       dados_P: true,
       Enderecos_P: false,
@@ -261,14 +246,14 @@ export default defineComponent({
       usuario: "",
       cpf: "",
       ncompleto: "",
-      dtnasc: "",
+      dtnasc: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       genero: "",
       senha: "",
       confirmaSenha: "",
       grupo: "",
+      modal: false,
       enderecoEntrega: {
         CEP: "",
-        mesmoEnd: "true",
         logradouro: "",
         num: "",
         compl: "",
@@ -276,10 +261,21 @@ export default defineComponent({
         localidade: "",
         uf: "",
         tipoEnd: "",
+        tipoEndereco: ""
+      },
+      enderecoFaturamento: {
+        CEP: "",
+        logradouro: "",
+        num: "",
+        compl: "",
+        bairro: "",
+        localidade: "",
+        uf: ""
+
       },
 
-      enderecos:[],
-      pagina:1,
+      enderecos: [],
+      pagina: 1,
       data: {
         nome: "",
         cpf: "",
@@ -287,24 +283,42 @@ export default defineComponent({
         genero: "",
         usuario: "",
         senha: "",
-        enderecoEntrega: {
-          cep: "",
+        endEntrega: {
+          CEP: "",
           logradouro: "",
-          numero: "",
-          complemento: "",
+          num: "",
+          compl: "",
           bairro: "",
-          cidade: "",
-          uf: ""
+          localidade: "",
+          uf: "",
+          tipoEnd: "",
+        },
+        endFaturamento: {
+          CEP: "",
+          logradouro: "",
+          num: "",
+          compl: "",
+          bairro: "",
+          localidade: "",
+          uf: "",
+          tipoEnd: "",
         }
       }
 
     }
   },
-  /*beforeMount() {
+
+  computed: {
+    ...mapState([
+        'carrinho'
+        ])
+  },
+
+  beforeMount() {
     this.listarEnderecosFat(this.enderecos)
     this.listarEnderecosEntg(this.enderecos)
   }
-  ,*/
+  ,
   methods: {
 
     async mandarInformacoes(nome, cpf, dtnasc, genero, usuario, senha, enderecoEntrega, confirmaSenha) {
@@ -339,29 +353,47 @@ export default defineComponent({
         }
       }
 
-      var cpfValido //= cpf.replace(/\D/g, '');
-      cpfValido = this.TestaCPF(cpf)
+      if (enderecoEntrega.tipoEndereco === true){
+        enderecoEntrega.tipoEndereco = 'PRINCIPAL'
+        }else{
+        enderecoEntrega.tipoEndereco = 'SECUNDARIO'
+      }
+
+      let cpfFormatado = cpf.replaceAll('.', '');
+      cpfFormatado = cpfFormatado.replace('-', '');
+      var cpfValido = this.TestaCPF(cpfFormatado)
 
       if (cpfValido === true && cErro === 0) {
 
-        //senha = this.encrypt(senha);
+        senha = this.encrypt(senha);
+
 
           try {
-            this.data.senha = this.encrypt(this.data.senha)
-
+            this.data.senha = senha
             this.data.nome = nome;
             this.data.cpf = cpf;
-            this.data.dataNascimento = Date.parse(dtnasc);
+            this.data.dataNascimento = dtnasc;
             this.data.genero = genero;
             this.data.usuario = usuario;
             this.data.senha = senha;
-            this.data.enderecoEntrega = enderecoEntrega;
+            this.data.enderecoEntrega = this.endEntrega;
             this.data.enderecoEntrega = parseInt(this.data.enderecoEntrega);
+            this.data.enderecoFaturamento = this.endFaturamento;
+            this.data.enderecoFaturamento = parseInt(this.data.enderecoFaturamento);
+
+            //console.log(enderecoEntrega)
+            //console.log(enderecoFaturamento)
 
             const response = await axios.post('http://localhost:8081/clientes/cadastrar', this.data)
 
+
+
+
             if (this.carrinho.length === 0){
+              console.log(response);
+              alert("Cadastrado com Sucesso!");
               await router.push('/');
+
             } else {
               console.log(response);
               alert("Cadastrado com Sucesso!");
@@ -492,6 +524,64 @@ export default defineComponent({
             console.log(error);
           });
     },
+
+    AddEnd(endEntrega){
+
+      var endFaturamento = {}
+
+      if (this.enderecoEntrega.tipoEnd === 'EF'){
+
+        endEntrega.CEP = this.enderecoEntrega.CEP
+        endEntrega.logradouro = this.enderecoEntrega.logradouro
+        endEntrega.num = this.enderecoEntrega.num
+        endEntrega.compl = this.enderecoEntrega.compl
+        endEntrega.bairro = this.enderecoEntrega.bairro
+        endEntrega.localidade = this.enderecoEntrega.localidade
+        endEntrega.uf = this.enderecoEntrega.uf
+        this.enderecos.push(endEntrega)
+
+        console.log(endEntrega)
+
+        endFaturamento.CEP = this.enderecoEntrega.CEP
+        endFaturamento.logradouro = this.enderecoEntrega.logradouro
+        endFaturamento.num = this.enderecoEntrega.num
+        endFaturamento.compl = this.enderecoEntrega.compl
+        endFaturamento.bairro = this.enderecoEntrega.bairro
+        endFaturamento.localidade = this.enderecoEntrega.localidade
+        endFaturamento.uf = this.enderecoEntrega.uf
+        this.enderecos.push(endFaturamento)
+
+        console.log(endFaturamento)
+
+      }
+
+      if (this.enderecoEntrega.tipoEnd === 'E'){
+
+        endEntrega.CEP = this.enderecoEntrega.CEP
+        endEntrega.logradouro = this.enderecoEntrega.logradouro
+        endEntrega.num = this.enderecoEntrega.num
+        endEntrega.compl = this.enderecoEntrega.compl
+        endEntrega.bairro = this.enderecoEntrega.bairro
+        endEntrega.localidade = this.enderecoEntrega.localidade
+        endEntrega.uf = this.enderecoEntrega.uf
+
+      }
+
+      if (this.enderecoEntrega.tipoEnd === 'F'){
+
+        endFaturamento.CEP = this.enderecoEntrega.CEP
+        endFaturamento.logradouro = this.enderecoEntrega.logradouro
+        endFaturamento.num = this.enderecoEntrega.num
+        endFaturamento.compl = this.enderecoEntrega.compl
+        endFaturamento.bairro = this.enderecoEntrega.bairro
+        endFaturamento.localidade = this.enderecoEntrega.localidade
+        endFaturamento.uf = this.enderecoEntrega.uf
+      }
+
+      //this.listarEnderecosEntg();
+      //this.listarEnderecosFat();
+
+    }
 
   }
 

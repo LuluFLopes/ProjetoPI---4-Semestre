@@ -18,8 +18,11 @@ export default defineComponent({
   },
   methods: {
     async submitSignIn() {
+      let senha = this.formData.senha
+      senha = this.encrypt(senha)
+      console.log(senha)
       try {
-        this.formData.senha = this.encrypt(this.formData.senha)
+        this.formData.senha = senha
         const request = await axios.post(url, this.formData)
         this.getUserInfos(request.data);
         await router.push('/logado');

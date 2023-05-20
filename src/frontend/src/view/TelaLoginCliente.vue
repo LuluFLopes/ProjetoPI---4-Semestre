@@ -54,8 +54,11 @@ export default defineComponent({
   },
   methods: {
     async submitSignIn() {
+      let senha = this.formData.senha
+      senha = this.encrypt(senha)
+
       try {
-        //this.formData.senha = this.encrypt(this.formData.senha)
+        this.formData.senha = senha
         const request = await axios.post(url, this.formData)
         console.log(request)
         const date = new Date().getTime().toString();
