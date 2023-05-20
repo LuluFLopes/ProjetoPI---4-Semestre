@@ -23,6 +23,15 @@ const store = new Vuex.Store({
       status: "",
       grupo: ""
     },
+    alteracaoProduto: {
+      id: "",
+      nome: "",
+      detalhes: "",
+      avaliacao: "",
+      preco: "",
+      quantidade: "",
+      urlImg: []
+    },
     produto: {
       avaliacao: "",
       detalhes: "",
@@ -46,7 +55,7 @@ const store = new Vuex.Store({
     setCarrinhoInfo(state, payload) {
       state.carrinho.push(payload);
     },
-    calculaTotalCarrinho(state){
+    calculaTotalCarrinho(state) {
       state.valorTotal = 0;
       state.carrinho.forEach(el => {
         let valorCalculadoPorElemento = 0;
@@ -55,7 +64,10 @@ const store = new Vuex.Store({
       })
     },
     atualizarUsuario(state, payload) {
-        state.alteracaoUsuario = payload;
+      state.alteracaoUsuario = payload;
+    },
+    atualizarProduto(state, payload) {
+      state.alteracaoProduto = payload;
     }
   },
   actions: {

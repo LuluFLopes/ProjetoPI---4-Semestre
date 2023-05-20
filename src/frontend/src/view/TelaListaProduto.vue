@@ -44,8 +44,8 @@
             <td id="alterarStatus">
               &nbsp;
               <v-checkbox
-                      v-model="produto.checkbox"
-                      @change="mandarStatus(produto.id, produto.status)"
+                  v-model="produto.checkbox"
+                  @change="mandarStatus(produto.id, produto.status)"
               ></v-checkbox>
             </td>
             <td>
@@ -69,7 +69,8 @@
 import {defineComponent} from "vue";
 import MenuLateral from "@/components/MenuLateral.vue";
 import axios from "axios";
-import {mapActions} from "vuex";
+import {mapActions, mapMutations, mapState} from "vuex";
+import router from "@/router";
 
 export default defineComponent({
   name: "TelaListaProdutos",
@@ -86,6 +87,11 @@ export default defineComponent({
       }
     }
   },
+  computed: {
+    ...mapState([
+      'user'
+    ])
+  },
   watch: {
     pagina(novaPagina) {
       this.pagina = novaPagina;
@@ -98,9 +104,9 @@ export default defineComponent({
   },
   methods: {
 
-    redirecionaParaAlterar(index){
-      this.getProdutoInfos(this.produtos[index]);
-      //router.push("/telaAlterarProdutos");
+    redirecionaParaAlterar(index) {
+      this.atualizarProduto(this.produtos[index]);
+        router.push("/alterarProduto");
     },
     async listarProdutos() {
       try {
@@ -115,11 +121,11 @@ export default defineComponent({
       }
     },
     mandarStatus(identificacao, checkbox) {
-        if(checkbox === "ATIVO"){
-            checkbox = "INATIVO"
-        } else {
-            checkbox = "ATIVO"
-        }
+      if (checkbox === "ATIVO") {
+        checkbox = "INATIVO"
+      } else {
+        checkbox = "ATIVO"
+      }
       axios({
         method: 'post',
         url: 'http://localhost:8081/produtos/alterarStatus',
@@ -130,13 +136,12 @@ export default defineComponent({
       })
           .then(function (response) {
             console.log(response);
-
           })
           .catch(function (error) {
             console.log(error);
           });
-        this.produtos = [];
-        this.listarProdutos();
+      this.produtos = [];
+      this.listarProdutos();
     },
     async listarProdutoPorNome(produto) {
       try {
@@ -154,7 +159,10 @@ export default defineComponent({
       }
     },
     ...mapActions([
-      'getProdutoInfos'
+      'getProdutoInfos',
+    ]),
+    ...mapMutations([
+        'atualizarProduto'
     ])
   },
 });

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/produtos")
 public class ProdutoController {
 
-    private ProdutoService produtoService;
+    private final ProdutoService produtoService;
 
     public ProdutoController(ProdutoService produtoService) {
         this.produtoService = produtoService;
@@ -36,7 +36,7 @@ public class ProdutoController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/alterar")
+    @PostMapping("/alterar")
     public ResponseEntity<Produto> alterar(@RequestBody ProdutoDTO dto) {
         produtoService.alterar(dto);
         return ResponseEntity.ok().build();
