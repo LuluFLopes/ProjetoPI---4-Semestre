@@ -8,13 +8,13 @@
           <div class="itens-formulario">
             <label for="userLogin">Nome:</label>
             <input class="itens-entrada" id="userLogin" type="text" aria-label="Nome" placeholder="Nome" v-model="nome"
-                   :disabled="usuarioEstoquista">
+                   :disabled="usuarioEstoquista" required>
           </div>
 
           <div class="itens-formulario">
             <label>Descrição:</label>
             <input class="itens-entrada" id="prod_desc" type="text" aria-label="Detalhes" placeholder="Detalhes"
-                   v-model="detalhes" :disabled="usuarioEstoquista">
+                   v-model="detalhes" :disabled="usuarioEstoquista" required>
           </div>
 
           <div class="avaliacao">
@@ -25,6 +25,7 @@
                   hover
                   half-increments
                   :readonly="usuarioEstoquista"
+                  required
               ></v-rating>
             </div>
           </div>
@@ -41,6 +42,7 @@
                 multiple
                 label="File input"
                 prepend-icon="mdi-camera"
+                required
             ></v-file-input>
             <button id="btn-img" @click="adicionaListaImagem(urlAtual)">Enviar</button>
           </div>
@@ -48,12 +50,12 @@
           <div class="ItensVlrEstq">
             <label for="userLogin">Valor:</label>
             <input class="itens-entrada" id="VleEstq" type="text" aria-label="Valor" placeholder="Valor"
-                   v-model="preco" :disabled="usuarioEstoquista">
+                   v-model="preco" :disabled="usuarioEstoquista" required>
 
             <div class="Qtd-Estq">
               <label for="userLogin" class="text-no-wrap">Quantidade em Estoque:</label>
               <input class="itens-entrada " id="VleEstq" type="text" aria-label="Quatidade em Estoque"
-                     placeholder="Quatidade em Estoque" v-model="quantidade">
+                     placeholder="Quatidade em Estoque" v-model="quantidade" required>
             </div>
 
           </div>
@@ -151,6 +153,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
+
 main {
   background: rgba(45, 46, 50);
   height: 100%;
@@ -259,7 +262,6 @@ fieldset {
 
 }
 
-
 #label-img {
   position: absolute;
 }
@@ -284,6 +286,5 @@ img {
   height: 10%;
   margin-top: 1%;
 }
-
 
 </style>

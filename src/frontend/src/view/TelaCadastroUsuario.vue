@@ -7,34 +7,34 @@
 
           <div class="itens-formulario">
             <label for="userLogin">Usuário:</label>
-            <input class="itens-entrada" type="text" aria-label="Usuário" placeholder="Usuário" v-model="nome">
+            <input class="itens-entrada" type="text" aria-label="Usuário" placeholder="Usuário" v-model="nome" required>
           </div>
 
           <div class="itens-formulario">
             <label for="CPF">CPF:</label>
             <input class="itens-entrada" v-mask="'###.###.###-##'" type="text" aria-label="CPF" placeholder="CPF"
-                   v-model="cpf">
+                   v-model="cpf" required>
           </div>
 
           <div class="itens-formulario">
             <label for="E-Mail">E-Mail:</label>
-            <input class="itens-entrada" type="email" aria-label="Email" placeholder="Email" v-model="usuario">
+            <input class="itens-entrada" type="email" aria-label="Email" placeholder="Email" v-model="usuario" required>
           </div>
 
           <div class="itens-formulario">
             <label for="userPassword">Senha:</label>
-            <input class="itens-entrada" type="password" aria-label="Senha" placeholder="Senha" v-model="senha">
+            <input class="itens-entrada" type="password" aria-label="Senha" placeholder="Senha" v-model="senha" required>
           </div>
 
           <div class="itens-formulario">
             <label for="userPasswordConf">Confirmar Senha:</label>
             <input class="itens-entrada" type="password" aria-label="Confirmar Senha" placeholder="Confirmar Senha"
-                   v-model="confirmaSenha">
+                   v-model="confirmaSenha" required>
           </div>
 
           <div class="itens-formulario">
             <label for="userGrupo">Grupo:</label>
-            <select class="itens-entrada" name="userGrupo" v-model="grupo">
+            <select class="itens-entrada" name="userGrupo" v-model="grupo" required>
               <option value="">Selecione...</option>
               <option value="ADMINISTRADOR">Administrador</option>
               <option value="ESTOQUISTA">Estoquista</option>

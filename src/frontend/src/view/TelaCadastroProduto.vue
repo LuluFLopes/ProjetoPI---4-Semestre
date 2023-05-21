@@ -4,24 +4,26 @@
       <h1>Cadastro de Produto</h1>
       <form role="form" class="formulario">
         <fieldset>
-
           <div class="itens-formulario">
             <label for="userLogin">Nome:</label>
-            <input class="itens-entrada" id="userLogin" type="text" aria-label="Nome" placeholder="Nome" v-model="nome">
+            <input class="itens-entrada" id="userLogin" type="text" aria-label="Nome" placeholder="Nome" v-model="nome"
+                   required>
           </div>
 
           <div class="itens-formulario">
             <label>Descrição:</label>
-            <input class="itens-entrada" id="prod_desc" type="text" aria-label="Detalhes" placeholder="Detalhes" v-model="detalhes">
+            <input class="itens-entrada" id="prod_desc" type="text" aria-label="Detalhes" placeholder="Detalhes"
+                   v-model="detalhes" required>
           </div>
 
           <div class="avaliacao">
-            <label >Avaliação:</label>
+            <label>Avaliação:</label>
             <div class="left">
               <v-rating
                   v-model="avaliacao"
                   hover
                   half-increments
+                  required
               ></v-rating>
             </div>
           </div>
@@ -37,28 +39,29 @@
                 multiple
                 label="File input"
                 prepend-icon="mdi-camera"
+                required
             ></v-file-input>
-          <button id="btn-img">Enviar</button>
+            <button id="btn-img">Enviar</button>
           </div>
 
           <div class="ItensVlrEstq">
             <label for="userLogin">Valor:</label>
-            <input class="itens-entrada" id="VleEstq" type="text" aria-label="Valor" placeholder="Valor" v-model="preco" >
+            <input class="itens-entrada" id="VleEstq" type="text" aria-label="Valor" placeholder="Valor" v-model="preco"
+                   required>
 
             <div class="Qtd-Estq">
               <label for="userLogin" class="text-no-wrap">Quantidade em Estoque:</label>
-              <input class="itens-entrada " id="VleEstq" type="text" aria-label="Quatidade em Estoque" placeholder="Quatidade em Estoque" v-model="quantidade">
+              <input class="itens-entrada " id="VleEstq" type="text" aria-label="Quatidade em Estoque"
+                     placeholder="Quatidade em Estoque" v-model="quantidade" required>
             </div>
-
           </div>
-
-
 
           <input type="submit" class="btnAcao green" value="Cadastrar"
                  @click="mandarInformacoes(nome, detalhes ,urlImg, preco, quantidade, avaliacao)">
 
           <router-link to="/WlistaProduto" custom v-slot="{ navigate }">
-            <button class="btnAcao red" @click="navigate" role="link">Fechar</button></router-link>
+            <button class="btnAcao red" @click="navigate" role="link">Fechar</button>
+          </router-link>
 
         </fieldset>
       </form>
@@ -68,7 +71,7 @@
 
 
 <script>
-import { defineComponent } from 'vue';
+import {defineComponent} from 'vue';
 import axios from 'axios';
 import router from "@/router";
 
@@ -84,35 +87,35 @@ export default defineComponent({
     }
   },
   methods: {
-    mandarInformacoes(nome, detalhes ,urlImg, preco, quantidade, avaliacao) {
+    mandarInformacoes(nome, detalhes, urlImg, preco, quantidade, avaliacao) {
 
-        axios({
-          method: 'post',
-          url: 'http://localhost:8081/produtos/cadastrar',
-          data: {
-            nome: nome,
-            detalhes: detalhes,
-            preco: preco,
-            quantidade: quantidade,
-            avaliacao: avaliacao
+      axios({
+        method: 'post',
+        url: 'http://localhost:8081/produtos/cadastrar',
+        data: {
+          nome: nome,
+          detalhes: detalhes,
+          preco: preco,
+          quantidade: quantidade,
+          avaliacao: avaliacao
+        }
+      })
+          .then(function (response) {
+            console.log(response);
+            alert("Cadastrado com Sucesso!");
+            router.push('/WlistaProduto')
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
     }
-        })
-            .then(function (response) {
-              console.log(response);
-              alert("Cadastrado com Sucesso!");
-              router.push('/WlistaProduto')
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-      }
-    }
+  }
 });
 
 </script>
 
-
 <style scoped>
+
 main {
   background: rgba(45, 46, 50);
   height: 100%;
@@ -122,24 +125,27 @@ main {
   justify-content: center;
   text-align: center;
 }
+
 label, p, a {
   color: rgb(0, 0, 0);
   font-weight: bold;
 }
+
 h1 {
   color: aliceblue;
-  font-size: 3dvw;
+  font-size: 3 dvw;
   margin-top: 2%;
 }
+
 label, input, select {
-  padding: 0.5dvw;
+  padding: 0.5 dvw;
   align-items: left;
   justify-content: left;
   text-align: left;
   font-weight: bold;
-
 }
-fieldset{
+
+fieldset {
   margin-top: -8%;
   background-color: aliceblue;
   opacity: 0.90;
@@ -149,7 +155,7 @@ fieldset{
 
 }
 
-.btnAcao{
+.btnAcao {
   border: solid;
   border-radius: 10px;
   border-color: rgb(35, 75, 110);
@@ -158,7 +164,7 @@ fieldset{
   width: 90px;
 }
 
-.itens-formulario{
+.itens-formulario {
   text-align: left;
   margin: 2%;
 }
@@ -168,72 +174,74 @@ fieldset{
   border-radius: 5px;
 }
 
-.formulario{
+.formulario {
   background: rgba(45, 46, 50);
   height: 250px;
   width: 50%;
   margin: 3% 25%;
 }
 
-.avaliacao{
+.avaliacao {
   display: flex;
   text-align: left;
   margin-left: 2%;
 
 }
 
-#Imagens{
+#Imagens {
   height: 150px;
   width: 480px;
 }
 
-#userLogin{
+#userLogin {
   width: 480px;
   margin-left: 4%;
 
 }
-#prod_desc{
+
+#prod_desc {
   width: 480px;
 
 }
 
-.ItensVlrEstq{
+.ItensVlrEstq {
   margin: 2% 2%;
   width: 10px;
   display: flex;
 
 }
 
-.Qtd-Estq{
+.Qtd-Estq {
   margin: 2% 15%;
   width: 10px;
   display: flex;
   padding-left: 180px;
 }
 
-#VleEstq{
+#VleEstq {
   width: 90px;
   height: 50px;
 
 }
 
 
-#label-img{
+#label-img {
   position: absolute;
 }
-img{
+
+img {
   margin-left: 15%;
   height: 40%;
   width: 30%;
 }
 
-#entrada-img{
+#entrada-img {
   display: flex;
   margin: 2%;
   width: 70%;
 }
 
-#btn-img{
+#btn-img {
   border: solid;
   border-radius: 10px;
   border-color: rgb(35, 75, 110);
@@ -241,6 +249,5 @@ img{
   height: 10%;
   margin-top: 1%;
 }
-
 
 </style>

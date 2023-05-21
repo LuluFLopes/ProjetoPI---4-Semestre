@@ -195,10 +195,4 @@ export default defineComponent({
   background:green ;
 }
 
-
-
-
-
-
-
 </style>

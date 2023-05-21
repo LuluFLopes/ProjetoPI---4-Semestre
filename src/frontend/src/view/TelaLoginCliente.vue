@@ -6,12 +6,12 @@
         <fieldset>
           <div>
             <label for="userLogin">Usuário:</label>
-            <input id="userLogin" type="text" aria-label="Usuário" placeholder="Usuário" v-model="formData.usuario">
+            <input id="userLogin" type="text" aria-label="Usuário" placeholder="Usuário" v-model="formData.usuario" required>
           </div>
 
           <div>
             <label for="userPassword">Senha:</label>
-            <input id="userPassword" type="password" aria-label="Senha" placeholder="Senha" v-model="formData.senha">
+            <input id="userPassword" type="password" aria-label="Senha" placeholder="Senha" v-model="formData.senha" required>
           </div>
           <button type="submit">Entrar</button>
 
