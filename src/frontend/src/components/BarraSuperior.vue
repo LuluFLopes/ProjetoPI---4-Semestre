@@ -7,18 +7,18 @@
       <v-spacer></v-spacer>
       <div class="main-carrinho" @click="verificaUsuarioLogado()">
         <v-btn class="btn-carrinho" @click="verificaLoginAntesDeCheckout">
-        <img class="carrinho" src="../assets/shopping-cart.png">
-        <p class="quantidade-carrinho"> {{ this.carrinho.length }} </p>
+          <img class="carrinho" src="../assets/shopping-cart.png">
+          <p class="quantidade-carrinho"> {{ this.carrinho.length }} </p>
         </v-btn>
       </div>
 
       <modal-tipo-usuario
           v-on="this.modalAtivo"
-          v-show="!usuarioLogado"></modal-tipo-usuario>
-      <label class="usuario" v-show="usuarioLogado">
+          v-show="!this.usuarioLogado"></modal-tipo-usuario>
+      <label class="usuario" v-show="this.usuarioLogado">
         Olá, {{ this.user.nome }}!
       </label>
-      <v-btn icon class="login" v-show="usuarioLogado" @click="deslogar()">
+      <v-btn icon class="login" v-show="this.usuarioLogado" @click="deslogar()">
         Sair
       </v-btn>
     </v-toolbar>
@@ -27,7 +27,7 @@
 
 <script>
 import {defineComponent} from "vue";
-import {mapState} from "vuex";
+import {mapActions, mapState} from "vuex";
 import router from "@/router";
 import ModalTipoUsuario from "@/components/ModalTipoUsuario";
 
@@ -36,40 +36,31 @@ export default defineComponent({
     ModalTipoUsuario
   },
   data() {
-    return {
-      usuarioLogado: false,
-      modalAtivo: {
-        isActive: true
-      }
-    }
-  },
-  methods: {
-    verificaUsuarioLogado(obj) {
-      return obj && obj !== 'null' && obj !== 'undefined';
-    },
-    deslogar() {
-      this.user = {};
-      this.usuarioLogado = false;
-      router.push('/');
-    },
-    verificaLoginAntesDeCheckout() {
-      if (this.user.usuario === "") {
-          router.push('/loginCliente');
-      } else {
-        // router.push('/telaDetalhePedido');
-      }
-    },
-    mounted() {
-      if (this.verificaUsuarioLogado(this.user)) {
-        this.usuarioLogado = true;
-      }
-      this.usuarioLogado = false;
-    }
+    return {}
   },
   computed: {
     ...mapState([
       'user',
-      'carrinho'
+      'carrinho',
+      'usuarioLogado'
+    ])
+  },
+  methods: {
+    deslogar() {
+      this.getUserInfos({
+        id: 0,
+      })
+      router.push('/');
+    },
+    verificaLoginAntesDeCheckout() {
+      if (this.user.usuario === "") {
+        router.push('/loginCliente');
+      } else {
+        // router.push('/telaDetalhePedido');
+      }
+    },
+    ...mapActions([
+      'getUserInfos'
     ])
   },
 });

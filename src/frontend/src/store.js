@@ -6,7 +6,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     user: {
-      id: "",
+      id: 0,
       nome: "",
       cpf: "",
       usuario: "",
@@ -43,11 +43,13 @@ const store = new Vuex.Store({
       urlImg: []
     },
     carrinho: [],
-    valorTotal: 0
+    valorTotal: 0,
+    usuarioLogado: false,
   },
   mutations: {
     setUserInfo(state, payload) {
       state.user = payload;
+      state.usuarioLogado = state.user.id !== 0;
     },
     setProdutoInfo(state, payload) {
       state.produto = payload;
@@ -68,7 +70,7 @@ const store = new Vuex.Store({
     },
     atualizarProduto(state, payload) {
       state.alteracaoProduto = payload;
-    }
+    },
   },
   actions: {
     getUserInfos({commit}, payload) {
@@ -84,7 +86,6 @@ const store = new Vuex.Store({
       commit('calculaTotalCarrinho', payload);
     }
   },
-
 });
 
 export default store;
