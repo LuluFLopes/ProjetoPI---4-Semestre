@@ -33,7 +33,7 @@
             <div class="grid">
               <div class="itens-formulario">
                 <label class="textLabel" for="CPF">CPF:</label>
-                <input class="itens-entrada" type="text" aria-label="CPF" placeholder="CPF"
+                <input class="itens-entrada" v-mask="'###.###.###-##'" type="text" aria-label="CPF" placeholder="CPF"
                        v-model="cpf" required>
               </div>
 
@@ -275,26 +275,8 @@ export default defineComponent({
         genero: "",
         usuario: "",
         senha: "",
-        endEntrega: {
-          CEP: "",
-          logradouro: "",
-          num: "",
-          compl: "",
-          bairro: "",
-          localidade: "",
-          uf: "",
-          tipoEnd: "",
-        },
-        endFaturamento: {
-          CEP: "",
-          logradouro: "",
-          num: "",
-          compl: "",
-          bairro: "",
-          localidade: "",
-          uf: "",
-          tipoEnd: "",
-        }
+        endEntrega: [],
+        endFaturamento: []
       }
     }
   },
@@ -303,11 +285,6 @@ export default defineComponent({
     ...mapState([
       'carrinho'
     ])
-  },
-
-  beforeMount() {
-    this.listarEnderecosFat(this.enderecos)
-    this.listarEnderecosEntg(this.enderecos)
   }
   ,
   methods: {
@@ -367,13 +344,10 @@ export default defineComponent({
           this.data.genero = genero;
           this.data.usuario = usuario;
           this.data.senha = senha;
-          this.data.enderecoEntrega = this.endEntrega;
-          this.data.enderecoEntrega = parseInt(this.data.enderecoEntrega);
-          this.data.enderecoFaturamento = this.endFaturamento;
-          this.data.enderecoFaturamento = parseInt(this.data.enderecoFaturamento);
-
-          //console.log(enderecoEntrega)
-          //console.log(enderecoFaturamento)
+          this.data.endEntrega = enderecoEntrega;
+          this.data.endEntrega = parseInt(this.data.endEntrega);
+          this.data.endFaturamento = this.endFaturamento;
+          this.data.endFaturamento = parseInt(this.data.endFaturamento);
 
           const response = await axios.post('http://localhost:8081/clientes/cadastrar', this.data)
 
@@ -478,93 +452,52 @@ export default defineComponent({
 
     },
 
-    listarEnderecosFat(enderecos) {
-      axios({
-        method: 'get',
-        url: 'http://localhost:8081/clientes/buscarEnderecoFaturamento/' + this.pagina
-
-      })
-          .then(function (response) {
-            for (let i = 0; i < response.data.length; i++) {
-              console.log(response.data[i])
-              enderecos.push(response.data[i])
-            }
-          })
-          .catch(function (error) {
-            alert("Não foi possível listar.");
-            console.log(error);
-          });
-    },
-
-    listarEnderecosEntg(enderecos) {
-      axios({
-        method: 'get',
-        url: 'http://localhost:8081/clientes/buscarEnderecoEntrega/' + this.pagina
-
-      })
-          .then(function (response) {
-            for (let i = 0; i < response.data.length; i++) {
-              console.log(response.data[i])
-              enderecos.push(response.data[i])
-            }
-          })
-          .catch(function (error) {
-            alert("Não foi possível listar.");
-            console.log(error);
-          });
-    },
-
     AddEnd(endEntrega) {
 
       var endFaturamento = {}
+      var endereco = {}
+      endereco.CEP = endEntrega.CEP
+      endereco.logradouro = endEntrega.logradouro
+      endereco.num = endEntrega.num
+      endereco.compl = endEntrega.compl
+      endereco.bairro = endEntrega.bairro
+      endereco.localidade = endEntrega.localidade
+      endereco.uf = endEntrega.uf
 
       if (this.enderecoEntrega.tipoEnd === 'EF') {
 
-        endEntrega.CEP = this.enderecoEntrega.CEP
-        endEntrega.logradouro = this.enderecoEntrega.logradouro
-        endEntrega.num = this.enderecoEntrega.num
-        endEntrega.compl = this.enderecoEntrega.compl
-        endEntrega.bairro = this.enderecoEntrega.bairro
-        endEntrega.localidade = this.enderecoEntrega.localidade
-        endEntrega.uf = this.enderecoEntrega.uf
-        this.enderecos.push(endEntrega)
 
-        console.log(endEntrega)
+        this.enderecos.push(endereco)
 
-        endFaturamento.CEP = this.enderecoEntrega.CEP
-        endFaturamento.logradouro = this.enderecoEntrega.logradouro
-        endFaturamento.num = this.enderecoEntrega.num
-        endFaturamento.compl = this.enderecoEntrega.compl
-        endFaturamento.bairro = this.enderecoEntrega.bairro
-        endFaturamento.localidade = this.enderecoEntrega.localidade
-        endFaturamento.uf = this.enderecoEntrega.uf
+        endFaturamento.CEP = endereco.CEP
+        endFaturamento.logradouro = endereco.logradouro
+        endFaturamento.num = endereco.num
+        endFaturamento.compl = endereco.compl
+        endFaturamento.bairro = endereco.bairro
+        endFaturamento.localidade = endereco.localidade
+        endFaturamento.uf = endereco.uf
         this.enderecos.push(endFaturamento)
-
-        console.log(endFaturamento)
 
       }
 
       if (this.enderecoEntrega.tipoEnd === 'E') {
 
-        endEntrega.CEP = this.enderecoEntrega.CEP
-        endEntrega.logradouro = this.enderecoEntrega.logradouro
-        endEntrega.num = this.enderecoEntrega.num
-        endEntrega.compl = this.enderecoEntrega.compl
-        endEntrega.bairro = this.enderecoEntrega.bairro
-        endEntrega.localidade = this.enderecoEntrega.localidade
-        endEntrega.uf = this.enderecoEntrega.uf
+
+        this.enderecos.push(endereco)
 
       }
 
       if (this.enderecoEntrega.tipoEnd === 'F') {
 
-        endFaturamento.CEP = this.enderecoEntrega.CEP
-        endFaturamento.logradouro = this.enderecoEntrega.logradouro
-        endFaturamento.num = this.enderecoEntrega.num
-        endFaturamento.compl = this.enderecoEntrega.compl
-        endFaturamento.bairro = this.enderecoEntrega.bairro
-        endFaturamento.localidade = this.enderecoEntrega.localidade
-        endFaturamento.uf = this.enderecoEntrega.uf
+        endFaturamento.CEP = endereco.CEP
+        endFaturamento.logradouro = endereco.logradouro
+        endFaturamento.num = endereco.num
+        endFaturamento.compl = endereco.compl
+        endFaturamento.bairro = endereco.bairro
+        endFaturamento.localidade = endereco.localidade
+        endFaturamento.uf = endereco.uf
+        this.enderecos.push(endFaturamento)
+
       }
 
       //this.listarEnderecosEntg();
@@ -608,8 +541,8 @@ fieldset {
   opacity: 0.90;
   border-radius: 40px;
   border-color: rgb(35, 75, 110);
-  height: 120 dvh;
-  width: 50 dvw;
+  height: 150dvh;
+  width: 50dvw;
 }
 
 .itens-formulario {
