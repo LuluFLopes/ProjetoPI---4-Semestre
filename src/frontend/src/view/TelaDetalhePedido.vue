@@ -19,7 +19,7 @@
             <div class="inputBox">
               <span>Endereço de Entrega: </span>
               <select v-model="pedido.enderecoEntrega">
-                <option value="" >Selecione...</option>
+                <option value="">Selecione...</option>
                 <option v-for="(endereco, indexEnd) in enderecosEntrega" :key="indexEnd" :value="endereco">
                   {{ endereco.logradouro + ", " + endereco.numero + ", " + endereco.cep }}
                 </option>
@@ -96,14 +96,19 @@
             </tr>
             </tbody>
             <tfoot>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <strong>
-              <td>Valor Total R$</td>
-              <td>{{ this.valorTotal }}</td>
-            </strong>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <strong>
+                <td>Valor Total R$</td>
+                <td>{{ this.valorTotal }}</td>
+              </strong>
+            </tr>
             </tfoot>
           </table>
+          <v-btn class="botao-limpar" color="error" @click="limpar">
+            Limpar Carrinho
+          </v-btn>
           <input type="button" value="Finalizar Compra" class="submit-btn elementos-cartao"
                  @click="fecharPedidoDeCompra(indexEnd)">
         </div>
@@ -116,6 +121,7 @@
 import {defineComponent} from "vue";
 import {mapState, mapMutations} from "vuex";
 import axios from "axios";
+import router from "@/router";
 
 export default defineComponent({
   data() {
@@ -145,10 +151,12 @@ export default defineComponent({
   methods: {
     async fecharPedidoDeCompra() {
       this.preencheCorpoDaRequisicao();
-      console.log(this.pedido);
       try {
         const request = await axios.post('http://localhost:8081/pedidos/cadastrar', this.pedido);
-        console.log(request)
+        console.log(request.data);
+        this.salvaNumeroPedido(request.data.id);
+        this.limpaCarrinho();
+        await router.push('/compraConcluida')
       } catch (ex) {
         console.log(ex.message);
       }
@@ -196,7 +204,7 @@ export default defineComponent({
       this.adicionaNoCarrinho(produto);
       this.calculaTotalCarrinho(this.frete);
     },
-    removeItem(produto){
+    removeItem(produto) {
       produto.quantidade = parseInt(produto.quantidade--);
       this.removeDoCarrinho(produto);
       this.calculaTotalCarrinho(this.frete);
@@ -205,12 +213,17 @@ export default defineComponent({
       this.removeProdutoCarrinho(produto);
       this.calculaTotalCarrinho(this.frete);
     },
+    limpar() {
+      this.limpaCarrinho();
+    },
     ...mapMutations([
       'adicionaFreteNoTotal',
       'adicionaNoCarrinho',
       'removeDoCarrinho',
       'calculaTotalCarrinho',
       'removeProdutoCarrinho',
+      'salvaNumeroPedido',
+      'limpaCarrinho',
     ]),
   },
   mounted() {
@@ -360,6 +373,11 @@ h2 {
   margin-top: 20px;
   text-align: center;
   text-align-last: center;
+}
+
+.botao-limpar {
+  margin-top: 20px;
+  float: right;
 }
 
 </style>

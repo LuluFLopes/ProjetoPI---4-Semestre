@@ -33,8 +33,8 @@ public class PedidoController {
 
     @PostMapping("/cadastrar")
     public ResponseEntity<Pedido> salvar(@RequestBody PedidoDTO dto) {
-        pedidoService.salvar(dto);
-        return ResponseEntity.ok().build();
+        Pedido pedido = pedidoService.salvar(dto);
+        return ResponseEntity.ok(pedido);
     }
 
     @PostMapping("/alterar")

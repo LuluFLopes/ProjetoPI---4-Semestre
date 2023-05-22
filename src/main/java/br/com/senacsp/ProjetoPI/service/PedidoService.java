@@ -19,8 +19,8 @@ public class PedidoService {
         this.pedidoRepository = pedidoRepository;
     }
 
-    public void salvar(PedidoDTO dto) {
-        pedidoRepository.save(dto.conversorParaSalvar(dto));
+    public Pedido salvar(PedidoDTO dto) {
+        return pedidoRepository.save(dto.conversorParaSalvar(dto));
     }
 
     public void alterar(PedidoDTO dto) {

@@ -45,6 +45,7 @@ const store = new Vuex.Store({
     carrinho: [],
     valorTotal: 0,
     usuarioLogado: false,
+    numeroDoPedido: 0,
   },
   mutations: {
     setUserInfo(state, payload) {
@@ -105,6 +106,13 @@ const store = new Vuex.Store({
             }
         }
       }
+    },
+    salvaNumeroPedido(state, payload){
+      state.numeroDoPedido = payload;
+    },
+    limpaCarrinho(state) {
+      state.valorTotal = 0;
+      state.carrinho = [];
     }
   },
   actions: {
