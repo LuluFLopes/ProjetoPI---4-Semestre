@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -17,21 +18,33 @@ public class Pedido {
     private Double valorTotal;
     private StatusPedido statusPedido;
     @OneToOne
+    private EnderecoEntrega enderecoEntrega;
+    @OneToOne
+    private EnderecoFaturamento enderecoFaturamento;
+    @ManyToOne
     private Cliente cliente;
+    @ManyToMany
+    private List<Produto> produtos;
 
-    public Pedido(LocalDateTime dataCompra, Double valorTotal, StatusPedido statusPedido, Cliente cliente) {
-        this.dataCompra = dataCompra;
+    public Pedido(Double valorTotal, StatusPedido statusPedido, EnderecoEntrega enderecoEntrega, EnderecoFaturamento enderecoFaturamento, Cliente cliente, List<Produto> produtos) {
+        this.dataCompra = LocalDateTime.now();
         this.valorTotal = valorTotal;
         this.statusPedido = statusPedido;
+        this.enderecoEntrega = enderecoEntrega;
+        this.enderecoFaturamento = enderecoFaturamento;
         this.cliente = cliente;
+        this.produtos = produtos;
     }
 
-    public Pedido(Long id, LocalDateTime dataCompra, Double valorTotal, StatusPedido statusPedido, Cliente cliente) {
+    public Pedido(Long id, Double valorTotal, StatusPedido statusPedido, EnderecoEntrega enderecoEntrega, EnderecoFaturamento enderecoFaturamento, Cliente cliente, List<Produto> produtos) {
         this.id = id;
-        this.dataCompra = dataCompra;
+        this.dataCompra = LocalDateTime.now();
         this.valorTotal = valorTotal;
         this.statusPedido = statusPedido;
+        this.enderecoEntrega = enderecoEntrega;
+        this.enderecoFaturamento = enderecoFaturamento;
         this.cliente = cliente;
+        this.produtos = produtos;
     }
 
     public Long getId() {
@@ -66,11 +79,35 @@ public class Pedido {
         this.statusPedido = statusPedido;
     }
 
+    public EnderecoEntrega getEnderecoEntrega() {
+        return enderecoEntrega;
+    }
+
+    public void setEnderecoEntrega(EnderecoEntrega enderecoEntrega) {
+        this.enderecoEntrega = enderecoEntrega;
+    }
+
+    public EnderecoFaturamento getEnderecoFaturamento() {
+        return enderecoFaturamento;
+    }
+
+    public void setEnderecoFaturamento(EnderecoFaturamento enderecoFaturamento) {
+        this.enderecoFaturamento = enderecoFaturamento;
+    }
+
     public Cliente getCliente() {
         return cliente;
     }
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
 }

@@ -356,11 +356,10 @@ export default defineComponent({
             console.log(response);
             alert("Cadastrado com Sucesso!");
             await router.push('/');
-
           } else {
             console.log(response);
             alert("Cadastrado com Sucesso!");
-            await router.push('/loginCliente')
+            await router.push('/detalhePedido')
           }
         } catch (ex) {
           console.log(ex.message);

@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/pedidos")
 public class PedidoController {
 
-    private PedidoService pedidoService;
+    private final PedidoService pedidoService;
 
     public PedidoController(PedidoService pedidoService) {
         this.pedidoService = pedidoService;

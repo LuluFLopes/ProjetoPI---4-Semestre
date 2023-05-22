@@ -57,13 +57,16 @@ const store = new Vuex.Store({
     setCarrinhoInfo(state, payload) {
       state.carrinho.push(payload);
     },
-    calculaTotalCarrinho(state) {
+    calculaTotalCarrinho(state, payload) {
       state.valorTotal = 0;
       state.carrinho.forEach(el => {
         let valorCalculadoPorElemento = 0;
-        valorCalculadoPorElemento = parseInt(el.preco * el.quantidade);
+        valorCalculadoPorElemento = parseInt(el.preco * el.quantidade) + payload;
         state.valorTotal += valorCalculadoPorElemento;
       })
+    },
+    adicionaFreteNoTotal(state, payload){
+      state.valorTotal = payload;
     },
     atualizarUsuario(state, payload) {
       state.alteracaoUsuario = payload;
@@ -71,6 +74,38 @@ const store = new Vuex.Store({
     atualizarProduto(state, payload) {
       state.alteracaoProduto = payload;
     },
+    adicionaNoCarrinho(state, payload){
+      state.carrinho.forEach(e => {
+        if (e.id === payload.id){
+          parseInt(e.quantidade++);
+        }
+      });
+    },
+    removeDoCarrinho(state, payload){
+      for (let i = 0; i < state.carrinho.length; i++) {
+        if(state.carrinho[i].id === payload.id){
+          state.carrinho[i].quantidade = parseInt(state.carrinho[i].quantidade - 1);
+          if (state.carrinho[i].quantidade === 0) {
+            if (i === 0) {
+              state.carrinho.shift();
+            } else {
+              state.carrinho.splice(i);
+            }
+          }
+        }
+      }
+    },
+    removeProdutoCarrinho(state, payload){
+      for (let i = 0; i < state.carrinho.length; i++) {
+        if(state.carrinho[i].id === payload.id){
+            if (i === 0) {
+              state.carrinho.shift();
+            } else {
+              state.carrinho.splice(i);
+            }
+        }
+      }
+    }
   },
   actions: {
     getUserInfos({commit}, payload) {

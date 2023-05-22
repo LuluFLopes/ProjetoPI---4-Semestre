@@ -67,7 +67,7 @@ export default defineComponent({
         if (this.carrinho.length === 0){
           await router.push('/');
         } else {
-          //await router.push('/telaDetalheProduto');
+          await router.push('/detalhePedido');
         }
       } catch (ex) {
         console.log(ex.message);

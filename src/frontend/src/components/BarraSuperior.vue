@@ -53,10 +53,12 @@ export default defineComponent({
       router.push('/');
     },
     verificaLoginAntesDeCheckout() {
-      if (this.user.usuario === "") {
-        router.push('/loginCliente');
-      } else {
-        // router.push('/telaDetalhePedido');
+      if (this.carrinho.length !== 0){
+        if (this.user.id === 0) {
+          router.push('/loginCliente');
+        } else {
+          router.push('/detalhePedido');
+        }
       }
     },
     ...mapActions([
