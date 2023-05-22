@@ -135,6 +135,7 @@ export default defineComponent({
         idCliente: 0,
         produtos: [],
         formaDePagamento: "",
+        frete: 0,
       },
       indexEndereco: 0,
       freteTransportadora: "0",
@@ -182,6 +183,7 @@ export default defineComponent({
       this.pedido.enderecoFaturamento = this.enderecoFaturamento;
       this.pedido.idCliente = this.user.id;
       this.pedido.produtos = this.carrinho;
+      this.pedido.frete = this.frete;
     },
     calculaFrete() {
       if (this.freteTransportadora !== "0") {

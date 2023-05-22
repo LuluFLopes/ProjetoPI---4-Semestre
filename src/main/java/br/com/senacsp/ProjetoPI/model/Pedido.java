@@ -17,6 +17,7 @@ public class Pedido {
     private LocalDateTime dataCompra;
     private Double valorTotal;
     private StatusPedido statusPedido;
+    private Double frete;
     @OneToOne
     private EnderecoEntrega enderecoEntrega;
     @OneToOne
@@ -26,21 +27,23 @@ public class Pedido {
     @ManyToMany
     private List<Produto> produtos;
 
-    public Pedido(Double valorTotal, StatusPedido statusPedido, EnderecoEntrega enderecoEntrega, EnderecoFaturamento enderecoFaturamento, Cliente cliente, List<Produto> produtos) {
+    public Pedido(Double valorTotal, StatusPedido statusPedido, Double frete, EnderecoEntrega enderecoEntrega, EnderecoFaturamento enderecoFaturamento, Cliente cliente, List<Produto> produtos) {
         this.dataCompra = LocalDateTime.now();
         this.valorTotal = valorTotal;
         this.statusPedido = statusPedido;
+        this.frete = frete;
         this.enderecoEntrega = enderecoEntrega;
         this.enderecoFaturamento = enderecoFaturamento;
         this.cliente = cliente;
         this.produtos = produtos;
     }
 
-    public Pedido(Long id, Double valorTotal, StatusPedido statusPedido, EnderecoEntrega enderecoEntrega, EnderecoFaturamento enderecoFaturamento, Cliente cliente, List<Produto> produtos) {
+    public Pedido(Long id, Double valorTotal, StatusPedido statusPedido, Double frete, EnderecoEntrega enderecoEntrega, EnderecoFaturamento enderecoFaturamento, Cliente cliente, List<Produto> produtos) {
         this.id = id;
         this.dataCompra = LocalDateTime.now();
         this.valorTotal = valorTotal;
         this.statusPedido = statusPedido;
+        this.frete = frete;
         this.enderecoEntrega = enderecoEntrega;
         this.enderecoFaturamento = enderecoFaturamento;
         this.cliente = cliente;
@@ -77,6 +80,14 @@ public class Pedido {
 
     public void setStatusPedido(StatusPedido statusPedido) {
         this.statusPedido = statusPedido;
+    }
+
+    public Double getFrete() {
+        return frete;
+    }
+
+    public void setFrete(Double frete) {
+        this.frete = frete;
     }
 
     public EnderecoEntrega getEnderecoEntrega() {

@@ -16,26 +16,29 @@ public class PedidoDTO {
     private Double valorTotal;
     private StatusPedido statusPedido;
     private Cliente idCliente;
+    private Double frete;
     private EnderecoEntrega enderecoEntrega;
     private EnderecoFaturamento enderecoFaturamento;
     private Cliente cliente;
     private List<Produto> produtos;
 
-    public PedidoDTO(Double valorTotal, StatusPedido statusPedido, Cliente idCliente, EnderecoEntrega enderecoEntrega, EnderecoFaturamento enderecoFaturamento, Cliente cliente, List<Produto> produtos) {
+    public PedidoDTO(Double valorTotal, StatusPedido statusPedido, Cliente idCliente, Double frete, EnderecoEntrega enderecoEntrega, EnderecoFaturamento enderecoFaturamento, Cliente cliente, List<Produto> produtos) {
         this.valorTotal = valorTotal;
         this.statusPedido = statusPedido;
         this.idCliente = idCliente;
+        this.frete = frete;
         this.enderecoEntrega = enderecoEntrega;
         this.enderecoFaturamento = enderecoFaturamento;
         this.cliente = cliente;
         this.produtos = produtos;
     }
 
-    public PedidoDTO(Long id, Double valorTotal, StatusPedido statusPedido, Cliente idCliente, EnderecoEntrega enderecoEntrega, EnderecoFaturamento enderecoFaturamento, Cliente cliente, List<Produto> produtos) {
+    public PedidoDTO(Long id, Double valorTotal, StatusPedido statusPedido, Cliente idCliente, Double frete, EnderecoEntrega enderecoEntrega, EnderecoFaturamento enderecoFaturamento, Cliente cliente, List<Produto> produtos) {
         this.id = id;
         this.valorTotal = valorTotal;
         this.statusPedido = statusPedido;
         this.idCliente = idCliente;
+        this.frete = frete;
         this.enderecoEntrega = enderecoEntrega;
         this.enderecoFaturamento = enderecoFaturamento;
         this.cliente = cliente;
@@ -46,11 +49,12 @@ public class PedidoDTO {
         return new Pedido(
                 dto.getValorTotal(),
                 StatusPedido.EM_ANDAMENTO,
+                dto.getFrete(),
                 dto.getEnderecoEntrega(),
                 dto.getEnderecoFaturamento(),
                 dto.getIdCliente(),
                 dto.getProdutos()
-                );
+        );
     }
 
     public Pedido conversorParaAlterar(PedidoDTO dto) {
@@ -58,6 +62,7 @@ public class PedidoDTO {
                 dto.getId(),
                 dto.getValorTotal(),
                 StatusPedido.EM_ANDAMENTO,
+                dto.getFrete(),
                 dto.getEnderecoEntrega(),
                 dto.getEnderecoFaturamento(),
                 dto.getIdCliente(),
@@ -79,6 +84,10 @@ public class PedidoDTO {
 
     public Cliente getIdCliente() {
         return idCliente;
+    }
+
+    public Double getFrete() {
+        return frete;
     }
 
     public EnderecoEntrega getEnderecoEntrega() {
