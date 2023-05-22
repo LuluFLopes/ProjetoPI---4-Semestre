@@ -223,7 +223,7 @@ fieldset {
   opacity: 0.90;
   border-radius: 40px;
   border-color: rgb(35, 75, 110);
-  height: 55 dvh;
+  height: 60dvh;
 }
 
 .itens-formulario {
@@ -242,7 +242,7 @@ fieldset {
   border-radius: 10px;
   border-color: rgb(35, 75, 110);
   padding: 5px;
-  margin: -1% 10%;
+  margin: 3% 10%;
 }
 
 </style>

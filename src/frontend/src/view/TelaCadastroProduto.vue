@@ -118,7 +118,7 @@ export default defineComponent({
 
 main {
   background: rgba(45, 46, 50);
-  height: 100%;
+  height: 90dvh;
   width: 100%;
   display: inline-block;
   align-items: center;
@@ -160,7 +160,7 @@ fieldset {
   border-radius: 10px;
   border-color: rgb(35, 75, 110);
   padding: 5px;
-  margin: -1% 10%;
+  margin: 2% 5%;
   width: 90px;
 }
 
@@ -220,7 +220,7 @@ fieldset {
 
 #VleEstq {
   width: 90px;
-  height: 50px;
+  height: 30px;
 
 }
 
