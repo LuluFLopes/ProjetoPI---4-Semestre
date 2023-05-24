@@ -33,7 +33,7 @@ public class PedidoService {
     }
 
     public List<Pedido> listar() {
-        List<Pedido> listaPedido = pedidoRepository.findAll();
+        List<Pedido> listaPedido = pedidoRepository.listagemDePedidos();
         if (listaPedido.size() > 0) {
             return listaPedido;
         } else {

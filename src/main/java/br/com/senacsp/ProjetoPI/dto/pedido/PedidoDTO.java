@@ -54,7 +54,7 @@ public class PedidoDTO {
     public Pedido conversorParaSalvar(PedidoDTO dto) {
         return new Pedido(
                 dto.getValorTotal(),
-                StatusPedido.EM_ANDAMENTO,
+                StatusPedido.AGUARDANDO_PAGAMENTO,
                 dto.getFrete(),
                 dto.getTransportadora(),
                 dto.getFormaDePagamento(),
@@ -69,7 +69,7 @@ public class PedidoDTO {
         return new Pedido(
                 dto.getId(),
                 dto.getValorTotal(),
-                StatusPedido.EM_ANDAMENTO,
+                StatusPedido.AGUARDANDO_PAGAMENTO,
                 dto.getFrete(),
                 dto.getTransportadora(),
                 dto.getFormaDePagamento(),

@@ -15,5 +15,13 @@ export const sideBarList = [
       userRoles.stockist
     ],
     route: "/WlistaProduto"
+  },
+  {
+    label: "Histórico de Pedidos",
+    grupo: [
+      userRoles.admin,
+      userRoles.stockist
+    ],
+    route: "/historicoPedido"
   }
 ];
