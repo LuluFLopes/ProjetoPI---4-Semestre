@@ -18,6 +18,9 @@
       <label class="usuario" v-show="this.usuarioLogado">
         Olá, {{ this.user.nome }}!
       </label>
+      <v-btn class="secondary btn-historico" v-show="verificaSePodeExibirBotaoFuncionario()" @click="redirecionaParaTelaPrincipalFuncionario()">
+        &#8962;
+      </v-btn>
       <v-btn icon class="secondary btn-historico" v-show="verificaSePodeExibirBotao()" @click="redirecionaParaTelaHistirico()">
         &#128269;
       </v-btn>
@@ -77,6 +80,12 @@ export default defineComponent({
     ]),
     verificaSePodeExibirBotao() {
       return this.usuarioLogado && this.tipoDeLogin === 2;
+    },
+    verificaSePodeExibirBotaoFuncionario() {
+      return this.usuarioLogado && this.tipoDeLogin === 1;
+    },
+    redirecionaParaTelaPrincipalFuncionario() {
+      router.push('/logado');
     }
   },
 });
@@ -121,6 +130,7 @@ export default defineComponent({
 .btn-historico {
   margin-left: 10px;
 }
+
 </style>
 
 
