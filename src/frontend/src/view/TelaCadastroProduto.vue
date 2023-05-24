@@ -118,7 +118,7 @@ export default defineComponent({
 
 main {
   background: rgba(45, 46, 50);
-  height: 90dvh;
+  height: 105dvh;
   width: 100%;
   display: inline-block;
   align-items: center;

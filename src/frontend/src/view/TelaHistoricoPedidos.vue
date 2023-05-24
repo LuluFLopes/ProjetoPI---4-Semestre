@@ -66,9 +66,13 @@
 <script>
 import {defineComponent} from "vue";
 import axios from "axios";
+import MenuLateral from "@/components/MenuLateral";
 
 export default defineComponent({
   name: "TelaHistoricoPedidos",
+  components: {
+    MenuLateral
+  },
   data() {
     return {
       historicoPedidos: [],
