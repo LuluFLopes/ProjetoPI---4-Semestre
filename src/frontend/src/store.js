@@ -47,6 +47,7 @@ const store = new Vuex.Store({
     usuarioLogado: false,
     numeroDoPedido: 0,
     pedidoId: 0,
+    tipoDeLogin: 0,
   },
   mutations: {
     setUserInfo(state, payload) {
@@ -109,6 +110,9 @@ const store = new Vuex.Store({
     },
     setPedidoPesquisado(state, payload) {
       state.pedidoId = payload;
+    },
+    setTipoDeLogin(state, payload) {
+      state.tipoDeLogin = payload;
     }
   },
   actions: {

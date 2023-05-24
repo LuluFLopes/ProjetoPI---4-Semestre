@@ -2,7 +2,7 @@
 import {defineComponent} from 'vue';
 import CryptoJS from "crypto-js";
 import axios from 'axios';
-import {mapActions} from 'vuex'
+import {mapActions, mapMutations} from 'vuex'
 import router from "@/router";
 
 const url = 'http://localhost:8081/login';
@@ -20,11 +20,11 @@ export default defineComponent({
     async submitSignIn() {
       let senha = this.formData.senha
       senha = this.encrypt(senha)
-      console.log(senha)
       try {
         this.formData.senha = senha
         const request = await axios.post(url, this.formData)
         this.getUserInfos(request.data);
+        this.setTipoDeLogin(1);
         await router.push('/logado');
       } catch (ex) {
         console.log(ex.message);
@@ -35,7 +35,10 @@ export default defineComponent({
     },
     ...mapActions([
       'getUserInfos'
-    ])
+    ]),
+    ...mapMutations([
+      'setTipoDeLogin'
+    ]),
   },
 });
 </script>
@@ -48,12 +51,14 @@ export default defineComponent({
         <fieldset>
           <div>
             <label for="userLogin">Usuário:</label>
-            <input id="userLogin" type="text" aria-label="Usuário" placeholder="Usuário" v-model="formData.usuario" required>
+            <input id="userLogin" type="text" aria-label="Usuário" placeholder="Usuário" v-model="formData.usuario"
+                   required>
           </div>
 
           <div>
             <label for="userPassword">Senha:</label>
-            <input id="userPassword" type="password" aria-label="Senha" placeholder="Senha" v-model="formData.senha" required>
+            <input id="userPassword" type="password" aria-label="Senha" placeholder="Senha" v-model="formData.senha"
+                   required>
           </div>
           <button type="submit">Entrar</button>
         </fieldset>
@@ -81,12 +86,12 @@ label, p, a {
 
 h1 {
   color: aliceblue;
-  font-size: 3dvw;
+  font-size: 3 dvw;
 }
 
 label, input {
   padding: 10px;
-  margin: 2dvh;
+  margin: 2 dvh;
   align-items: center;
   justify-content: left;
   text-align: left;

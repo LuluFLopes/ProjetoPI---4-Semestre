@@ -18,7 +18,7 @@
       <label class="usuario" v-show="this.usuarioLogado">
         Olá, {{ this.user.nome }}!
       </label>
-      <v-btn icon class="secondary btn-historico" v-show="this.usuarioLogado" @click="redirecionaParaTelaHistirico()">
+      <v-btn icon class="secondary btn-historico" v-show="verificaSePodeExibirBotao()" @click="redirecionaParaTelaHistirico()">
         &#128269;
       </v-btn>
       <v-btn icon class="login" v-show="this.usuarioLogado" @click="deslogar()">
@@ -30,7 +30,7 @@
 
 <script>
 import {defineComponent} from "vue";
-import {mapActions, mapState} from "vuex";
+import {mapActions, mapMutations, mapState} from "vuex";
 import router from "@/router";
 import ModalTipoUsuario from "@/components/ModalTipoUsuario";
 
@@ -45,7 +45,8 @@ export default defineComponent({
     ...mapState([
       'user',
       'carrinho',
-      'usuarioLogado'
+      'usuarioLogado',
+      'tipoDeLogin'
     ])
   },
   methods: {
@@ -53,10 +54,11 @@ export default defineComponent({
       this.getUserInfos({
         id: 0,
       })
+      this.setTipoDeLogin(0);
       router.push('/');
     },
     verificaLoginAntesDeCheckout() {
-      if (this.carrinho.length !== 0){
+      if (this.carrinho.length !== 0) {
         if (this.user.id === 0) {
           router.push('/loginCliente');
         } else {
@@ -69,7 +71,13 @@ export default defineComponent({
     },
     ...mapActions([
       'getUserInfos'
-    ])
+    ]),
+    ...mapMutations([
+      'setTipoDeLogin'
+    ]),
+    verificaSePodeExibirBotao() {
+      return this.usuarioLogado && this.tipoDeLogin === 2;
+    }
   },
 });
 </script>
