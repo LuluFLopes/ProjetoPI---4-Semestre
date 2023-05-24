@@ -1,7 +1,7 @@
 <template>
   <main>
     <div id="app">
-      <h1>Cadastro de Cliente</h1>
+      <h1>Alterar Cliente</h1>
       <form v-on:submit.prevent role="form" class="formulario">
         <fieldset>
 
@@ -239,10 +239,8 @@
                 </tbody>
               </table>
             </div>
-
           </div>
-
-          <input type="button" class="btnAcao green" value="Cadastrar"
+          <input type="button" class="btnAcao green" value="Alterar"
                  @click="mandarInformacoes(nome, cpf, dtnasc, genero, usuario, senha, endereco, confirmaSenha)">
 
           <router-link to="/" custom v-slot="{ navigate }">
@@ -300,6 +298,7 @@ export default defineComponent({
       enderecos: [],
       pagina: 1,
       data: {
+        id: 0,
         nome: "",
         cpf: "",
         dataNascimento: "",
@@ -312,13 +311,12 @@ export default defineComponent({
       isChecked: false,
     }
   },
-
   computed: {
     ...mapState([
-      'carrinho'
+      'carrinho',
+      'user'
     ])
-  }
-  ,
+  },
   methods: {
 
     async mandarInformacoes(nome, cpf, dtnasc, genero, usuario, senha, enderecoEntrega, confirmaSenha) {
@@ -359,7 +357,8 @@ export default defineComponent({
         senha = this.encrypt(senha);
 
         try {
-          this.data.senha = senha
+          this.data.id = this.id;
+          this.data.senha = senha;
           this.data.nome = nome;
           this.data.cpf = cpf;
           this.data.dataNascimento = dtnasc;
@@ -369,7 +368,7 @@ export default defineComponent({
           this.data.enderecoEntrega = this.enderecos;
           this.data.enderecoFaturamento = this.enderecoFaturamento;
 
-          const response = await axios.post('http://localhost:8081/clientes/cadastrar', this.data)
+          const response = await axios.put('http://localhost:8081/clientes/alterar', this.data)
 
           if (this.carrinho.length === 0) {
             console.log(response);
@@ -496,7 +495,6 @@ export default defineComponent({
       if (this.endereco.tipoEnd === 'F') {
         this.preencheEnderecoFaturamento(enderecoAux);
       }
-
       enderecoAux = {};
       this.endereco = {
         cep: "",
@@ -509,7 +507,6 @@ export default defineComponent({
         tipoEnd: "",
         tipoEndereco: ""
       }
-
       this.isChecked = false;
     },
     preencheTipoDeEndereco() {
@@ -526,9 +523,30 @@ export default defineComponent({
       this.enderecoFaturamento.bairro = enderecoAux.bairro;
       this.enderecoFaturamento.cidade = enderecoAux.cidade;
       this.enderecoFaturamento.uf = enderecoAux.uf;
+    },
+    async buscarCliente() {
+      const response = await axios.get('http://localhost:8081/clientes/buscar/' + this.user.id);
+      this.preencheCampos(response);
+    },
+    preencheCampos(response){
+      this.id = this.user.id;
+      this.nome = "";
+      this.ncompleto = response.data.nome;
+      this.usuario = response.data.usuario
+      this.cpf = response.data.cpf;
+      let date = new Date(response.data.dataNascimento);
+      this.dtnasc = date.toISOString().split('T')[0];
+      this.genero = response.data.genero;
+      this.senha = response.data.senha;
+      this.confirmaSenha = "";
+      this.enderecoFaturamento = response.data.enderecoFaturamento;
+      this.enderecos = response.data.enderecoEntrega;
     }
-  }
+  },
 
+  mounted() {
+    this.buscarCliente();
+  }
 });
 
 </script>
@@ -563,8 +581,8 @@ fieldset {
   opacity: 0.90;
   border-radius: 40px;
   border-color: rgb(35, 75, 110);
-  height: 150dvh;
-  width: 50dvw;
+  height: 150 dvh;
+  width: 50 dvw;
 }
 
 .itens-formulario {

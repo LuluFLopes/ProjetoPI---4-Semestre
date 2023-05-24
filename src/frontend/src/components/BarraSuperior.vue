@@ -24,6 +24,9 @@
       <v-btn icon class="secondary btn-historico" v-show="verificaSePodeExibirBotao()" @click="redirecionaParaTelaHistirico()">
         &#128269;
       </v-btn>
+      <v-btn icon class="secondary btn-historico" v-show="verificaSePodeExibirBotao()" @click="redirecionaParaTelaAlteraCliente()">
+        &#9998;
+      </v-btn>
       <v-btn icon class="login" v-show="this.usuarioLogado" @click="deslogar()">
         Sair
       </v-btn>
@@ -86,6 +89,9 @@ export default defineComponent({
     },
     redirecionaParaTelaPrincipalFuncionario() {
       router.push('/logado');
+    },
+    redirecionaParaTelaAlteraCliente() {
+      router.push('/alterarCliente');
     }
   },
 });
