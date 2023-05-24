@@ -563,8 +563,8 @@ fieldset {
   opacity: 0.90;
   border-radius: 40px;
   border-color: rgb(35, 75, 110);
-  height: 150 dvh;
-  width: 50 dvw;
+  height: 150dvh;
+  width: 50dvw;
 }
 
 .itens-formulario {
