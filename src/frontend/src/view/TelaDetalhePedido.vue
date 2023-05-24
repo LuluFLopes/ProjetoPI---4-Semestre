@@ -11,7 +11,7 @@
               <span>Nome Completo: {{ this.user.nome }}</span>
             </div>
             <div class="inputBox">
-              <span>Email: {{ this.user.usuario }}</span>
+              <span>Usuário: {{ this.user.usuario }}</span>
             </div>
             <div class="inputBox">
               <span>Email: {{ this.user.cpf }}</span>
@@ -136,6 +136,7 @@ export default defineComponent({
         produtos: [],
         formaDePagamento: "",
         frete: 0,
+        transportadora: "",
       },
       indexEndereco: 0,
       freteTransportadora: "0",
@@ -184,6 +185,18 @@ export default defineComponent({
       this.pedido.idCliente = this.user.id;
       this.pedido.produtos = this.carrinho;
       this.pedido.frete = this.frete;
+      this.preencheTransportadora();
+    },
+    preencheTransportadora() {
+      if (this.freteTransportadora === "3") {
+        this.pedido.transportadora = "Correios";
+      } else if (this.freteTransportadora === "5") {
+        this.pedido.transportadora = "Rodonaves";
+      } else if (this.freteTransportadora === "6") {
+        this.pedido.transportadora = "Loggi";
+      } else if (this.freteTransportadora === "2") {
+        this.pedido.transportadora = "Carvalima";
+      }
     },
     calculaFrete() {
       if (this.freteTransportadora !== "0") {
@@ -199,7 +212,6 @@ export default defineComponent({
         this.adicionaFreteNoTotal(this.valorTotal + this.frete);
         this.calculaTotalCarrinho(this.frete);
       }
-
     },
     adicionaItem(produto) {
       produto.quantidade = parseInt(produto.quantidade++);

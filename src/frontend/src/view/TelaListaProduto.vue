@@ -42,7 +42,6 @@
             <td>{{ produto.preco }}</td>
             <td>{{ produto.status }}</td>
             <td id="alterarStatus">
-              &nbsp;
               <v-checkbox
                   v-model="produto.checkbox"
                   @change="mandarStatus(produto.id, produto.status)"
@@ -110,7 +109,7 @@ export default defineComponent({
     },
     async listarProdutos() {
       try {
-        const response = await axios.get('http://localhost:8081/produtos/listar?size=5&page=' + (this.pagina - 1))
+        const response = await axios.get('http://localhost:8081/produtos/listar?size=5&page=' + (this.pagina - 1));
         for (let i = 0; i < response.data.content.length; i++) {
           this.produtos.push(response.data.content[i])
         }

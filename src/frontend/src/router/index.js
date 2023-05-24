@@ -16,6 +16,8 @@ import TelaDetalhePedido from "@/view/TelaDetalhePedido.vue";
 import TelaAlterarProduto from "@/view/TelaAlterarProduto";
 import TelaAlterarUsuario from "@/view/TelaAlterarUsuario";
 import TelaCompraConcluida from "@/view/TelaCompraConcluida";
+import TelaListaPedidos from "@/view/TelaListaPedidos";
+import TelaDetalheVisualizarPedido from "@/view/TelaDetalheVisualizarPedido";
 
 Vue.use(VueRouter)
 
@@ -99,6 +101,16 @@ const routes = [
     path: '/compraConcluida',
     name: 'compraConcluida',
     component: TelaCompraConcluida
+  },
+  {
+    path: '/historicoCompra',
+    name: 'historicoCompra',
+    component: TelaListaPedidos
+  },
+  {
+    path: '/visualizarDetalhePedido',
+    name: 'historicoCompra',
+    component: TelaDetalheVisualizarPedido
   },
 ]
 

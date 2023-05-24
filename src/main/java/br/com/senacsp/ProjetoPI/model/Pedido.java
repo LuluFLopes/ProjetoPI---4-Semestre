@@ -18,6 +18,8 @@ public class Pedido {
     private Double valorTotal;
     private StatusPedido statusPedido;
     private Double frete;
+    private String transportadora;
+    private String formaDePagamento;
     @OneToOne
     private EnderecoEntrega enderecoEntrega;
     @OneToOne
@@ -27,23 +29,27 @@ public class Pedido {
     @ManyToMany
     private List<Produto> produtos;
 
-    public Pedido(Double valorTotal, StatusPedido statusPedido, Double frete, EnderecoEntrega enderecoEntrega, EnderecoFaturamento enderecoFaturamento, Cliente cliente, List<Produto> produtos) {
+    public Pedido(Double valorTotal, StatusPedido statusPedido, Double frete, String transportadora, String formaDePagamento, EnderecoEntrega enderecoEntrega, EnderecoFaturamento enderecoFaturamento, Cliente cliente, List<Produto> produtos) {
         this.dataCompra = LocalDateTime.now();
         this.valorTotal = valorTotal;
         this.statusPedido = statusPedido;
         this.frete = frete;
+        this.transportadora = transportadora;
+        this.formaDePagamento = formaDePagamento;
         this.enderecoEntrega = enderecoEntrega;
         this.enderecoFaturamento = enderecoFaturamento;
         this.cliente = cliente;
         this.produtos = produtos;
     }
 
-    public Pedido(Long id, Double valorTotal, StatusPedido statusPedido, Double frete, EnderecoEntrega enderecoEntrega, EnderecoFaturamento enderecoFaturamento, Cliente cliente, List<Produto> produtos) {
+    public Pedido(Long id, Double valorTotal, StatusPedido statusPedido, Double frete, String transportadora, String formaDePagamento, EnderecoEntrega enderecoEntrega, EnderecoFaturamento enderecoFaturamento, Cliente cliente, List<Produto> produtos) {
         this.id = id;
         this.dataCompra = LocalDateTime.now();
         this.valorTotal = valorTotal;
         this.statusPedido = statusPedido;
         this.frete = frete;
+        this.transportadora = transportadora;
+        this.formaDePagamento = formaDePagamento;
         this.enderecoEntrega = enderecoEntrega;
         this.enderecoFaturamento = enderecoFaturamento;
         this.cliente = cliente;
@@ -88,6 +94,22 @@ public class Pedido {
 
     public void setFrete(Double frete) {
         this.frete = frete;
+    }
+
+    public String getTransportadora() {
+        return transportadora;
+    }
+
+    public void setTransportadora(String transportadora) {
+        this.transportadora = transportadora;
+    }
+
+    public String getFormaDePagamento() {
+        return formaDePagamento;
+    }
+
+    public void setFormaDePagamento(String formaDePagamento) {
+        this.formaDePagamento = formaDePagamento;
     }
 
     public EnderecoEntrega getEnderecoEntrega() {
