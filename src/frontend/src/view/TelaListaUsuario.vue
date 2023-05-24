@@ -28,8 +28,8 @@
             <td>{{ usuario.status }}</td>
             <td id="alterarStatus">
               <v-checkbox
-                  v-model="usuario.checkbox"
-                  @change="mandarStatus(usuario.id, usuario.status)"
+                  v-model="usuario.checkboxAtivo"
+                  @click="mandarStatus(usuario.id, usuario.status)"
               ></v-checkbox>
             </td>
             <td>
@@ -61,7 +61,6 @@ export default defineComponent({
     return {
       usuarios: [],
       id: "id",
-
     }
   },
   computed: {
@@ -77,6 +76,9 @@ export default defineComponent({
       })
           .then(function (response) {
             for (let i = 0; i < response.data.length; i++) {
+              if (response.data[i].status === "ATIVO") {
+                response.data[i].checkboxAtivo = true;
+              }
               usuarios.push(JSON.parse(JSON.stringify(response.data[i])));
             }
           })
@@ -88,8 +90,10 @@ export default defineComponent({
     mandarStatus(identificacao, checkbox) {
       if (checkbox === "ATIVO") {
         checkbox = "INATIVO"
+        this.checkboxAtivo = false;
       } else {
         checkbox = "ATIVO"
+        this.checkboxAtivo = true;
       }
       axios({
         method: 'put',
