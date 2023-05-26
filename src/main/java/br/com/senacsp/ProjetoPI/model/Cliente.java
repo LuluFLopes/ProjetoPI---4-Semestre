@@ -8,17 +8,17 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@Table (name = "cliente")
+@Table(name = "cliente")
 public class Cliente {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    @Column (unique = true, updatable = false)
+    @Column(unique = true, updatable = false)
     private String cpf;
     private Date dataNascimento;
     private String genero;
-    @Column (unique = true, updatable = false)
+    @Column(unique = true, updatable = false)
     private String usuario;
     private String senha;
     @OneToOne(cascade = CascadeType.ALL)
@@ -28,6 +28,18 @@ public class Cliente {
 
     public Cliente(Long id, String nome, String cpf, Date dataNascimento, String genero, String usuario, String senha, EnderecoFaturamento enderecoFaturamento, List<EnderecoEntrega> enderecoEntrega) {
         this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
+        this.genero = genero;
+        this.usuario = usuario;
+        this.senha = senha;
+        this.enderecoFaturamento = enderecoFaturamento;
+        this.enderecoEntrega = enderecoEntrega;
+    }
+
+    public Cliente(String nome, String cpf, Date dataNascimento, String genero, String usuario, String senha, EnderecoFaturamento enderecoFaturamento, List<EnderecoEntrega> enderecoEntrega) {
+
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;

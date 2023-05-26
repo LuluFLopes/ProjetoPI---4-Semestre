@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/clientes")
 public class ClienteController {
 
-    private ClienteService clienteService;
+    private final ClienteService clienteService;
 
     public ClienteController(ClienteService clienteService) {
         this.clienteService = clienteService;
@@ -49,7 +49,7 @@ public class ClienteController {
     @PostMapping("/cadastrar")
     public ResponseEntity<Cliente> cadastrar(@RequestBody ClienteDTO dto) {
         clienteService.salvar(dto);
-         return ResponseEntity.ok().build();
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/alterar")
@@ -60,11 +60,7 @@ public class ClienteController {
 
     @PostMapping("/login")
     public ResponseEntity<Cliente> login(@RequestBody LoginDTO dto) {
-        List<Cliente> list = clienteService.login(dto.getUsuario(), dto.getSenha());
-        if (list.size() > 0) {
-            return ResponseEntity.ok(list.get(0));
-        } else {
-            return ResponseEntity.internalServerError().build();
-        }
+        Cliente cliente = clienteService.login(dto.getUsuario(), dto.getSenha());
+        return ResponseEntity.ok(cliente);
     }
 }

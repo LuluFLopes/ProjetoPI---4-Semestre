@@ -12,16 +12,17 @@ import java.util.Optional;
 @Service
 public class ClienteService {
 
-    private ClienteRepository clienteRepository;
+    private final ClienteRepository clienteRepository;
 
-    public ClienteService(ClienteRepository clienteRepository){this.clienteRepository = clienteRepository; }
-
-    public Cliente buscarPorId(Long id){
-        Optional<Cliente> retornoCliente = clienteRepository.findById(id);
-        return retornoCliente.orElseThrow(NullPointerException::new);
+    public ClienteService(ClienteRepository clienteRepository) {
+        this.clienteRepository = clienteRepository;
     }
 
-    public List<Cliente> listar(){
+    public Cliente buscarPorId(Long id) {
+        return clienteRepository.findById(id).orElseThrow(NullPointerException::new);
+    }
+
+    public List<Cliente> listar() {
         List<Cliente> listaClientes = clienteRepository.findAll();
         if (listaClientes.size() > 0) {
             return listaClientes;
@@ -31,15 +32,18 @@ public class ClienteService {
     }
 
     @Transactional
-    public void salvar (ClienteDTO dto){
+    public void salvar(ClienteDTO dto) {
         clienteRepository.save(dto.conversor(dto));
     }
 
     @Transactional
-    public void alterar (ClienteDTO dto) {
-        clienteRepository.save(dto.conversor(dto));
+    public void alterar(ClienteDTO dto) {
+        clienteRepository.save(dto.conversorParaAlterar(dto));
     }
 
-    public List<Cliente> login(String usuario, String senha) { return clienteRepository.login(usuario, senha); }
+    public Cliente login(String usuario, String senha) {
+        return clienteRepository.login(usuario, senha)
+                .orElseThrow(NullPointerException::new);
+    }
 
 }

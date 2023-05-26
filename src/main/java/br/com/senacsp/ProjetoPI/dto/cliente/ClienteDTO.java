@@ -35,7 +35,31 @@ public class ClienteDTO {
         this.enderecoEntrega = enderecoEntrega;
     }
 
-    public Cliente conversor (ClienteDTO dto){
+    public ClienteDTO(String nome, String cpf, Date dataNascimento, String genero, String usuario, String senha, EnderecoFaturamento enderecoFaturamento, List<EnderecoEntrega> enderecoEntrega) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
+        this.genero = genero;
+        this.usuario = usuario;
+        this.senha = senha;
+        this.enderecoFaturamento = enderecoFaturamento;
+        this.enderecoEntrega = enderecoEntrega;
+    }
+
+    public Cliente conversor(ClienteDTO dto) {
+        return new Cliente(
+                dto.getNome(),
+                dto.getCpf(),
+                dto.getDataNascimento(),
+                dto.getGenero(),
+                dto.getUsuario(),
+                dto.getSenha(),
+                dto.getEnderecoFaturamento(),
+                dto.getEnderecoEntrega()
+        );
+    }
+
+    public Cliente conversorParaAlterar(ClienteDTO dto) {
         return new Cliente(
                 dto.getId(),
                 dto.getNome(),
