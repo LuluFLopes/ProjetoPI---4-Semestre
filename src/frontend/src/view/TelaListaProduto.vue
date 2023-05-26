@@ -177,7 +177,7 @@ export default defineComponent({
 
 .fundo {
   position: relative;
-  height: 100%;
+  height: 110dvh;
   background: rgba(45, 46, 50);
 }
 
@@ -186,7 +186,7 @@ export default defineComponent({
   top: 5%;
   left: 25%;
   width: 65%;
-  height: 90%;
+  height: 100dvh;
   background: rgba(217, 217, 217, 1);
   color: #111111;
 }
