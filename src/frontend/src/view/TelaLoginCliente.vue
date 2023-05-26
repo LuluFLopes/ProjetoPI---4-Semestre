@@ -72,6 +72,7 @@ export default defineComponent({
           await router.push('/detalhePedido');
         }
       } catch (ex) {
+        alert("Não foi possível fazer o login, verifique seus dados!");
         console.log(ex.message);
       }
     },

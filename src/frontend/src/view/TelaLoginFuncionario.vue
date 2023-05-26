@@ -27,6 +27,7 @@ export default defineComponent({
         this.setTipoDeLogin(1);
         await router.push('/logado');
       } catch (ex) {
+        alert("Não foi possível fazer o login, verifique seus dados!");
         console.log(ex.message);
       }
     },
