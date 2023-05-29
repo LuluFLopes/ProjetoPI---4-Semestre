@@ -3,6 +3,7 @@
   <div class="container">
     <div>
       <form>
+        <h2>Detalhes do seu pedido</h2>
         <div class="row">
           <div class="col">
             <h3 class="title">Dados Pessoais</h3>
@@ -109,8 +110,8 @@
           <v-btn class="botao-limpar" color="error" @click="limpar">
             Limpar Carrinho
           </v-btn>
-          <input type="button" value="Finalizar Compra" class="submit-btn elementos-cartao"
-                 @click="fecharPedidoDeCompra(indexEnd)">
+          <input type="button" value="Ir Para A Tela De Checkout" class="submit-btn elementos-cartao"
+                 @click="salvarAntesDeFecharCompra()">
         </div>
       </v-card>
     </div>
@@ -151,18 +152,6 @@ export default defineComponent({
     ])
   },
   methods: {
-    async fecharPedidoDeCompra() {
-      this.preencheCorpoDaRequisicao();
-      try {
-        const request = await axios.post('http://localhost:8081/pedidos/cadastrar', this.pedido);
-        console.log(request.data);
-        this.salvaNumeroPedido(request.data.id);
-        this.limpaCarrinho();
-        await router.push('/compraConcluida')
-      } catch (ex) {
-        console.log(ex.message);
-      }
-    },
     async buscaEnderecoFaturamento() {
       try {
         const request = await axios.get('http://localhost:8081/clientes/buscarEnderecoFaturamento/' + this.user.id);
@@ -230,6 +219,11 @@ export default defineComponent({
     limpar() {
       this.limpaCarrinho();
     },
+    salvarAntesDeFecharCompra() {
+      this.preencheCorpoDaRequisicao();
+      this.setInformacoesPedidoFechamento(this.pedido);
+      router.push("/telaFinalizarCompra");
+    },
     ...mapMutations([
       'adicionaFreteNoTotal',
       'adicionaNoCarrinho',
@@ -238,6 +232,7 @@ export default defineComponent({
       'removeProdutoCarrinho',
       'salvaNumeroPedido',
       'limpaCarrinho',
+      'setInformacoesPedidoFechamento'
     ]),
   },
   mounted() {

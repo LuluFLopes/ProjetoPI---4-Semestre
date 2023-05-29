@@ -20,6 +20,7 @@ import TelaListaPedidos from "@/view/TelaListaPedidos";
 import TelaDetalheVisualizarPedido from "@/view/TelaDetalheVisualizarPedido";
 import TelaHistoricoPedidos from "@/view/TelaHistoricoPedidos";
 import TelaAlterarCliente from "@/view/TelaAlterarCliente";
+import TelaCheckoutPedido from "@/view/TelaCheckoutPedido";
 
 Vue.use(VueRouter)
 
@@ -124,7 +125,11 @@ const routes = [
     name: 'alterarCliente',
     component: TelaAlterarCliente
   },
-
+  {
+    path: '/telaFinalizarCompra',
+    name: 'telaFinalizarCompra',
+    component: TelaCheckoutPedido
+  },
 ]
 
 const router = new VueRouter({
