@@ -2,6 +2,7 @@ package br.com.senacsp.ProjetoPI.controller;
 
 import br.com.senacsp.ProjetoPI.dto.cliente.ClienteDTO;
 import br.com.senacsp.ProjetoPI.model.Cliente;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,8 +19,10 @@ public class ClienteIT {
     ClienteController clienteController;
 
     @Test
+    @Order(1)
     public void cadastrarCliente() {
         clienteController.cadastrar(criaDtoCadastrar());
+        
         Cliente cliente = clienteController.buscarPorId(2).getBody();
         assert cliente != null;
         assertEquals(2L, cliente.getId());
@@ -32,6 +35,7 @@ public class ClienteIT {
     }
 
     @Test
+    @Order(2)
     public void alteraCliente() {
         clienteController.alterar(criaDtoAlterar());
         Cliente cliente = clienteController.buscarPorId(2).getBody();
@@ -40,14 +44,16 @@ public class ClienteIT {
     }
 
     @Test
-    public void listar(){
+    @Order(3)
+    public void listar() {
         List<Cliente> lista = clienteController.listar().getBody();
         assert lista != null;
-        assertEquals(1, lista.size());
+        assertEquals(2, lista.size());
     }
 
     private ClienteDTO criaDtoAlterar() {
         return new ClienteDTO(
+                2L,
                 "nomeAlterado",
                 "111.111.111-11",
                 new Date("01/01/1994"),
@@ -61,8 +67,7 @@ public class ClienteIT {
 
     private ClienteDTO criaDtoCadastrar() {
         return new ClienteDTO(
-                2L,
-                "nomeAlterado",
+                "teste",
                 "111.111.111-11",
                 new Date("01/01/1994"),
                 "Masculino",
