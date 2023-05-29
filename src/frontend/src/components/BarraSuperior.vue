@@ -6,7 +6,7 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <div class="main-carrinho">
-        <v-btn class="btn-carrinho" @click="verificaLoginAntesDeCheckout">
+        <v-btn class="btn-carrinho" @click="verificaLoginAntesDeCheckout" v-show="verificaSePodeExibirBotaoCarrinho()">
           <img class="carrinho" src="../assets/shopping-cart.png">
           <p class="quantidade-carrinho"> {{ this.carrinho.length }} </p>
         </v-btn>
@@ -87,12 +87,15 @@ export default defineComponent({
     verificaSePodeExibirBotaoFuncionario() {
       return this.usuarioLogado && this.tipoDeLogin === 1;
     },
+    verificaSePodeExibirBotaoCarrinho() {
+      return !this.usuarioLogado || this.tipoDeLogin === 2;
+    },
     redirecionaParaTelaPrincipalFuncionario() {
       router.push('/logado');
     },
     redirecionaParaTelaAlteraCliente() {
       router.push('/alterarCliente');
-    }
+    },
   },
 });
 </script>
