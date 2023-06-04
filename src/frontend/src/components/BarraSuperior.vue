@@ -6,7 +6,7 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <div class="main-carrinho">
-        <v-btn class="btn-carrinho" @click="verificaLoginAntesDeCheckout" v-show="verificaSePodeExibirBotaoCarrinho()">
+        <v-btn class="btn-carrinho" @click="redirecionaParaDetalhePedido" v-show="verificaSePodeExibirBotaoCarrinho()">
           <img class="carrinho" src="../assets/shopping-cart.png">
           <p class="quantidade-carrinho"> {{ this.carrinho.length }} </p>
         </v-btn>
@@ -63,13 +63,11 @@ export default defineComponent({
       this.setTipoDeLogin(0);
       router.push('/');
     },
-    verificaLoginAntesDeCheckout() {
+    redirecionaParaDetalhePedido() {
       if (this.carrinho.length !== 0) {
-        if (this.user.id === 0) {
-          router.push('/loginCliente');
-        } else {
-          router.push('/detalhePedido');
-        }
+        router.push('/detalhePedido');
+      } else {
+        alert("Selecione ao menos um produto!");
       }
     },
     redirecionaParaTelaHistirico() {

@@ -117,6 +117,12 @@ const store = new Vuex.Store({
     },
     setInformacoesPedidoFechamento(state, payload) {
       state.pedidoFechamento = payload;
+    },
+    setEnderecoFaturamento(state, payload) {
+      state.pedidoFechamento.enderecoFaturamento = payload;
+    },
+    setEnderecoEntrega(state, payload) {
+      state.pedidoFechamento.enderecoEntrega = payload;
     }
   },
   actions: {

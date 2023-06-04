@@ -18,14 +18,17 @@
             </div>
             <div class="inputBox">
               <span>Endereço de Entrega: </span>
-              <p>{{
-                  pedido.enderecoEntrega.logradouro + ", " + pedido.enderecoEntrega.numero + ", " + pedido.enderecoEntrega.cep
-                }}</p>
+              <select v-model="pedido.enderecoEntrega">
+                <option value="">Selecione...</option>
+                <option v-for="(endereco, indexEnd) in this.enderecosEntrega" :key="indexEnd" :value="endereco">
+                  {{ endereco.logradouro + ", " + endereco.numero + ", " + endereco.cep }}
+                </option>
+              </select>
             </div>
             <div class="inputBox">
               <span>Endereço de Faturamento: </span>
               <p> {{
-                  pedido.enderecoFaturamento.logradouro + ", " + pedido.enderecoFaturamento.numero + ", " + pedido.enderecoFaturamento.cep
+                  enderecoFaturamento.logradouro + ", " + enderecoFaturamento.numero + ", " + enderecoFaturamento.cep
                 }} </p>
             </div>
           </div>
@@ -92,7 +95,7 @@ export default defineComponent({
     return {
       pedido: {
         valorTotal: 0,
-        enderecoEntrega: "",
+        enderecoEntrega: {},
         enderecoFaturamento: {},
         cliente: {},
         produtos: [],
@@ -100,10 +103,31 @@ export default defineComponent({
         frete: 0,
         transportadora: "",
       },
+      enderecosEntrega: [],
+      enderecoFaturamento: {},
     }
   },
   methods: {
+    async buscaEnderecoFaturamento() {
+      try {
+        const request = await axios.get('http://localhost:8081/clientes/buscarEnderecoFaturamento/' + this.user.id);
+        this.enderecoFaturamento = request.data;
+        this.setEnderecoFaturamento(request.data);
+        console.log(request.data);
+      } catch (ex) {
+        console.log(ex.message);
+      }
+    },
+    async buscaEnderecosEntrega() {
+      try {
+        const request = await axios.get('http://localhost:8081/clientes/buscarEnderecoEntrega/' + this.user.id);
+        this.enderecosEntrega = request.data;
+      } catch (ex) {
+        console.log(ex.message);
+      }
+    },
     async fecharPedidoDeCompra() {
+      this.setEnderecoEntrega(this.pedido.enderecoEntrega);
       try {
         const request = await axios.post('http://localhost:8081/pedidos/cadastrar', this.pedidoFechamento);
         this.salvaNumeroPedido(request.data.id);
@@ -117,8 +141,6 @@ export default defineComponent({
       const request = await axios.get('http://localhost:8081/clientes/buscar/' + this.pedidoFechamento.idCliente);
       this.pedido.cliente = request.data;
       this.pedido.valorTotal = this.pedidoFechamento.valorTotal;
-      this.pedido.enderecoEntrega = this.pedidoFechamento.enderecoEntrega;
-      this.pedido.enderecoFaturamento = this.pedidoFechamento.enderecoFaturamento;
       this.pedido.produtos = this.pedidoFechamento.produtos;
       this.pedido.formaDePagamento = this.pedidoFechamento.formaDePagamento;
       this.pedido.frete = this.pedidoFechamento.frete;
@@ -126,16 +148,21 @@ export default defineComponent({
     },
     ...mapMutations([
       'salvaNumeroPedido',
-      'limpaCarrinho'
+      'limpaCarrinho',
+      'setEnderecoFaturamento',
+      'setEnderecoEntrega'
     ]),
   },
   computed: {
     ...mapState([
       'pedidoId',
       'pedidoFechamento',
+      'user',
     ])
   },
   mounted() {
+    this.buscaEnderecosEntrega();
+    this.buscaEnderecoFaturamento();
     this.preencheCampos();
   }
 });

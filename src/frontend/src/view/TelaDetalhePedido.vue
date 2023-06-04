@@ -6,35 +6,6 @@
         <h2>Detalhes do seu pedido</h2>
         <div class="row">
           <div class="col">
-            <h3 class="title">Dados Pessoais</h3>
-
-            <div class="inputBox">
-              <span>Nome Completo: {{ this.user.nome }}</span>
-            </div>
-            <div class="inputBox">
-              <span>Usuário: {{ this.user.usuario }}</span>
-            </div>
-            <div class="inputBox">
-              <span>Email: {{ this.user.cpf }}</span>
-            </div>
-            <div class="inputBox">
-              <span>Endereço de Entrega: </span>
-              <select v-model="pedido.enderecoEntrega">
-                <option value="">Selecione...</option>
-                <option v-for="(endereco, indexEnd) in enderecosEntrega" :key="indexEnd" :value="endereco">
-                  {{ endereco.logradouro + ", " + endereco.numero + ", " + endereco.cep }}
-                </option>
-              </select>
-            </div>
-            <div class="inputBox">
-              <span>Endereço de Faturamento: </span>
-              <p> {{
-                  enderecoFaturamento.logradouro + ", " + enderecoFaturamento.numero + ", " + enderecoFaturamento.cep
-                }} </p>
-            </div>
-          </div>
-
-          <div class="col">
             <h3 class="title">Forma de Pagamento</h3>
             <select v-model="pedido.formaDePagamento" required>
               <option value="">Selecione...</option>
@@ -121,14 +92,11 @@
 <script>
 import {defineComponent} from "vue";
 import {mapState, mapMutations} from "vuex";
-import axios from "axios";
 import router from "@/router";
 
 export default defineComponent({
   data() {
     return {
-      enderecosEntrega: [],
-      enderecoFaturamento: {},
       pedido: {
         valorTotal: 0,
         enderecoEntrega: "",
@@ -152,25 +120,8 @@ export default defineComponent({
     ])
   },
   methods: {
-    async buscaEnderecoFaturamento() {
-      try {
-        const request = await axios.get('http://localhost:8081/clientes/buscarEnderecoFaturamento/' + this.user.id);
-        this.enderecoFaturamento = request.data;
-      } catch (ex) {
-        console.log(ex.message);
-      }
-    },
-    async buscaEnderecosEntrega() {
-      try {
-        const request = await axios.get('http://localhost:8081/clientes/buscarEnderecoEntrega/' + this.user.id);
-        this.enderecosEntrega = request.data;
-      } catch (ex) {
-        console.log(ex.message);
-      }
-    },
     preencheCorpoDaRequisicao() {
       this.pedido.valorTotal = this.valorTotal;
-      this.pedido.enderecoFaturamento = this.enderecoFaturamento;
       this.pedido.idCliente = this.user.id;
       this.pedido.produtos = this.carrinho;
       this.pedido.frete = this.frete;
@@ -222,7 +173,11 @@ export default defineComponent({
     salvarAntesDeFecharCompra() {
       this.preencheCorpoDaRequisicao();
       this.setInformacoesPedidoFechamento(this.pedido);
-      router.push("/telaFinalizarCompra");
+      if (this.user.id === 0) {
+        router.push("/loginCliente")
+      } else {
+        router.push("/telaFinalizarCompra");
+      }
     },
     ...mapMutations([
       'adicionaFreteNoTotal',
@@ -236,8 +191,6 @@ export default defineComponent({
     ]),
   },
   mounted() {
-    this.buscaEnderecoFaturamento();
-    this.buscaEnderecosEntrega();
     this.calculaTotalCarrinho(this.frete);
   }
 });

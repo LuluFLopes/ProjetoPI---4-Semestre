@@ -6,12 +6,14 @@
         <fieldset>
           <div>
             <label for="userLogin">Usuário:</label>
-            <input id="userLogin" type="text" aria-label="Usuário" placeholder="Usuário" v-model="formData.usuario" required>
+            <input id="userLogin" type="text" aria-label="Usuário" placeholder="Usuário" v-model="formData.usuario"
+                   required>
           </div>
 
           <div>
             <label for="userPassword">Senha:</label>
-            <input id="userPassword" type="password" aria-label="Senha" placeholder="Senha" v-model="formData.senha" required>
+            <input id="userPassword" type="password" aria-label="Senha" placeholder="Senha" v-model="formData.senha"
+                   required>
           </div>
           <button type="submit">Entrar</button>
 
@@ -37,7 +39,7 @@ const url = 'http://localhost:8081/clientes/login';
 
 export default defineComponent({
   emits: [
-      'clicarBotaoEntrar'
+    'clicarBotaoEntrar'
   ],
   data() {
     return {
@@ -49,8 +51,9 @@ export default defineComponent({
   },
   computed: {
     ...mapState([
-        'carrinho',
-        'tipoDeLogin'
+      'carrinho',
+      'tipoDeLogin',
+      'pedidoFechamento'
     ])
   },
   methods: {
@@ -60,16 +63,17 @@ export default defineComponent({
 
       try {
         this.formData.senha = senha
-        const request = await axios.post(url, this.formData)
-        console.log(request)
-        const date = new Date().getTime().toString();
-        sessionStorage.setItem("token", date);
+        const request = await axios.post(url, this.formData);
         this.getUserInfos(request.data);
+        let fechamento = this.pedidoFechamento;
+        fechamento.idCliente = request.data.id;
+        this.setInformacoesPedidoFechamento(fechamento);
+
         this.setTipoDeLogin(2);
-        if (this.carrinho.length === 0){
+        if (this.carrinho.length === 0) {
           await router.push('/');
         } else {
-          await router.push('/detalhePedido');
+          await router.push('/telaFinalizarCompra');
         }
       } catch (ex) {
         alert("Não foi possível fazer o login, verifique seus dados!");
@@ -84,6 +88,7 @@ export default defineComponent({
     ]),
     ...mapMutations([
       'setTipoDeLogin',
+      'setInformacoesPedidoFechamento'
     ])
   },
 });
@@ -109,12 +114,12 @@ label, p, a {
 
 h1 {
   color: aliceblue;
-  font-size: 3dvw;
+  font-size: 3 dvw;
 }
 
 label, input {
   padding: 10px;
-  margin: 2dvh;
+  margin: 2 dvh;
   align-items: center;
   justify-content: left;
   text-align: left;
@@ -127,7 +132,8 @@ fieldset {
   align-items: center;
   height: 250px;
 }
-.cadastro{
+
+.cadastro {
   display: flex;
   align-items: center;
   font-size: small;

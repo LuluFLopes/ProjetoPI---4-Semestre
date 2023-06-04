@@ -5,16 +5,22 @@
       <img :src="imagemDetalhes" class="one">
     </div>
 
-    <div class="home-text">
-      <h1>Jogo Online</h1>
-      <h5>{{ this.produto.nome }}</h5>
-      <h3>R$ {{ this.produto.preco }}</h3>
-      <h3> {{ this.produto.detalhes }} </h3>
-      <h3> Unindades disponíveis: {{ this.produto.quantidade }} </h3>
-      <label> Selecione a quantidade: </label>
-      <input type="number" v-model="quantidadeSelecionada">
-      <a href="#" class="btn" @click="adicionaNoCarrinho()">Adicionar no carrinho</a>
-    </div>
+    <v-card class="cartao-principal">
+      <div class="home-text ">
+        <h1 class="elementos-internos">Jogo</h1>
+        <h3 class="elementos-internos">{{ this.produto.nome }}</h3>
+        <h3 class="elementos-internos">R$ {{ this.produto.preco }}</h3>
+        <h3 class="elementos-internos"> {{ this.produto.detalhes }} </h3>
+        <h3 class="elementos-internos"> Disponíveis: {{ this.produto.quantidade }} </h3>
+        <label class="elementos-internos"> Selecione a quantidade: </label>
+        <input class="elementos-internos" type="number" v-model="quantidadeSelecionada">
+        <v-btn class="primary elementos-internos botao-adicionar" @click="adicionaNoCarrinho()">
+          Adicionar no carrinho
+        </v-btn>
+        <v-alert color="error alerta" icon="$error" v-model="elementoDeAlertaAtivo"> {{ this.msgAlerta }}
+        </v-alert>
+      </div>
+    </v-card>
 
     <div class="main">
       <div class="row1" v-for="(row, index)  of this.produto.urlImg" :key="'linha-'+index">
@@ -46,7 +52,9 @@ export default defineComponent({
       ],
       jaAdicionado: false,
       elementoJaAdicionado: -1,
-      quantidadeSelecionada: 0
+      quantidadeSelecionada: 1,
+      elementoDeAlertaAtivo: false,
+      msgAlerta: "",
     }
   },
   methods: {
@@ -59,26 +67,42 @@ export default defineComponent({
     ]),
     adicionaNoCarrinho() {
 
-      this.carrinho.forEach((el,i) => {
-        if (el.id === this.produto.id) {
-          this.jaAdicionado = true;
-          this.elementoJaAdicionado = i;
+      let quantidadeAtual = this.quantidadeSelecionada;
+
+      for (const produto of this.carrinho) {
+        if (produto.id === this.produto.id) {
+          quantidadeAtual += this.produto.quantidade;
         }
-      });
-
-      this.produto.quantidade = this.quantidadeSelecionada;
-
-      if (this.jaAdicionado) {
-        let quantidadeAtual = parseInt(this.carrinho[this.elementoJaAdicionado].quantidade);
-        quantidadeAtual += parseInt(this.quantidadeSelecionada);
-        this.carrinho[this.elementoJaAdicionado].quantidade = quantidadeAtual;
-        this.alteraValorTotalCarrinho();
-      }else {
-        this.getCarrinhoInfos(this.produto);
-        this.alteraValorTotalCarrinho();
       }
-      this.jaAdicionado = false;
-      router.push("/");
+
+      if (quantidadeAtual <= this.produto.quantidade) {
+        this.elementoDeAlertaAtivo = false;
+        this.msgAlerta = "";
+
+        this.carrinho.forEach((el, i) => {
+          if (el.id === this.produto.id) {
+            this.jaAdicionado = true;
+            this.elementoJaAdicionado = i;
+          }
+        });
+
+        this.produto.quantidade = this.quantidadeSelecionada;
+
+        if (this.jaAdicionado) {
+          let quantidadeAtual = parseInt(this.carrinho[this.elementoJaAdicionado].quantidade);
+          quantidadeAtual += parseInt(this.quantidadeSelecionada);
+          this.carrinho[this.elementoJaAdicionado].quantidade = quantidadeAtual;
+          this.alteraValorTotalCarrinho();
+        } else {
+          this.getCarrinhoInfos(this.produto);
+          this.alteraValorTotalCarrinho();
+        }
+        this.jaAdicionado = false;
+        router.push("/");
+      } else {
+        this.elementoDeAlertaAtivo = true;
+        this.msgAlerta = 'Não é possível selecionar uma quantidade maior do que o estoque!';
+      }
     }
   },
   computed: {
@@ -107,6 +131,10 @@ export default defineComponent({
   background: rgba(45, 46, 50);
 }
 
+.home-text {
+  text-align: center;
+}
+
 .home-text h1 {
   font-size: 4rem;
   line-height: 1.2;
@@ -125,7 +153,6 @@ export default defineComponent({
   font-size: 40px;
   font-weight: 700;
   letter-spacing: 2px;
-  margin-bottom: 35px;
 }
 
 .home-img img {
@@ -133,23 +160,6 @@ export default defineComponent({
   width: 28rem;
   height: auto;
   margin-left: 25%;
-}
-
-.btn {
-  display: inline-block;
-  padding: 15px 70px;
-  font-size: 16px;
-  font-weight: 500;
-  background: transparent;
-  border: solid 2px #ffffff;
-  transition: all ease-out;
-  color: #ffffff;
-}
-
-.btn:hover {
-  background: white;
-  border: 2px solid #ffffff;
-  color: #111111;
 }
 
 .main {
@@ -182,26 +192,20 @@ export default defineComponent({
   transform: translateY(-8px);
 }
 
-.row2 {
-  justify-content: center;
-  transition: all ease-out;
-  cursor: pointer;
-  display: inline-flex;
+.elementos-internos {
+  padding: 2vh;
 }
 
-.row2:hover {
-  transform: translateY(-8px);
+.cartao-principal {
+  margin-right: 3vw;
 }
 
-.row3 {
-  justify-content: center;
-  transition: all ease-out;
-  cursor: pointer;
-  display: inline-flex;
+.botao-adicionar {
+  margin-bottom: 3vh;
 }
 
-.row3:hover {
-  transform: translateY(-8px);
+.alerta {
+  color: black;
 }
 
 </style>
