@@ -122,4 +122,22 @@ h1 {
   padding: 0;
 }
 
+@media (max-width: 450px) {
+  .hello {
+    max-width: 425px;
+
+  }
+
+  .imagem-principal {
+    display: none;
+  }
+
+  .prod {
+  }
+
+  .products {
+    width: 100%;
+  }
+}
+
 </style>

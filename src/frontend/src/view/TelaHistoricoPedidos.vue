@@ -87,7 +87,7 @@ export default defineComponent({
       this.historicoPedidos = response.data;
       this.formataStatus(response.data);
     },
-    async alteraStatusPedido(pedido){
+    async alteraStatusPedido(pedido) {
       let dataForm = {
         id: pedido.id,
         statusPedido: pedido.statusPedido.replaceAll(" ", "_"),
@@ -97,7 +97,7 @@ export default defineComponent({
       this.checkBoxHabilitada = false;
     },
     acionaModoDeAlteracao(pedido) {
-      if (pedido.statusPedido !== "ENTREGUE" && pedido.statusPedido !== "CANCELADO"){
+      if (pedido.statusPedido !== "ENTREGUE" && pedido.statusPedido !== "CANCELADO") {
         this.modoDeAlteracao = true;
         this.checkBoxHabilitada = true;
       } else {
@@ -108,10 +108,10 @@ export default defineComponent({
       this.modoDeAlteracao = false;
       this.checkBoxHabilitada = false;
     },
-    formataStatus(historicoPedidos){
+    formataStatus(historicoPedidos) {
       for (const pedido of historicoPedidos) {
         let tempStatus = pedido.statusPedido
-         pedido.statusPedido = tempStatus.replaceAll("_", " ");
+        pedido.statusPedido = tempStatus.replaceAll("_", " ");
       }
     }
   },

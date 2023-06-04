@@ -1,13 +1,12 @@
 <template>
-
   <div class="container">
-    <div>
-      <form>
+    <div class="group">
+      <v-card class="cartao">
         <h2>Detalhes do seu pedido</h2>
         <div class="row">
           <div class="col">
-            <h3 class="title">Forma de Pagamento</h3>
-            <select v-model="pedido.formaDePagamento" required>
+            <h3 class="title div-pagamentos">Forma de Pagamento</h3>
+            <select class="div-pagamentos" v-model="pedido.formaDePagamento" required>
               <option value="">Selecione...</option>
               <option value="Cartão de Crédito">Cartão de Crédito</option>
               <option value="Dinheiro">Dinheiro</option>
@@ -16,11 +15,11 @@
             </select>
           </div>
         </div>
-      </form>
+      </v-card>
 
-      <v-card class="frete">
+      <v-card class="frete elemento-lista cartao">
         <h3 class="title posicao-frete">Valor do Frete</h3>
-        <select class="posicao-frete opcoes-frete" v-model="freteTransportadora" @change="calculaFrete" required>
+        <select class="posicao-frete" v-model="freteTransportadora" @change="calculaFrete" required>
           <option value="0">Selecione...</option>
           <option value="3">Correios</option>
           <option value="5">Rodonaves</option>
@@ -30,7 +29,7 @@
         <h3 class="posicao-frete">{{ frete }}</h3>
       </v-card>
 
-      <v-card class="container-carrinho">
+      <v-card class="container-carrinho elemento-lista cartao">
         <div class="listagemProdutosContainer col">
           <h2 class="elementos-cartao">Carrinho de Compras</h2>
           <table class="listaProdutos elementos-cartao">
@@ -340,6 +339,37 @@ h2 {
 .botao-limpar {
   margin-top: 20px;
   float: right;
+}
+
+@media (max-width: 425px) {
+
+  .container {
+    width: 100%;
+  }
+
+  .listagemProdutosContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .elemento-lista {
+    width: 100%;
+  }
+
+  .group {
+    margin: 0 auto;
+  }
+
+  .div-pagamentos {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  .cartao {
+    width: 100%;
+  }
 }
 
 </style>

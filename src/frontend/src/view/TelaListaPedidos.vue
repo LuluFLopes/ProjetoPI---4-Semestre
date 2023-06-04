@@ -71,4 +71,13 @@ export default defineComponent({
   width: 75%;
   height: 75%;
 }
+
+@media (max-width: 425px) {
+  .tabela-principal {
+    overflow-wrap: anywhere;
+    margin-left: 0;
+    width: 100%;
+    font-size: 2.8vw;
+  }
+}
 </style>

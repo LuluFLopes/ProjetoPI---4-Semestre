@@ -13,18 +13,22 @@
       </div>
       <modal-tipo-usuario
           v-on="this.modalAtivo"
-          v-show="!this.usuarioLogado">
+          v-show="!this.usuarioLogado"
+          class="tipo-usuario">
       </modal-tipo-usuario>
       <label class="usuario" v-show="this.usuarioLogado">
         Olá, {{ this.user.nome }}!
       </label>
-      <v-btn class="secondary btn-historico" v-show="verificaSePodeExibirBotaoFuncionario()" @click="redirecionaParaTelaPrincipalFuncionario()">
+      <v-btn class="secondary btn-historico" v-show="verificaSePodeExibirBotaoFuncionario()"
+             @click="redirecionaParaTelaPrincipalFuncionario()">
         &#8962;
       </v-btn>
-      <v-btn icon class="secondary btn-historico" v-show="verificaSePodeExibirBotao()" @click="redirecionaParaTelaHistirico()">
+      <v-btn icon class="secondary btn-historico" v-show="verificaSePodeExibirBotao()"
+             @click="redirecionaParaTelaHistirico()">
         &#128269;
       </v-btn>
-      <v-btn icon class="secondary btn-historico" v-show="verificaSePodeExibirBotao()" @click="redirecionaParaTelaAlteraCliente()">
+      <v-btn icon class="secondary btn-historico" v-show="verificaSePodeExibirBotao()"
+             @click="redirecionaParaTelaAlteraCliente()">
         &#9998;
       </v-btn>
       <v-btn icon class="login" v-show="this.usuarioLogado" @click="deslogar()">
@@ -98,10 +102,9 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
 .login {
   margin: auto;
-  position: absolute;
   display: block;
 }
 
@@ -136,6 +139,48 @@ export default defineComponent({
 
 .btn-historico {
   margin-left: 10px;
+}
+
+@media (max-width: 450px) {
+  h1 {
+    font-size: 5vw;
+    display: inline-block;
+    padding-left: 0;
+  }
+
+  .main-carrinho {
+    width: 15vw;
+  }
+
+  .btn-carrinho {
+    margin: 0;
+  }
+
+  .carrinho {
+    width: 4vw;
+    margin-right: 0;
+  }
+
+  .quantidade-carrinho {
+    font-size: 4vw;
+  }
+
+  .usuario {
+    text-align: center;
+    width: 5vw;
+    margin-left: 3vw;
+    margin-right: 3vw;
+  }
+
+  .btn-historico {
+    width: 5vw;
+    margin-left: 0;
+    padding: 2vw;
+  }
+
+  .tipo-usuario {
+    margin-left: 2vw;
+  }
 }
 
 </style>

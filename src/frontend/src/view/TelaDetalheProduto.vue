@@ -2,7 +2,7 @@
 
   <section class="home">
     <div class="home-img">
-      <img :src="imagemDetalhes" class="one">
+        <img :src="imagemDetalhes" class="one imagem">
     </div>
 
     <v-card class="cartao-principal">
@@ -204,8 +204,21 @@ export default defineComponent({
   margin-bottom: 3vh;
 }
 
-.alerta {
-  color: black;
+@media (max-width: 450px) {
+  .home-img{
+    max-width: 70vw;
+  }
+
+  .home {
+    display: block;
+  }
+  .cartao-principal {
+    margin: 0 auto;
+  }
+
+  .cartao-principal h3{
+    font-size: 7vw;
+  }
 }
 
 </style>

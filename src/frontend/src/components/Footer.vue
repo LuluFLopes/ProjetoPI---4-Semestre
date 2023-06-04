@@ -55,4 +55,24 @@ p {
   padding: 10px;
 }
 
+@media (max-width: 450px) {
+  #imagem-bazinga {
+    width: 15vw;
+    margin: 0 auto;
+  }
+
+  .imagens-footer{
+    margin-left: 0;
+  }
+
+  .imagens-footer a img{
+    width: 15vw;
+  }
+
+  p {
+    padding: 3vw;
+  }
+
+}
+
 </style>
