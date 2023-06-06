@@ -10,7 +10,7 @@ npm install -g @vue/cli
 vue add vuetify
 ```
 
-> Não usar a instalação padrão, seguir os seguintes passos:
+> Não usar a instalação padrão do vuetify, seguir os seguintes passos:
 
 Obs: Clicar na tecla "Enter" irá confirmar as ações. 
 
