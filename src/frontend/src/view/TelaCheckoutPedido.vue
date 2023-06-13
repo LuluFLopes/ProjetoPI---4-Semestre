@@ -122,6 +122,7 @@ export default defineComponent({
       try {
         const request = await axios.get('http://localhost:8081/clientes/buscarEnderecoEntrega/' + this.user.id);
         this.enderecosEntrega = request.data;
+        this.pedido.enderecoEntrega = this.enderecosEntrega[0];
       } catch (ex) {
         console.log(ex.message);
       }
