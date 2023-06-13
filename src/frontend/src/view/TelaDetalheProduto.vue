@@ -67,11 +67,11 @@ export default defineComponent({
     ]),
     adicionaNoCarrinho() {
 
-      let quantidadeAtual = this.quantidadeSelecionada;
+      let quantidadeAtual = parseInt(this.quantidadeSelecionada);
 
       for (const produto of this.carrinho) {
         if (produto.id === this.produto.id) {
-          quantidadeAtual += this.produto.quantidade;
+          quantidadeAtual += this.quantidadeSelecionada;
         }
       }
 

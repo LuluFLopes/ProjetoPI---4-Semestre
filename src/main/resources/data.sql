@@ -98,7 +98,7 @@ VALUES (7,
 
 -- Imagens produtos core
 
-INSERT INTO IMAGENS (TIPO_IMAGEM, URL)
+INSERT INTO IMAGEM (TIPO_IMAGEM, URL)
 VALUES (0, 'link'),
        (1, 'link'),
        (1, 'link'),
@@ -112,7 +112,7 @@ VALUES (1, 1),
        (1, 4),
        (1, 5);
 
-INSERT INTO IMAGENS (TIPO_IMAGEM, URL)
+INSERT INTO IMAGEM (TIPO_IMAGEM, URL)
 VALUES (0, 'link'),
        (1, 'link'),
        (1, 'link'),
@@ -126,7 +126,7 @@ VALUES (2, 6),
        (2, 9),
        (2, 10);
 
-INSERT INTO IMAGENS (TIPO_IMAGEM, URL)
+INSERT INTO IMAGEM (TIPO_IMAGEM, URL)
 VALUES (0, 'link'),
        (1, 'link'),
        (1, 'link'),
@@ -140,7 +140,7 @@ VALUES (3, 11),
        (3, 14),
        (3, 15);
 
-INSERT INTO IMAGENS (TIPO_IMAGEM, URL)
+INSERT INTO IMAGEM (TIPO_IMAGEM, URL)
 VALUES (0, 'link'),
        (1, 'link'),
        (1, 'link'),
@@ -154,7 +154,7 @@ VALUES (4, 16),
        (4, 19),
        (4, 20);
 
-INSERT INTO IMAGENS (TIPO_IMAGEM, URL)
+INSERT INTO IMAGEM (TIPO_IMAGEM, URL)
 VALUES (0, 'link'),
        (1, 'link'),
        (1, 'link'),
@@ -168,7 +168,7 @@ VALUES (5, 21),
        (5, 24),
        (5, 25);
 
-INSERT INTO IMAGENS (TIPO_IMAGEM, URL)
+INSERT INTO IMAGEM (TIPO_IMAGEM, URL)
 VALUES (0, 'link'),
        (1, 'link'),
        (1, 'link'),
@@ -182,7 +182,7 @@ VALUES (6, 26),
        (6, 29),
        (6, 30);
 
-INSERT INTO IMAGENS (TIPO_IMAGEM, URL)
+INSERT INTO IMAGEM (TIPO_IMAGEM, URL)
 VALUES (0, 'link'),
        (1, 'link'),
        (1, 'link'),
@@ -196,7 +196,7 @@ VALUES (7, 31),
        (7, 34),
        (7, 35);
 
-INSERT INTO IMAGENS (TIPO_IMAGEM, URL)
+INSERT INTO IMAGEM (TIPO_IMAGEM, URL)
 VALUES (0, 'link'),
        (1, 'link'),
        (1, 'link'),
@@ -210,7 +210,7 @@ VALUES (8, 36),
        (8, 39),
        (8, 40);
 
-INSERT INTO IMAGENS (TIPO_IMAGEM, URL)
+INSERT INTO IMAGEM (TIPO_IMAGEM, URL)
 VALUES (0, 'link'),
        (1, 'link'),
        (1, 'link'),
@@ -224,7 +224,7 @@ VALUES (9, 41),
        (9, 44),
        (9, 45);
 
-INSERT INTO IMAGENS (TIPO_IMAGEM, URL)
+INSERT INTO IMAGEM (TIPO_IMAGEM, URL)
 VALUES (0, 'link'),
        (1, 'link'),
        (1, 'link'),
