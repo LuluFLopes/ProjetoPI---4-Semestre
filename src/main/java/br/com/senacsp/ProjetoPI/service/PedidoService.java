@@ -3,7 +3,9 @@ package br.com.senacsp.ProjetoPI.service;
 import br.com.senacsp.ProjetoPI.dto.pedido.AlterarStatusDTO;
 import br.com.senacsp.ProjetoPI.dto.pedido.PedidoDTO;
 import br.com.senacsp.ProjetoPI.model.Pedido;
+import br.com.senacsp.ProjetoPI.model.Produto;
 import br.com.senacsp.ProjetoPI.repository.PedidoRepository;
+import br.com.senacsp.ProjetoPI.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,14 +14,26 @@ import java.util.Optional;
 @Service
 public class PedidoService {
 
-    private PedidoRepository pedidoRepository;
+    private final PedidoRepository pedidoRepository;
+    private final ProdutoRepository produtoRepository;
 
-    public PedidoService(PedidoRepository pedidoRepository) {
+    public PedidoService(PedidoRepository pedidoRepository, ProdutoRepository produtoRepository) {
         this.pedidoRepository = pedidoRepository;
+        this.produtoRepository = produtoRepository;
     }
 
     public Pedido salvar(PedidoDTO dto) {
-        return pedidoRepository.save(dto.conversorParaSalvar(dto));
+        Pedido pedido = pedidoRepository.save(dto.conversorParaSalvar(dto));
+        ajustaEstoque(pedido);
+        return pedido;
+    }
+
+    private void ajustaEstoque(Pedido pedido) {
+        pedido.getProdutos().forEach(e -> {
+            Produto produto = produtoRepository.findById(e.getId()).orElseThrow(NullPointerException::new);
+            produto.setQuantidade(produto.getQuantidade() - e.getQuantidade());
+            produtoRepository.save(produto);
+        });
     }
 
     public void alterar(PedidoDTO dto) {
