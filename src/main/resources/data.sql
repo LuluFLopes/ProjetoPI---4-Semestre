@@ -98,75 +98,145 @@ VALUES (7,
 
 -- Imagens produtos core
 
-INSERT INTO PRODUTO_URL_IMG
-VALUES (1, 'link'),
+INSERT INTO IMAGENS (TIPO_IMAGEM, URL)
+VALUES (0, 'link'),
        (1, 'link'),
        (1, 'link'),
        (1, 'link'),
        (1, 'link');
 
 INSERT INTO PRODUTO_URL_IMG
-VALUES (2, 'link'),
-       (2, 'link'),
-       (2, 'link'),
-       (2, 'link'),
-       (2, 'link');
+VALUES (1, 1),
+       (1, 2),
+       (1, 3),
+       (1, 4),
+       (1, 5);
+
+INSERT INTO IMAGENS (TIPO_IMAGEM, URL)
+VALUES (0, 'link'),
+       (1, 'link'),
+       (1, 'link'),
+       (1, 'link'),
+       (1, 'link');
 
 INSERT INTO PRODUTO_URL_IMG
-VALUES (3, 'link'),
-       (3, 'link'),
-       (3, 'link'),
-       (3, 'link'),
-       (3, 'link');
+VALUES (2, 6),
+       (2, 7),
+       (2, 8),
+       (2, 9),
+       (2, 10);
+
+INSERT INTO IMAGENS (TIPO_IMAGEM, URL)
+VALUES (0, 'link'),
+       (1, 'link'),
+       (1, 'link'),
+       (1, 'link'),
+       (1, 'link');
 
 INSERT INTO PRODUTO_URL_IMG
-VALUES (4, 'link'),
-       (4, 'link'),
-       (4, 'link'),
-       (4, 'link'),
-       (4, 'link');
+VALUES (3, 11),
+       (3, 12),
+       (3, 13),
+       (3, 14),
+       (3, 15);
+
+INSERT INTO IMAGENS (TIPO_IMAGEM, URL)
+VALUES (0, 'link'),
+       (1, 'link'),
+       (1, 'link'),
+       (1, 'link'),
+       (1, 'link');
 
 INSERT INTO PRODUTO_URL_IMG
-VALUES (5, 'link'),
-       (5, 'link'),
-       (5, 'link'),
-       (5, 'link'),
-       (5, 'link');
+VALUES (4, 16),
+       (4, 17),
+       (4, 18),
+       (4, 19),
+       (4, 20);
+
+INSERT INTO IMAGENS (TIPO_IMAGEM, URL)
+VALUES (0, 'link'),
+       (1, 'link'),
+       (1, 'link'),
+       (1, 'link'),
+       (1, 'link');
 
 INSERT INTO PRODUTO_URL_IMG
-VALUES (6, 'link'),
-       (6, 'link'),
-       (6, 'link'),
-       (6, 'link'),
-       (6, 'link');
+VALUES (5, 21),
+       (5, 22),
+       (5, 23),
+       (5, 24),
+       (5, 25);
+
+INSERT INTO IMAGENS (TIPO_IMAGEM, URL)
+VALUES (0, 'link'),
+       (1, 'link'),
+       (1, 'link'),
+       (1, 'link'),
+       (1, 'link');
 
 INSERT INTO PRODUTO_URL_IMG
-VALUES (7, 'link'),
-       (7, 'link'),
-       (7, 'link'),
-       (7, 'link'),
-       (7, 'link');
+VALUES (6, 26),
+       (6, 27),
+       (6, 28),
+       (6, 29),
+       (6, 30);
+
+INSERT INTO IMAGENS (TIPO_IMAGEM, URL)
+VALUES (0, 'link'),
+       (1, 'link'),
+       (1, 'link'),
+       (1, 'link'),
+       (1, 'link');
 
 INSERT INTO PRODUTO_URL_IMG
-VALUES (8, 'link'),
-       (8, 'link'),
-       (8, 'link'),
-       (8, 'link'),
-       (8, 'link');
+VALUES (7, 31),
+       (7, 32),
+       (7, 33),
+       (7, 34),
+       (7, 35);
+
+INSERT INTO IMAGENS (TIPO_IMAGEM, URL)
+VALUES (0, 'link'),
+       (1, 'link'),
+       (1, 'link'),
+       (1, 'link'),
+       (1, 'link');
 
 INSERT INTO PRODUTO_URL_IMG
-VALUES (9, 'link'),
-       (9, 'link'),
-       (9, 'link'),
-       (9, 'link'),
-       (9, 'link');
+VALUES (8, 36),
+       (8, 37),
+       (8, 38),
+       (8, 39),
+       (8, 40);
+
+INSERT INTO IMAGENS (TIPO_IMAGEM, URL)
+VALUES (0, 'link'),
+       (1, 'link'),
+       (1, 'link'),
+       (1, 'link'),
+       (1, 'link');
 
 INSERT INTO PRODUTO_URL_IMG
-VALUES (10, 'link'),
-       (10, 'link'),
-       (10, 'link'),
-       (10, 'link'),
-       (10, 'link');
+VALUES (9, 41),
+       (9, 42),
+       (9, 43),
+       (9, 44),
+       (9, 45);
+
+INSERT INTO IMAGENS (TIPO_IMAGEM, URL)
+VALUES (0, 'link'),
+       (1, 'link'),
+       (1, 'link'),
+       (1, 'link'),
+       (1, 'link');
+
+INSERT INTO PRODUTO_URL_IMG
+VALUES (10, 46),
+       (10, 47),
+       (10, 48),
+       (10, 49),
+       (10, 50);
 
 INSERT INTO ENDERECO_ENTREGA(
     LOGRADOURO,

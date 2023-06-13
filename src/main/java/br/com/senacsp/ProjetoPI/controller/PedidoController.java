@@ -1,6 +1,6 @@
 package br.com.senacsp.ProjetoPI.controller;
 
-import br.com.senacsp.ProjetoPI.dto.pedido.HabilitarOuDesabilitarDTO;
+import br.com.senacsp.ProjetoPI.dto.pedido.AlterarStatusDTO;
 import br.com.senacsp.ProjetoPI.dto.pedido.PedidoDTO;
 import br.com.senacsp.ProjetoPI.model.Pedido;
 import br.com.senacsp.ProjetoPI.service.PedidoService;
@@ -44,8 +44,8 @@ public class PedidoController {
     }
 
     @PutMapping("/ajustarStatus")
-    public ResponseEntity<Pedido> ajustarStatus(@RequestBody HabilitarOuDesabilitarDTO dto) {
-        pedidoService.habilitarOuDesabilitar(dto);
+    public ResponseEntity<Pedido> ajustarStatus(@RequestBody AlterarStatusDTO dto) {
+        pedidoService.ajustarStatus(dto);
         return ResponseEntity.ok().build();
     }
 

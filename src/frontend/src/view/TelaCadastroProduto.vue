@@ -2,7 +2,7 @@
   <main>
     <div>
       <h1>Cadastro de Produto</h1>
-      <form role="form" class="formulario">
+      <form role="form" class="formulario" @submit.prevent="selecionaImagem">
         <fieldset>
           <div class="itens-formulario">
             <label for="userLogin">Nome:</label>
@@ -35,12 +35,13 @@
           </div>
 
           <div id="entrada-img">
-            <v-file-input
-                multiple
-                label="File input"
-                prepend-icon="mdi-camera"
-                required
-            ></v-file-input>
+<!--            <v-file-input-->
+<!--                multiple-->
+<!--                label="File input"-->
+<!--                prepend-icon="mdi-camera"-->
+<!--                required-->
+<!--            ></v-file-input>-->
+            <input type="file" @onchange="selecionaImagem">
             <button id="btn-img">Enviar</button>
           </div>
 
@@ -83,7 +84,8 @@ export default defineComponent({
       urlImg: [],
       preco: "",
       quantidade: "",
-      avaliacao: 0
+      avaliacao: 0,
+      imagem: null,
     }
   },
   methods: {
@@ -108,6 +110,21 @@ export default defineComponent({
           .catch(function (error) {
             console.log(error);
           });
+    },
+
+    async listarPedidos() {
+      if (this.imagem){
+        const arquivoImagem = new FormData();
+        arquivoImagem.append(this.nome, this.imagem);
+        const response = await axios.post('http://localhost:8081/produtos/salva-imagem', arquivoImagem);
+        this.urlImg.push(response.data);
+      }
+    },
+
+    selecionaImagem(event){
+      event.preventDefault();
+      console.log(event);
+      this.imagem = event.target.files[0];
     }
   }
 });

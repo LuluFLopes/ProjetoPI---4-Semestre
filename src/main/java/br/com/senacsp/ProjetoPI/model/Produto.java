@@ -24,12 +24,12 @@ public class Produto {
     private Avaliacao avaliacao;
     @Enumerated
     private Status status;
-    @ElementCollection
-    private List<String> urlImg;
+    @OneToMany
+    private List<Imagem> urlImg;
 
     public Produto(Long id, String nome, String detalhes,
                    Double preco, Integer quantidade,
-                   Avaliacao avaliacao, Status status, List<String> urlImg) {
+                   Avaliacao avaliacao, Status status, List<Imagem> urlImg) {
         this.id = id;
         this.nome = nome;
         this.detalhes = detalhes;
@@ -46,7 +46,7 @@ public class Produto {
     }
 
     public Produto(String nome, String detalhes, Double preco,
-                   Integer quantidade, Avaliacao avaliacao, Status status, List<String> urlImg) {
+                   Integer quantidade, Avaliacao avaliacao, Status status, List<Imagem> urlImg) {
         this.nome = nome;
         this.detalhes = detalhes;
         this.preco = preco;
@@ -108,11 +108,15 @@ public class Produto {
         this.status = status;
     }
 
-    public List<String> getUrlImg() {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Imagem> getUrlImg() {
         return urlImg;
     }
 
-    public void setUrlImg(List<String> urlImg) {
+    public void setUrlImg(List<Imagem> urlImg) {
         this.urlImg = urlImg;
     }
 }

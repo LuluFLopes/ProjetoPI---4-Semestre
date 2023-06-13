@@ -2,6 +2,7 @@ package br.com.senacsp.ProjetoPI.dto.produto;
 
 import br.com.senacsp.ProjetoPI.enumeracoes.produto.Avaliacao;
 import br.com.senacsp.ProjetoPI.enumeracoes.produto.Status;
+import br.com.senacsp.ProjetoPI.model.Imagem;
 import br.com.senacsp.ProjetoPI.model.Produto;
 import lombok.NoArgsConstructor;
 
@@ -17,11 +18,11 @@ public class ProdutoDTO {
     private Integer quantidade;
     private Avaliacao avaliacao;
     private Status status;
-    private List<String> urlImg;
+    private List<Imagem> urlImg;
 
     public ProdutoDTO(Long id, String nome, String detalhes,
                       Double preco, Integer quantidade, Avaliacao avaliacao,
-                      Status status, List<String> urlImg) {
+                      Status status, List<Imagem> urlImg) {
         this.id = id;
         this.nome = nome;
         this.detalhes = detalhes;
@@ -34,7 +35,7 @@ public class ProdutoDTO {
 
     public ProdutoDTO(String nome, String detalhes, Double preco,
                       Integer quantidade, Avaliacao avaliacao, Status status,
-                      List<String> urlImg) {
+                      List<Imagem> urlImg) {
         this.nome = nome;
         this.detalhes = detalhes;
         this.preco = preco;
@@ -116,11 +117,11 @@ public class ProdutoDTO {
         this.status = status;
     }
 
-    public List<String> getUrlImg() {
+    public List<Imagem> getUrlImg() {
         return urlImg;
     }
 
-    public void setUrlImg(List<String> urlImg) {
+    public void setUrlImg(List<Imagem> urlImg) {
         this.urlImg = urlImg;
     }
 }

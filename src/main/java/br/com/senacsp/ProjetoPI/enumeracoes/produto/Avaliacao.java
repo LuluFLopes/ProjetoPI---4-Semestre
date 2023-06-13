@@ -1,6 +1,8 @@
 package br.com.senacsp.ProjetoPI.enumeracoes.produto;
 
 public enum Avaliacao {
+    SEM_AVALIACAO(0.0),
+    HORRIVEL(0.5),
     PESSIMO(1.0),
     MUITO_RUIM(1.5),
     RUIM(2.0),

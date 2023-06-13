@@ -1,6 +1,6 @@
 package br.com.senacsp.ProjetoPI.service;
 
-import br.com.senacsp.ProjetoPI.dto.pedido.HabilitarOuDesabilitarDTO;
+import br.com.senacsp.ProjetoPI.dto.pedido.AlterarStatusDTO;
 import br.com.senacsp.ProjetoPI.dto.pedido.PedidoDTO;
 import br.com.senacsp.ProjetoPI.model.Pedido;
 import br.com.senacsp.ProjetoPI.repository.PedidoRepository;
@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class PedidoService {
@@ -27,8 +26,8 @@ public class PedidoService {
         pedidoRepository.save(dto.conversorParaAlterar(dto));
     }
 
-    public void habilitarOuDesabilitar(HabilitarOuDesabilitarDTO dto) {
-        Pedido pedidoAtualizado = dto.convesorHabilitarOuDesabilitar(dto, buscarPorId(dto.getId()));
+    public void ajustarStatus(AlterarStatusDTO dto) {
+        Pedido pedidoAtualizado = dto.convesorAlterarStatus(dto, buscarPorId(dto.getId()));
         pedidoRepository.save(pedidoAtualizado);
     }
 
