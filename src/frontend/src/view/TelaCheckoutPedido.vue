@@ -2,7 +2,7 @@
 
   <div class="container">
     <div>
-      <form>
+      <form v-on:submit.prevent>
         <h2 class="main-title">Confirme as informações antes de finalizar sua compra</h2>
         <div class="row">
           <div class="col">
@@ -17,7 +17,7 @@
               <span>CPF: {{ pedido.cliente.cpf }}</span>
             </div>
             <div class="inputBox">
-              <span>Endereço de Entrega: </span>
+              <span>Endereço de Entrega: <modal-formulario /></span>
               <select v-model="pedido.enderecoEntrega">
                 <option value="">Selecione...</option>
                 <option v-for="(endereco, indexEnd) in this.enderecosEntrega" :key="indexEnd" :value="endereco">
@@ -89,8 +89,13 @@ import {defineComponent} from "vue";
 import {mapMutations, mapState} from "vuex";
 import axios from "axios";
 import router from "@/router";
+import ModalFormulario from "@/components/ModalFormulario";
 
 export default defineComponent({
+  components: {
+    ModalFormulario
+  },
+
   data() {
     return {
       pedido: {
