@@ -1,60 +1,38 @@
-package br.com.senacsp.ProjetoPI.model;
+package br.com.senacsp.ProjetoPI.form.pedido;
 
 import br.com.senacsp.ProjetoPI.enumeracoes.pedidos.StatusPedido;
-import jakarta.persistence.*;
-import lombok.NoArgsConstructor;
+import br.com.senacsp.ProjetoPI.model.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-@Entity
-@NoArgsConstructor
-public class Pedido {
+public class PedidoForm {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDate dataCompra;
+    private String dataCompra;
     private Double valorTotal;
     private StatusPedido statusPedido;
     private Double frete;
     private String transportadora;
     private String formaDePagamento;
-    @OneToOne
     private EnderecoEntrega enderecoEntrega;
-    @OneToOne
     private EnderecoFaturamento enderecoFaturamento;
-    @ManyToOne
     private Cliente cliente;
-    @ManyToMany
     private List<Produto> produtos;
 
-    public Pedido(Double valorTotal, StatusPedido statusPedido, Double frete, String transportadora, String formaDePagamento, EnderecoEntrega enderecoEntrega, EnderecoFaturamento enderecoFaturamento, Cliente cliente, List<Produto> produtos) {
-        this.dataCompra = LocalDate.now();
-        this.valorTotal = valorTotal;
-        this.statusPedido = statusPedido;
-        this.frete = frete;
-        this.transportadora = transportadora;
-        this.formaDePagamento = formaDePagamento;
-        this.enderecoEntrega = enderecoEntrega;
-        this.enderecoFaturamento = enderecoFaturamento;
-        this.cliente = cliente;
-        this.produtos = produtos;
-    }
-
-    public Pedido(Long id, Double valorTotal, StatusPedido statusPedido, Double frete, String transportadora, String formaDePagamento, EnderecoEntrega enderecoEntrega, EnderecoFaturamento enderecoFaturamento, Cliente cliente, List<Produto> produtos) {
-        this.id = id;
-        this.dataCompra = LocalDate.now();
-        this.valorTotal = valorTotal;
-        this.statusPedido = statusPedido;
-        this.frete = frete;
-        this.transportadora = transportadora;
-        this.formaDePagamento = formaDePagamento;
-        this.enderecoEntrega = enderecoEntrega;
-        this.enderecoFaturamento = enderecoFaturamento;
-        this.cliente = cliente;
-        this.produtos = produtos;
+    public PedidoForm(Pedido pedido) {
+        this.id = pedido.getId();
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.dataCompra = format.format(pedido.getDataCompra());
+        this.valorTotal = pedido.getValorTotal();
+        this.statusPedido = pedido.getStatusPedido();
+        this.frete = pedido.getFrete();
+        this.transportadora = pedido.getTransportadora();
+        this.formaDePagamento = pedido.getFormaDePagamento();
+        this.enderecoEntrega = pedido.getEnderecoEntrega();
+        this.enderecoFaturamento = pedido.getEnderecoFaturamento();
+        this.cliente = pedido.getCliente();
+        this.produtos = pedido.getProdutos();
     }
 
     public Long getId() {
@@ -65,11 +43,11 @@ public class Pedido {
         this.id = id;
     }
 
-    public LocalDate getDataCompra() {
+    public String getDataCompra() {
         return dataCompra;
     }
 
-    public void setDataCompra(LocalDate dataCompra) {
+    public void setDataCompra(String dataCompra) {
         this.dataCompra = dataCompra;
     }
 
@@ -144,4 +122,5 @@ public class Pedido {
     public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
     }
+
 }

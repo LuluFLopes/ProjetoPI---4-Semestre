@@ -2,6 +2,7 @@ package br.com.senacsp.ProjetoPI.service;
 
 import br.com.senacsp.ProjetoPI.dto.pedido.AlterarStatusDTO;
 import br.com.senacsp.ProjetoPI.dto.pedido.PedidoDTO;
+import br.com.senacsp.ProjetoPI.form.pedido.PedidoForm;
 import br.com.senacsp.ProjetoPI.model.Pedido;
 import br.com.senacsp.ProjetoPI.model.Produto;
 import br.com.senacsp.ProjetoPI.repository.PedidoRepository;
@@ -45,10 +46,12 @@ public class PedidoService {
         pedidoRepository.save(pedidoAtualizado);
     }
 
-    public List<Pedido> listar() {
+    public List<PedidoForm> listar() {
         List<Pedido> listaPedido = pedidoRepository.listagemDePedidos();
         if (listaPedido.size() > 0) {
-            return listaPedido;
+            return listaPedido.stream()
+                    .map(PedidoForm::new)
+                    .toList();
         } else {
             throw new NullPointerException("Não encontrado!");
         }

@@ -46,6 +46,12 @@ export default defineComponent({
     async listarPedidos() {
       const response = await axios.get('http://localhost:8081/pedidos/listar');
       this.pedidos = response.data;
+      this.dataParser();
+    },
+    dataParser(){
+      this.pedidos.forEach(e => {
+        console.log(e.dataCompra);
+      })
     },
     redirecionarParaATelaDetalhes(id) {
       this.setPedidoPesquisado(id);

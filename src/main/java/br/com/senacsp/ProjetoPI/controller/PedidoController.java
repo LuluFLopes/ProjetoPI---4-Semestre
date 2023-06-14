@@ -2,6 +2,7 @@ package br.com.senacsp.ProjetoPI.controller;
 
 import br.com.senacsp.ProjetoPI.dto.pedido.AlterarStatusDTO;
 import br.com.senacsp.ProjetoPI.dto.pedido.PedidoDTO;
+import br.com.senacsp.ProjetoPI.form.pedido.PedidoForm;
 import br.com.senacsp.ProjetoPI.model.Pedido;
 import br.com.senacsp.ProjetoPI.service.PedidoService;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +21,8 @@ public class PedidoController {
     }
 
     @GetMapping("/listar")
-    public ResponseEntity<List<Pedido>> listar() {
-        List<Pedido> listarPedidos = pedidoService.listar();
+    public ResponseEntity<List<PedidoForm>> listar() {
+        List<PedidoForm> listarPedidos = pedidoService.listar();
         return ResponseEntity.ok(listarPedidos);
     }
 
