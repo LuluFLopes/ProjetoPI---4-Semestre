@@ -7,11 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 @RestController
 @RequestMapping("/produtos")
@@ -51,26 +46,5 @@ public class ProdutoController {
     public ResponseEntity<Page<Produto>> alterarStatus(@RequestBody ProdutoDTO dto){
         produtoService.alterarStatus(dto);
         return ResponseEntity.ok().build();
-    }
-
-    @PostMapping("/salva-imagem")
-    public String saveImage(@RequestParam("imagem") MultipartFile imagem) {
-        if (!imagem.isEmpty()) {
-            try {
-                String caminho = "../../../../../../../frontend/src/images/";
-
-                File file = new File(caminho + imagem.getOriginalFilename());
-
-                FileOutputStream fileOutputStream = new FileOutputStream(file);
-                fileOutputStream.write(imagem.getBytes());
-                fileOutputStream.close();
-
-                return caminho + imagem.getOriginalFilename();
-            } catch (IOException e) {
-                return "Erro ao salvar a imagem: " + e.getMessage();
-            }
-        } else {
-            return "Nenhuma imagem enviada.";
-        }
     }
 }

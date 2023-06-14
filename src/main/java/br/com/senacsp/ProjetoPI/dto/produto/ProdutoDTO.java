@@ -16,12 +16,12 @@ public class ProdutoDTO {
     private String detalhes;
     private Double preco;
     private Integer quantidade;
-    private Avaliacao avaliacao;
+    private Double avaliacao;
     private Status status;
     private List<Imagem> urlImg;
 
     public ProdutoDTO(Long id, String nome, String detalhes,
-                      Double preco, Integer quantidade, Avaliacao avaliacao,
+                      Double preco, Integer quantidade, Double avaliacao,
                       Status status, List<Imagem> urlImg) {
         this.id = id;
         this.nome = nome;
@@ -34,7 +34,7 @@ public class ProdutoDTO {
     }
 
     public ProdutoDTO(String nome, String detalhes, Double preco,
-                      Integer quantidade, Avaliacao avaliacao, Status status,
+                      Integer quantidade, Double avaliacao, Status status,
                       List<Imagem> urlImg) {
         this.nome = nome;
         this.detalhes = detalhes;
@@ -52,10 +52,20 @@ public class ProdutoDTO {
                 dto.getDetalhes(),
                 dto.getPreco(),
                 dto.getQuantidade(),
-                dto.getAvaliacao(),
+                converteAvaliacao(dto.getAvaliacao()),
                 dto.getStatus(),
                 dto.getUrlImg()
         );
+    }
+
+    private Avaliacao converteAvaliacao(Double avaliacao) {
+        List<Avaliacao> listaAvalicoes = List.of(Avaliacao.values());
+        for (Avaliacao elemento : listaAvalicoes) {
+            if (elemento.getNota().doubleValue() == avaliacao) {
+                return elemento;
+            }
+        }
+        return null;
     }
 
     public Produto conversorAlteracaoStatus(ProdutoDTO dto) {
@@ -101,11 +111,11 @@ public class ProdutoDTO {
         this.quantidade = quantidade;
     }
 
-    public Avaliacao getAvaliacao() {
+    public Double getAvaliacao() {
         return avaliacao;
     }
 
-    public void setAvaliacao(Avaliacao avaliacao) {
+    public void setAvaliacao(Double avaliacao) {
         this.avaliacao = avaliacao;
     }
 

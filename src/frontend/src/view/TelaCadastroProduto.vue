@@ -30,18 +30,13 @@
 
           <div class="itens-formulario">
             <label id="label-img">Imagens:</label>
-            <!--<input class="itens-entrada" id="Imagens" type="Imagens" aria-label="Imagens" placeholder="Imagens"  >-->
-            <img src="https://meups.com.br/wp-content/uploads/2023/03/cats-66-900x503.jpg.webp">
+            <div v-for="(imagem, index) of this.listagemImg" :key="index">{{ imagem }}<label id="botao-retirar"
+                                                                                             @click="removerImagem">X</label>
+            </div>
           </div>
 
           <div id="entrada-img">
-<!--            <v-file-input-->
-<!--                multiple-->
-<!--                label="File input"-->
-<!--                prepend-icon="mdi-camera"-->
-<!--                required-->
-<!--            ></v-file-input>-->
-            <input type="file" @onchange="selecionaImagem">
+            <input type="file" id="capturar-img" @onchange="selecionaImagem">
             <button id="btn-img">Enviar</button>
           </div>
 
@@ -58,7 +53,7 @@
           </div>
 
           <input type="submit" class="btnAcao green" value="Cadastrar"
-                 @click="mandarInformacoes(nome, detalhes ,urlImg, preco, quantidade, avaliacao)">
+                 @click="mandarInformacoes(nome, detalhes , preco, quantidade, avaliacao)">
 
           <router-link to="/WlistaProduto" custom v-slot="{ navigate }">
             <button class="btnAcao red" @click="navigate" role="link">Fechar</button>
@@ -81,15 +76,15 @@ export default defineComponent({
     return {
       nome: "",
       detalhes: "",
-      urlImg: [],
+      urlImg: new FormData(),
       preco: "",
       quantidade: "",
       avaliacao: 0,
-      imagem: null,
+      listagemImg: [],
     }
   },
   methods: {
-    mandarInformacoes(nome, detalhes, urlImg, preco, quantidade, avaliacao) {
+    mandarInformacoes(nome, detalhes, preco, quantidade, avaliacao) {
 
       axios({
         method: 'post',
@@ -99,7 +94,7 @@ export default defineComponent({
           detalhes: detalhes,
           preco: preco,
           quantidade: quantidade,
-          avaliacao: avaliacao
+          avaliacao: avaliacao,
         }
       })
           .then(function (response) {
@@ -111,20 +106,17 @@ export default defineComponent({
             console.log(error);
           });
     },
+    selecionaImagem() {
+      const botao = document.getElementById('capturar-img');
+      if (botao.value) {
+        let separator = "C:\\fakepath\\";
+        this.listagemImg.push(botao.value.split(separator)[1]);
 
-    async listarPedidos() {
-      if (this.imagem){
-        const arquivoImagem = new FormData();
-        arquivoImagem.append(this.nome, this.imagem);
-        const response = await axios.post('http://localhost:8081/produtos/salva-imagem', arquivoImagem);
-        this.urlImg.push(response.data);
+        // this.urlImg.append("imagem", botao.value);
       }
     },
-
-    selecionaImagem(event){
-      event.preventDefault();
-      console.log(event);
-      this.imagem = event.target.files[0];
+    removerImagem(index) {
+      this.listagemImg.splice(index, 1);
     }
   }
 });
@@ -135,12 +127,13 @@ export default defineComponent({
 
 main {
   background: rgba(45, 46, 50);
-  height: 105dvh;
+  height: 105 dvh;
   width: 100%;
   display: inline-block;
   align-items: center;
   justify-content: center;
   text-align: center;
+  height: 100%;
 }
 
 label, p, a {
@@ -205,11 +198,6 @@ fieldset {
 
 }
 
-#Imagens {
-  height: 150px;
-  width: 480px;
-}
-
 #userLogin {
   width: 480px;
   margin-left: 4%;
@@ -241,11 +229,6 @@ fieldset {
 
 }
 
-
-#label-img {
-  position: absolute;
-}
-
 img {
   margin-left: 15%;
   height: 40%;
@@ -265,6 +248,10 @@ img {
   padding: 5px;
   height: 10%;
   margin-top: 1%;
+}
+
+#botao-retirar {
+  margin-left: 5px;
 }
 
 </style>

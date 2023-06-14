@@ -31,18 +31,6 @@ public class ProdutoForm {
         this.urlImg = urlImg;
     }
 
-    public Produto conversor(ProdutoDTO dto) {
-        return new Produto(
-                dto.getNome(),
-                dto.getDetalhes(),
-                dto.getPreco(),
-                dto.getQuantidade(),
-                dto.getAvaliacao(),
-                dto.getStatus(),
-                dto.getUrlImg()
-        );
-    }
-
     public String getNome() {
         return nome;
     }
